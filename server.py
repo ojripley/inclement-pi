@@ -1,5 +1,6 @@
 import time
 import asyncio
+import websockets
 # from sense_data_gatherer import Sensor
 # from network_monitor
 
