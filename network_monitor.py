@@ -11,10 +11,9 @@ ping = re.findall(r'Ping:\s(.*?)\s', speedtest_response, re.MULTILINE)
 download = re.findall(r'Download:\s(.*?)\s', speedtest_response, re.MULTILINE)
 upload = re.findall(r'Upload:\s(.*?)\s', speedtest_response, re.MULTILINE)
 
-# not sure this is necessary
-# ping = ping[0].replace(',', '.')
-# download = download[0].replace(',', '.')
-# upload = upload[0].replace(',', '.')
+ping = ping[0].replace(',', '.')
+download = download[0].replace(',', '.')
+upload = upload[0].replace(',', '.')
 
 try:
   file = open('/home/pi/speedtest/speedtest.csv', 'a+')
