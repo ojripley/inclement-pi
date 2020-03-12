@@ -4,7 +4,7 @@ import subprocess
 import time
 
 # run a subprocess and call speedtest-cli. Log its output to the shell and read it
-speedtest_response = subprocess.Popen('/usr/local/bin/speedtest-cli --simple', shell = True, stdout=subprocess.PIPE).stdout.read().decode('utf-8'))
+speedtest_response = subprocess.Popen('/usr/local/bin/speedtest-cli --simple', shell = True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 
 # parse response for the data we want
 ping = re.findall('Ping:\s(.*?)\s', speedtest_response, re.MULTILINE)
