@@ -21,7 +21,7 @@ try:
     print("\n\n-- Weather Readout --")
     print("Temperature:  ", temp, "°C")
     print("Humidity:     ", humidity + "%")
-    print("Pressure:     ", pressure, "idk what unit this readout is going to come in")
+    print("Pressure:     ", pressure, "mbar")
 
     time.sleep(DATA_READ_INTERVAL)
 
