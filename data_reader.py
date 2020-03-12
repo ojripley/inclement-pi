@@ -14,6 +14,9 @@ network_monitor = NetworkMonitor()
 # will hold the most up-to-date data from each source
 current_data = dict()
 
+async def get_current_data():
+  return current_data
+
 async def get_climate_data():
   while True:
     # climate_conditions = climate_sensor.read_data()
@@ -30,7 +33,7 @@ async def get_network_data():
 
     current_data['network_data'] = network_data
     print(current_data)
-    
+
     await asyncio.sleep(NETWORK_READ_INTERVAL)
 
 loop = asyncio.get_event_loop()
