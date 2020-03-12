@@ -4,12 +4,15 @@ import websockets
 # from sense_data_gatherer import Sensor
 from network_monitor import NetworkMonitor
 
-# climate_sensor = Sensor()
-network_monitor = NetworkMonitor()
+HOST = 'localhost'
+PORT = 8080
 
 # in seconds
 SENSE_READ_INTERVAL = 60  
-NETWORK_READ_INTERVAL = 50 
+NETWORK_READ_INTERVAL = 50
+
+# climate_sensor = Sensor()
+network_monitor = NetworkMonitor()
 
 async def forward_climate_data():
   while True:
@@ -24,9 +27,9 @@ async def forward_network_data():
   while True:
     print('getting network data...')
     network_data = network_monitor.assess_network()
+    # await websocket.send(network_data)
     print(network_data)
     await asyncio.sleep(NETWORK_READ_INTERVAL)
-
 
 loop = asyncio.get_event_loop()
 try:
