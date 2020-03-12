@@ -32,7 +32,7 @@ class Sensor:
     print(climate_conditions)
 
     return(climate_conditions)
-
+    
   # dynamically changes the LED matrix in response to the weather conditions
   def update_display_matrix(self, climate_conditions):
     print('todo!')

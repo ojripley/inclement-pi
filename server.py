@@ -2,12 +2,14 @@ import time
 import asyncio
 import websockets
 # from sense_data_gatherer import Sensor
-# from network_monitor
+from network_monitor import NetworkMonitor
 
 # climate_sensor = Sensor()
+network_monitor = NetworkMonitor()
 
-SENSE_READ_INTERVAL = 10  # in seconds
-NETWORK_READ_INTERVAL = 5 # may shorten this, depends how resource intensive speedtest-cli is
+# in seconds
+SENSE_READ_INTERVAL = 60  
+NETWORK_READ_INTERVAL = 50 
 
 async def forward_climate_data():
   while True:
@@ -20,8 +22,9 @@ async def forward_climate_data():
 
 async def forward_network_data():
   while True:
-    # network_data = 
     print('getting network data...')
+    network_data = network_monitor.assess_network()
+    print(network_data)
     await asyncio.sleep(NETWORK_READ_INTERVAL)
 
 
