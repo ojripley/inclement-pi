@@ -1,7 +1,7 @@
 import time
 import asyncio
 import websockets
-import json
+import json as json
 # from sense_data_gatherer import Sensor
 from network_monitor import NetworkMonitor
 
@@ -50,14 +50,16 @@ async def unregister(socket):
   users.remove(socket)
 
 async def broadcast_data():
-  print('broadcast is being run')
+  print('broadcast is being run, sending to:')
+  print(users)
   if users: # protect against empty set
     await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
 
 async def server(socket, path):
   await register(socket)
+  
   try:
-    print('in the try block')
+    print('preparing to broadcast')
     await broadcast_data()
   finally:
     await unregister(socket)
