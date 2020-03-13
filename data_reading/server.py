@@ -57,7 +57,7 @@ async def broadcast_data():
 
 async def server(socket, path):
   await register(socket)
-  
+
   try:
     print('preparing to broadcast')
     await broadcast_data()

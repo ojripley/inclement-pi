@@ -25,14 +25,14 @@ class Sensor:
     climate_conditions['pressure'] = self.pressure
 
     print("\n\n-- Weather Readout --")
-    print("Temperature:  ", self.temperature, "°C")
-    print("Humidity:     ", self.humidity + "%")
+    print("Temperature:  ", self.temperature, "C")
+    print("Humidity:     ", self.humidity, "%")
     print("Pressure:     ", self.pressure, "mbar")
 
     print(climate_conditions)
 
     return(climate_conditions)
-    
+
   # dynamically changes the LED matrix in response to the weather conditions
   def update_display_matrix(self, climate_conditions):
     print('todo!')
