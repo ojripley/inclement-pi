@@ -1,3 +1,11 @@
+# REACT
+
+node_modules
+.env
+
+
+# PYTHON
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
