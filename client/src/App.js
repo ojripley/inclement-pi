@@ -23,7 +23,7 @@ function App() {
         console.log(data);
         if (data.timestamp) {
           setClimateData(data.climateData);
-          setLastUpdated(timestamp);
+          setLastUpdated(data.timestamp);
         } else {
           console.log('Error: difficulty getting data');
         }
