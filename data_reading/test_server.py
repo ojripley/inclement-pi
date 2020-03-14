@@ -39,7 +39,7 @@ def listener(client, address):
       client.close()
 
 s.listen()
-print('server is listening on ' + PORT)
+print('server is listening on ' + str(PORT))
 
 while True:
   client, address = s.accept()
