@@ -2,18 +2,16 @@ import time
 import sense
 import asyncio
 
-async def run_animation_async():
-  await sense.sensing_animation(True)
+async def sense_continuously():
+  try:
+    await sense.sensing_animation(True)
+    while True:
 
-try:
-  run_animation_async()
-  while True:
+      climate_data = sense.read_data(True)
 
-    climate_data = sense.read_data(True)
+      time.sleep(1)
+  except KeyboardInterrupt:
+      sense.clear()
+      pass
 
-
-    time.sleep(1)
-
-except KeyboardInterrupt:
-    sense.clear()
-    pass
+sense_continuously()
