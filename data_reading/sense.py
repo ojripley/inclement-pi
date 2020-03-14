@@ -104,9 +104,9 @@ async def sensing_animation(display):
 
   while display:
     sense.set_pixels(frame_1)
-    time.sleep(1)
+    asyncio.sleep(1)
     sense.set_pixels(frame_2)
-    time.sleep(1)
+    asyncio.sleep(1)
 
 def test_display():
   sample = [

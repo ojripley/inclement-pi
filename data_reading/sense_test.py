@@ -2,7 +2,7 @@ import time
 import sense
 
 try:
-  await sense.sensing_animation(True)
+  sense.sensing_animation(True)
   while True:
 
     climate_data = sense.read_data(True)
