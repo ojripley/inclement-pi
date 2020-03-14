@@ -48,5 +48,27 @@ def read_data(PRINT_OUT_PUT = False):
   return(climate_conditions)
 
 # dynamically changes the LED matrix in response to the weather conditions
-def update_display_matrix(self, climate_conditions):
-  print('todo!')
+def update_display_matrix(climate_conditions):
+
+  e = [0, 0, 0] # not lit
+  r = [255, 0, 0] # red
+  o = [255, 127, 0] # orange
+  y = [255, 255, 0] # yellow
+  g = [0, 255, 0] # green
+  b = [0, 0, 255] # blue
+  i = [75, 0, 130] # indigo
+  v = [159, 0, 255] # violet
+  w = [255, 255, 255] # white
+
+  sample = [
+    r, o, y, g, b, i, v, w,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+  ]
+
+  sense.set_pixels(sample)
