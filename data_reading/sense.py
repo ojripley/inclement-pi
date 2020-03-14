@@ -91,6 +91,7 @@ class Sensor:
       self.current_frame += 1
 
     print('current_frame:' + str(self.current_frame))
+    print('total frames:' + str(len(self.frames)))
 
     climate_conditions = dict()
 
