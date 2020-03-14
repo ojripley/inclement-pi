@@ -50,14 +50,14 @@ class Sensor:
   ]
 
   frame_3 = [
-    b, b, e, e, e, e, e, o,
-    o, e, e, e, e, e, b, b,
-    o, o, e, e, e, e, e, b,
-    b, e, e, e, e, e, o, o,
-    b, b, e, e, e, e, e, o,
-    o, e, e, e, e, e, b, b,
-    o, o, e, e, e, e, e, b,
-    b, e, e, e, e, e, o, o,
+    b, b, b, e, e, e, o, o,
+    o, o, e, e, e, b, b, b,
+    o, o, o, e, e, e, b, b,
+    b, b, e, e, e, o, o, o,
+    b, b, b, e, e, e, o, o,
+    o, o, e, e, e, b, b, b,
+    o, o, o, e, e, e, b, b,
+    b, b, e, e, e, o, o, o,
   ]
 
   frame_4 = [
@@ -89,6 +89,8 @@ class Sensor:
       self.current_frame == 0
     else:
       self.current_frame += 1
+
+    print('current_frame:' + str(self.current_frame))
 
     climate_conditions = dict()
 
