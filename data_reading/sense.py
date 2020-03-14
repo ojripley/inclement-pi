@@ -17,14 +17,14 @@ class Sensor:
   w = [255, 255, 255]  # white
 
   sample_frame = [
-      r, o, y, g, b, i, v, w,
-      e, e, e, e, e, e, e, e,
-      e, e, e, e, e, e, e, e,
-      e, e, e, e, e, e, e, e,
-      e, e, e, e, e, e, e, e,
-      e, e, e, e, e, e, e, e,
-      e, e, e, e, e, e, e, e,
-      e, e, e, e, e, e, e, e,
+    r, o, y, g, b, i, v, w,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
   ]
 
   frame_1 = [
@@ -61,14 +61,25 @@ class Sensor:
   ]
 
   frame_4 = [
-    e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
+    b, b, b, b, e, o, o, o,
+    o, o, o, e, b, b, b, b,
+    o, o, o, o, e, b, b, b,
+    b, b, b, e, o, o, o, o,
+    b, b, b, b, e, o, o, o,
+    o, o, o, e, b, b, b, b,
+    o, o, o, o, e, b, b, b,
+    b, b, b, e, o, o, o, o,
+  ]
+
+  frame_4 = [
+    b, b, b, b, v, o, o, o,
+    o, o, o, v, b, b, b, b,
+    o, o, o, o, v, b, b, b,
+    b, b, b, v, o, o, o, o,
+    b, b, b, b, v, o, o, o,
+    o, o, o, v, b, b, b, b,
+    o, o, o, o, v, b, b, b,
+    b, b, b, v, o, o, o, o,
   ]
 
   current_frame = 0
