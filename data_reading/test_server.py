@@ -14,7 +14,7 @@ clients = set()
 clients_lock = threading.Lock()
 
 s = socket.socket()
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+# s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind(('', PORT))
 threads = []
 
@@ -39,6 +39,7 @@ def listener(client, address):
       client.close()
 
 s.listen()
+print('server is listening on ' + PORT)
 
 while True:
   client, address = s.accept()
