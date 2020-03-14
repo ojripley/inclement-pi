@@ -9,7 +9,7 @@ def get_cpu_temperature():
   """get cpu temperature using vcgencmd"""
   process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
   output, _error = process.communicate()
-  
+
   return float(output[output.index('=') + 1:output.rindex("'")])
 
 # returns a dict of temperature, humidity and pressure
@@ -33,7 +33,7 @@ def read_data(PRINT_OUT_PUT = False):
   time_of_reading = time.ctime(time.time())
 
   climate_conditions['temperature'] = temperature
-  climate_conditions['humididty'] = humidity
+  climate_conditions['humidity'] = humidity
   climate_conditions['pressure'] = pressure
 
   if (PRINT_OUT_PUT):
