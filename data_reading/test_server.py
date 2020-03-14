@@ -6,7 +6,8 @@ import time
 import datetime
 import sense
 
-HOST = socket.gethostname()
+# HOST = socket.gethostname()
+HOST = 'localhost'
 PORT = 8080
 
 clients = set()

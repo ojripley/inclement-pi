@@ -21,7 +21,8 @@ import time
 import json
 
 s = socket.socket()
-HOST = socket.gethostname()
+# HOST = socket.gethostname()
+HOST = 'localhost'
 PORT = 8080
 
 s.connect((HOST, PORT))
