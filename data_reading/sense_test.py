@@ -1,12 +1,10 @@
 import time
-from sense_data_gatherer import Sensor
-
-sensor = Sensor()
+import sense
 
 try:
 	while True:
 
-		sensor.read_data()
+		sense.read_data(True)
 
 		time.sleep(1)
 except KeyboardInterrupt:
