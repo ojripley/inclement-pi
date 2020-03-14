@@ -14,4 +14,4 @@ async def sense_continuously():
       sense.clear()
       pass
 
-sense_continuously()
+await sense_continuously()
