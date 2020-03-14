@@ -1,5 +1,13 @@
-#!/usr/bin/python
+import time
+from gpiozero import CPUTemperature
+from subprocess import PIPE, Popen
 from sense_hat import SenseHat
+
+def get_cpu_temperature():
+  """get cpu temperature using vcgencmd"""
+  process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
+  output, _error = process.communicate()
+  return float(output[output.index('=') + 1:output.rindex("'")])
 
 
 class Sensor:
@@ -16,20 +24,27 @@ class Sensor:
 
     climate_conditions = dict()
 
-    self.temperature = round(self.sense_hat.get_temperature(), 1)
+    raw_temp = self.sense_hat.get_temperature()
+
+    cpu = CPUTemperature()
+    adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/2.5)
+
+    self.temperature = round(adjusted_temp, 1)
     self.humidity = round(self.sense_hat.get_humidity(), 1)
     self.pressure = round(self.sense_hat.get_pressure(), 1)
+
+    time_of_reading = time.ctime(time.time())
 
     climate_conditions['temperature'] = self.temperature
     climate_conditions['humididty'] = self.humidity
     climate_conditions['pressure'] = self.pressure
 
-    print("\n\n-- Weather Readout --")
-    print("Temperature:  ", self.temperature, "C")
-    print("Humidity:     ", self.humidity, "%")
-    print("Pressure:     ", self.pressure, "mbar")
 
-    print(climate_conditions)
+    print("\n\n-- Weather Readout --")
+    print("Temperature:  " + str(self.temperature) + " C")
+    print("Humidity:     " + str(self.humidity) + " %")
+    print("Pressure:     " + str(self.pressure) + " mbar")
+    print("Taken at:     " + str(time_of_reading))
 
     return(climate_conditions)
 
