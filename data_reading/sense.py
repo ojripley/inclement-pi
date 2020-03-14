@@ -5,6 +5,16 @@ from sense_hat import SenseHat
 
 sense = SenseHat()
 
+e = [0, 0, 0]  # not lit
+r = [255, 0, 0]  # red
+o = [255, 127, 0]  # orange
+y = [255, 255, 0]  # yellow
+g = [0, 255, 0]  # green
+b = [0, 0, 255]  # blue
+i = [75, 0, 130]  # indigo
+v = [159, 0, 255]  # violet
+w = [255, 255, 255]  # white
+
 def get_cpu_temperature():
   """get cpu temperature using vcgencmd"""
   process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
@@ -46,18 +56,57 @@ def read_data(PRINT_OUT_PUT = False):
   return(climate_conditions)
 
 # dynamically changes the LED matrix in response to the weather conditions
-def update_display_matrix(climate_conditions):
+def sensing_animation(display):
+  frame_1 = [
+    b, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, b,
+    o, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, o,
+    b, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, b,
+    o, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, o,
+  ]
 
-  e = [0, 0, 0] # not lit
-  r = [255, 0, 0] # red
-  o = [255, 127, 0] # orange
-  y = [255, 255, 0] # yellow
-  g = [0, 255, 0] # green
-  b = [0, 0, 255] # blue
-  i = [75, 0, 130] # indigo
-  v = [159, 0, 255] # violet
-  w = [255, 255, 255] # white
+  frame_2 = [
+    b, b, e, e, e, e, e, o,
+    o, e, e, e, e, e, b, b,
+    o, o, e, e, e, e, e, b,
+    b, e, e, e, e, e, o, o,
+    b, b, e, e, e, e, e, o,
+    o, e, e, e, e, e, b, b,
+    o, o, e, e, e, e, e, b,
+    b, e, e, e, e, e, o, o,
+  ]
 
+  frame_3 = [
+    b, b, e, e, e, e, e, o,
+    o, e, e, e, e, e, b, b,
+    o, o, e, e, e, e, e, b,
+    b, e, e, e, e, e, o, o,
+    b, b, e, e, e, e, e, o,
+    o, e, e, e, e, e, b, b,
+    o, o, e, e, e, e, e, b,
+    b, e, e, e, e, e, o, o,
+  ]
+
+  frame_4 = [
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+  ]
+
+  while display:
+    sense.set_pixels(frame_1)
+    time.sleep(1)
+    sense.set_pixels(frame_2)
+
+def test_display():
   sample = [
     r, o, y, g, b, i, v, w,
     e, e, e, e, e, e, e, e,

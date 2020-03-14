@@ -6,7 +6,7 @@ try:
 
     climate_data = sense.read_data(True)
 
-    sense.update_display_matrix(climate_data)
+    sense.sensing_animation(True)
 
     time.sleep(1)
 
