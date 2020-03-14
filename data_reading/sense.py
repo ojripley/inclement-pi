@@ -2,6 +2,7 @@ import time
 from gpiozero import CPUTemperature
 from subprocess import PIPE, Popen
 from sense_hat import SenseHat
+import asyncio
 
 sense = SenseHat()
 
@@ -56,7 +57,7 @@ def read_data(PRINT_OUT_PUT = False):
   return(climate_conditions)
 
 # dynamically changes the LED matrix in response to the weather conditions
-def sensing_animation(display):
+async def sensing_animation(display):
   frame_1 = [
     b, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, b,
@@ -105,6 +106,7 @@ def sensing_animation(display):
     sense.set_pixels(frame_1)
     time.sleep(1)
     sense.set_pixels(frame_2)
+    time.sleep(1)
 
 def test_display():
   sample = [

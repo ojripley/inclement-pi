@@ -40,7 +40,6 @@ async def broadcast_data(socket):
     current_data['timestamp'] = time_of_reading
     
     await socket.send(json.dumps(current_data))
-    # await asyncio.wait()
 
     time.sleep(2)
 
