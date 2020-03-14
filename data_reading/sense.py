@@ -71,7 +71,7 @@ class Sensor:
     b, b, b, e, o, o, o, o,
   ]
 
-  frame_4 = [
+  frame_5 = [
     b, b, b, b, v, o, o, o,
     o, o, o, v, b, b, b, b,
     o, o, o, o, v, b, b, b,
@@ -82,8 +82,63 @@ class Sensor:
     b, b, b, v, o, o, o, o,
   ]
 
+  frame_6 = [
+    b, b, b, v, e, v, o, o,
+    o, o, v, e, v, b, b, b,
+    o, o, o, v, e, v, b, b,
+    b, b, v, e, v, o, o, o,
+    b, b, b, v, e, v, o, o,
+    o, o, v, e, v, b, b, b,
+    o, o, o, v, e, v, b, b,
+    b, b, v, e, v, o, o, o,
+  ]
+
+  frame_7 = [
+    b, b, v, e, e, e, v, o,
+    o, v, e, e, e, v, b, b,
+    o, o, v, e, e, e, v, b,
+    b, v, e, e, e, v, o, o,
+    b, b, v, e, e, e, v, o,
+    o, v, e, e, e, v, b, b,
+    o, o, v, e, e, e, v, b,
+    b, v, e, e, e, v, o, o,
+  ]
+
+  frame_8 = [
+    b, v, e, e, e, e, e, v,
+    v, e, e, e, e, e, v, b,
+    o, v, e, e, e, e, e, v,
+    v, e, e, e, e, e, v, o,
+    b, v, e, e, e, e, e, v,
+    v, e, e, e, e, e, v, b,
+    o, v, e, e, e, e, e, v,
+    v, e, e, e, e, e, v, o,
+  ]
+
+  frame_9 = [
+    v, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, v,
+    v, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, v,
+    v, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, v,
+    v, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, v,
+  ]
+
+  frame_10 = [
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e,
+  ]
+
   current_frame = 0
-  frames = [frame_1, frame_2, frame_3, frame_4]
+  frames = [frame_1, frame_2, frame_3, frame_4, frame_5, frame_6, frame_7, frame_8, frame_9, frame_10]
 
   def get_cpu_temperature(self):
     """get cpu temperature using vcgencmd"""
