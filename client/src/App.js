@@ -13,10 +13,18 @@ function App() {
   const [networkData, setNetworkData] = useState(null);
 
   useEffect(() => {
+    while(socketOpen) {
+      socket.send(0);
+    }
+  }, [socket, socketOpen])
+
+  useEffect(() => {
     if (socketOpen) {
       console.log('listening');
       socket.onmessage = msg => {
+        console.log(msg);
         const data = JSON.parse(msg.data);
+        console.log(data);
         if (data.climate_data) {
           setClimateData(data.climate_data);
           setNetworkData(data.network_data);

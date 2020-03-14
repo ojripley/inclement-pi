@@ -27,10 +27,9 @@ def listener(client, address):
     while True:
       data_encoded = client.recv(1024)
       data = data_encoded.decode()
+      print(data)
       if data == '0':
-        # timestamp = datetime.datetime.now().strftime("%I:%M:%S %p")
-        # client.send(timestamp.encode())
-
+        print('request for climate data permitted')
         climate_data = sense.read_data()
         data_string = json.dumps(climate_data)
         client.send(data_string.encode())

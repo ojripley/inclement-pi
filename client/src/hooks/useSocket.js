@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 export default function useSocket() {
 
-  const [socket] = useState(new WebSocket("ws://localhost:8080/"));
+  const [socket] = useState(new WebSocket("ws://192.168.1.155:8080/"));
   const [socketOpen, setSocketOpen] = useState(null);
 
   useEffect(() => {
@@ -13,6 +13,7 @@ export default function useSocket() {
     console.log(socket);
     socket.onopen = () => {
       setSocketOpen(true);
+      console.log('connection successful');
     }
   })
   

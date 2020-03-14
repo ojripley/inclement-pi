@@ -19,13 +19,15 @@ def read_data(PRINT_OUT_PUT = False):
 
   climate_conditions = dict()
 
-  raw_temp = sense.get_temperature()
 
+
+  # because cpu temp affects sense readings, we need to offest the raw data
+
+  raw_temp = sense.get_temperature()
   cpu = CPUTemperature()
 
-  # 5.446 was default value for this algorith... not sure how accurate it is. will need to experiment
-  # adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/5.446)
-  adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/3)
+  # 5.446 was default value for this algorithim... not sure how accurate it is. will need to experiment
+  adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/5.446)
 
   temperature = round(adjusted_temp, 0)
   humidity = round(sense.get_humidity(), 0)
