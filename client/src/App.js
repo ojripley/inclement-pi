@@ -12,11 +12,11 @@ function App() {
   const [climateData, setClimateData] = useState(null);
   const [networkData, setNetworkData] = useState(null);
 
-  useEffect(() => {
-    while(socketOpen) {
-      socket.send(0);
-    }
-  }, [socket, socketOpen])
+  // useEffect(() => {
+  //   while(socketOpen) {
+  //     socket.send(0);
+  //   }
+  // }, [socket, socketOpen])
 
   useEffect(() => {
     if (socketOpen) {

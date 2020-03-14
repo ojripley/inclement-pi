@@ -5,7 +5,7 @@ import json as json
 import sense
 from network_monitor import NetworkMonitor
 
-HOST = 'localhost'
+HOST = '0.0.0.0'
 PORT = 8080
 
 # in seconds
@@ -33,13 +33,12 @@ async def unregister(socket):
 async def broadcast_data():
   print('broadcast is being run, sending to:')
   print(users)
+  while True:
+    climate_data = sense.read_data()
+    if users: # protect against empty set
+      await asyncio.wait([user.send(json.dumps(climate_data)) for user in users])
 
-  climate_data = sense.read_data()
-
-  if users: # protect against empty set
-    await asyncio.wait([user.send(json.dumps(climate_data)) for user in users])
-
-  time.sleep(2)
+    time.sleep(2)
 
 async def server(socket, path):
   await register(socket)
@@ -55,6 +54,7 @@ start_server = websockets.serve(server, HOST, PORT)
 loop = asyncio.get_event_loop()
 try:
   loop.run_until_complete(start_server)
+  print('server is listening at ' + str(HOST) + ':' +str(PORT))
   loop.run_forever()
 
 # break loop on ctrl+c
