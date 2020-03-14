@@ -37,7 +37,8 @@ async def broadcast_data(socket):
     climate_data = sense.read_data()
     current_data['climateData'] = climate_data
     
-    await asyncio.wait(socket.send(json.dumps(current_data)))
+    socket.send(json.dumps(current_data))
+    # await asyncio.wait()
 
     time.sleep(2)
 
