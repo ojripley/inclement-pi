@@ -27,7 +27,10 @@ class Sensor:
     raw_temp = self.sense_hat.get_temperature()
 
     cpu = CPUTemperature()
-    adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/2.5)
+
+    # 5.446 was default value for this algorith... not sure how accurate it is. will need to experiment
+    # adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/5.446)
+    adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/4)
 
     self.temperature = round(adjusted_temp, 1)
     self.humidity = round(self.sense_hat.get_humidity(), 1)
