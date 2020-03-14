@@ -25,10 +25,10 @@ def read_data(PRINT_OUT_PUT = False):
 
   # 5.446 was default value for this algorith... not sure how accurate it is. will need to experiment
   # adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/5.446)
-  adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/2.5)
+  adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/3)
 
-  temperature = round(adjusted_temp, 1)
-  humidity = round(sense.get_humidity(), 1)
+  temperature = round(adjusted_temp, 0)
+  humidity = round(sense.get_humidity(), 0)
   pressure = round(sense.get_pressure(), 1)
 
   time_of_reading = time.ctime(time.time())
