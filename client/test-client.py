@@ -22,7 +22,7 @@ import json
 
 s = socket.socket()
 # HOST = socket.gethostname()
-HOST = '127.0.0.1'
+HOST = '192.168.1.155'
 PORT = 8080
 
 s.connect((HOST, PORT))

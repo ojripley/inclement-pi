@@ -3,6 +3,7 @@ import os
 from threading import Thread
 import threading
 import time
+import json
 import datetime
 import sense
 
@@ -31,7 +32,8 @@ def listener(client, address):
         # client.send(timestamp.encode())
 
         climate_data = sense.read_data()
-        client.send(climate_data)
+        data_string = json.dumps(climate_data)
+        client.send(data_string.encode())
         time.sleep(2)
   finally:
     with clients_lock:
