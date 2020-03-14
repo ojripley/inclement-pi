@@ -72,3 +72,6 @@ def update_display_matrix(climate_conditions):
   ]
 
   sense.set_pixels(sample)
+
+def clear():
+	sense.clear()
