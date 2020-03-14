@@ -11,6 +11,7 @@ function App() {
 
   const {socket, socketOpen} = useSocket();
   const [climateData, setClimateData] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
   // const [networkData, setNetworkData] = useState(null);
 
   useEffect(() => {
@@ -20,9 +21,9 @@ function App() {
         console.log(msg);
         const data = JSON.parse(msg.data);
         console.log(data);
-        if (data.climateData) {
+        if (data.timestamp) {
           setClimateData(data.climateData);
-          console.log('fuuuuuck');
+          setLastUpdated(timestamp);
         } else {
           console.log('Error: difficulty getting data');
         }
@@ -37,6 +38,7 @@ function App() {
       <header>Inclement-Pi</header>
       {/* <NetworkWidget networkData={networkData} ></NetworkWidget> */}
       <WeatherWidget climateData={climateData}></WeatherWidget>
+      <p>Last Updated: {lastUpdated}</p>
     </div>
   );
 }

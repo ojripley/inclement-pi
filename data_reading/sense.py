@@ -24,7 +24,7 @@ def read_data(PRINT_OUT_PUT = False):
   cpu = CPUTemperature()
 
   # 5.446 was default value for this algorithim... not sure how accurate it is. will need to experiment
-  adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/3)
+  adjusted_temp = raw_temp - ((cpu.temperature - raw_temp)/2)
 
   temperature = round(adjusted_temp, 0)
   humidity = round(sense.get_humidity(), 0)
