@@ -86,7 +86,7 @@ class Sensor:
     # sense.clear() # clears the LED matrix
     self.sensing_animation(self.current_frame)
     if (self.current_frame == len(self.frames) - 1):
-      self.current_frame == 0
+      self.current_frame = 0
     else:
       self.current_frame += 1
 
