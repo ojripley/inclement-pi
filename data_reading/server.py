@@ -30,13 +30,14 @@ async def register(socket):
 async def unregister(socket):
   users.remove(socket)
 
-async def broadcast_data():
+async def broadcast_data(socket):
   print('broadcast is being run, sending to:')
-  print(users)
+  print(socket)
   while True:
     climate_data = sense.read_data()
-    if users: # protect against empty set
-      await asyncio.wait([user.send(json.dumps(climate_data)) for user in users])
+    current_data['climateData'] = climate_data
+    
+    await asyncio.wait(socket.send(json.dumps(current_data)))
 
     time.sleep(2)
 
@@ -45,7 +46,7 @@ async def server(socket, path):
 
   try:
     print('preparing to broadcast')
-    await broadcast_data()
+    await broadcast_data(socket)
   finally:
     await unregister(socket)
 
