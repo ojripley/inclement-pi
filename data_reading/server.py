@@ -5,7 +5,7 @@ import json as json
 import sense
 from network_monitor import NetworkMonitor
 
-HOST = '127.0.0.1'
+HOST = 'localhost'
 PORT = 8080
 
 # in seconds
@@ -24,6 +24,7 @@ async def get_current_data():
   return current_data
 
 async def register(socket):
+  print('registering' + str(socket))
   users.add(socket)
 
 async def unregister(socket):
