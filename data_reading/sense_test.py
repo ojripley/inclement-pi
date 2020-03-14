@@ -5,7 +5,7 @@ import asyncio
 sensor = Sensor()
 
 try:
-  sensor.sensing_animation(True)
+  # sensor.sensing_animation(True)
   while True:
 
     climate_data = sensor.read_data(True)
