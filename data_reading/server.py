@@ -25,10 +25,13 @@ async def get_current_data():
   return current_data
 
 async def get_climate_data():
+  print('preparing to read data!')
   current_data['climate_data'] = sensor.read_data()
   time_of_reading = time.ctime(time.time())
   current_data['timestamp'] = time_of_reading
+  print('just got data... im tired, going to sleep now') 
   time.sleep(1)
+  print('quick nap is over!')
 
 
 async def register(socket):
@@ -45,6 +48,7 @@ async def broadcast_data(socket):
   while True:
 
     await socket.send(json.dumps(current_data))
+    print('just sent data!')
     # await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
 
 
