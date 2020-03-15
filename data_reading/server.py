@@ -38,7 +38,7 @@ async def websocket(request, ws):
         await broadcast(sensor.read_data())
         # print('Received: ' + data)
         print('just sent data')
-        asyncio.sleep(1)
+        sleep(1)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
