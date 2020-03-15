@@ -8,7 +8,9 @@ from sanic import Sanic
 from sanic import response
 from sanic.response import file
 from sanic.websocket import ConnectionClosed
+from sense import Sensor
 
+sensor = Sensor()
 app = Sanic(__name__)
 
 app.ws_clients = set()
@@ -32,8 +34,11 @@ async def websocket(request, ws):
     await ws.send(json.dumps("hello from server!"))
     print(f'{len(app.ws_clients)} clients')
     while True:
-        data = await ws.recv()
-        print('Received: ' + data)
+        # data = await ws.recv()
+        await broadcast(sensor.read_data())
+        # print('Received: ' + data)
+        print('just sent data')
+        asyncio.sleep(1)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
