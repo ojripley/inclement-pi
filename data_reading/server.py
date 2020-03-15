@@ -2,7 +2,7 @@ import time
 import asyncio
 import websockets
 import json as json
-import sense
+from sense import Sensor
 from network_monitor import NetworkMonitor
 
 HOST = '0.0.0.0'
@@ -12,6 +12,7 @@ PORT = 8080
 SENSE_READ_INTERVAL = 1  
 NETWORK_READ_INTERVAL = 10
 
+sensor = Sensor()
 network_monitor = NetworkMonitor()
 
 # holds the most up-to-date data from each source
@@ -34,7 +35,7 @@ async def broadcast_data(socket):
   print('broadcast is being run, sending to:')
   print(socket)
   while True:
-    climate_data = sense.read_data()
+    climate_data = sensor.read_data()
     time_of_reading = time.ctime(time.time())
     current_data['climateData'] = climate_data
     current_data['timestamp'] = time_of_reading

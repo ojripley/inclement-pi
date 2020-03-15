@@ -17,7 +17,7 @@ class Sensor:
   w = [255, 255, 255]  # white
 
   sample_frame = [
-    r, o, y, g, b, i, v, w,
+    r, o, y, g, b, i, w, w,
     e, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, e,
@@ -72,58 +72,58 @@ class Sensor:
   ]
 
   frame_5 = [
-    b, b, b, b, v, o, o, o,
-    o, o, o, v, b, b, b, b,
-    o, o, o, o, v, b, b, b,
-    b, b, b, v, o, o, o, o,
-    b, b, b, b, v, o, o, o,
-    o, o, o, v, b, b, b, b,
-    o, o, o, o, v, b, b, b,
-    b, b, b, v, o, o, o, o,
+    b, b, b, b, w, o, o, o,
+    o, o, o, w, b, b, b, b,
+    o, o, o, o, w, b, b, b,
+    b, b, b, w, o, o, o, o,
+    b, b, b, b, w, o, o, o,
+    o, o, o, w, b, b, b, b,
+    o, o, o, o, w, b, b, b,
+    b, b, b, w, o, o, o, o,
   ]
 
   frame_6 = [
-    b, b, b, v, e, v, o, o,
-    o, o, v, e, v, b, b, b,
-    o, o, o, v, e, v, b, b,
-    b, b, v, e, v, o, o, o,
-    b, b, b, v, e, v, o, o,
-    o, o, v, e, v, b, b, b,
-    o, o, o, v, e, v, b, b,
-    b, b, v, e, v, o, o, o,
+    b, b, b, w, e, w, o, o,
+    o, o, w, e, w, b, b, b,
+    o, o, o, w, e, w, b, b,
+    b, b, w, e, w, o, o, o,
+    b, b, b, w, e, w, o, o,
+    o, o, w, e, w, b, b, b,
+    o, o, o, w, e, w, b, b,
+    b, b, w, e, w, o, o, o,
   ]
 
   frame_7 = [
-    b, b, v, e, e, e, v, o,
-    o, v, e, e, e, v, b, b,
-    o, o, v, e, e, e, v, b,
-    b, v, e, e, e, v, o, o,
-    b, b, v, e, e, e, v, o,
-    o, v, e, e, e, v, b, b,
-    o, o, v, e, e, e, v, b,
-    b, v, e, e, e, v, o, o,
+    b, b, w, e, e, e, w, o,
+    o, w, e, e, e, w, b, b,
+    o, o, w, e, e, e, w, b,
+    b, w, e, e, e, w, o, o,
+    b, b, w, e, e, e, w, o,
+    o, w, e, e, e, w, b, b,
+    o, o, w, e, e, e, w, b,
+    b, w, e, e, e, w, o, o,
   ]
 
   frame_8 = [
-    b, v, e, e, e, e, e, v,
-    v, e, e, e, e, e, v, b,
-    o, v, e, e, e, e, e, v,
-    v, e, e, e, e, e, v, o,
-    b, v, e, e, e, e, e, v,
-    v, e, e, e, e, e, v, b,
-    o, v, e, e, e, e, e, v,
-    v, e, e, e, e, e, v, o,
+    b, w, e, e, e, e, e, w,
+    w, e, e, e, e, e, w, b,
+    o, w, e, e, e, e, e, w,
+    w, e, e, e, e, e, w, o,
+    b, w, e, e, e, e, e, w,
+    w, e, e, e, e, e, w, b,
+    o, w, e, e, e, e, e, w,
+    w, e, e, e, e, e, w, o,
   ]
 
   frame_9 = [
-    v, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, v,
-    v, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, v,
-    v, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, v,
-    v, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, v,
+    w, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, w,
+    w, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, w,
+    w, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, w,
+    w, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, w,
   ]
 
   frame_10 = [
