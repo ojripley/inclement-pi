@@ -24,11 +24,10 @@ class Sensor:
     e, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e
   ]
 
   frame_1 = [
-    b, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, b,
     o, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, o,
@@ -36,10 +35,10 @@ class Sensor:
     e, e, e, e, e, e, e, b,
     o, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, o,
+    b, e, e, e, e, e, e, e
   ]
 
   frame_2 = [
-    b, b, e, e, e, e, e, o,
     o, e, e, e, e, e, b, b,
     o, o, e, e, e, e, e, b,
     b, e, e, e, e, e, o, o,
@@ -47,10 +46,10 @@ class Sensor:
     o, e, e, e, e, e, b, b,
     o, o, e, e, e, e, e, b,
     b, e, e, e, e, e, o, o,
+    b, b, e, e, e, e, e, o
   ]
 
   frame_3 = [
-    b, b, b, e, e, e, o, o,
     o, o, e, e, e, b, b, b,
     o, o, o, e, e, e, b, b,
     b, b, e, e, e, o, o, o,
@@ -58,10 +57,10 @@ class Sensor:
     o, o, e, e, e, b, b, b,
     o, o, o, e, e, e, b, b,
     b, b, e, e, e, o, o, o,
+    b, b, b, e, e, e, o, o
   ]
 
   frame_4 = [
-    b, b, b, b, e, o, o, o,
     o, o, o, e, b, b, b, b,
     o, o, o, o, e, b, b, b,
     b, b, b, e, o, o, o, o,
@@ -69,10 +68,10 @@ class Sensor:
     o, o, o, e, b, b, b, b,
     o, o, o, o, e, b, b, b,
     b, b, b, e, o, o, o, o,
+    b, b, b, b, e, o, o, o
   ]
 
   frame_5 = [
-    b, b, b, b, w, o, o, o,
     o, o, o, w, b, b, b, b,
     o, o, o, o, w, b, b, b,
     b, b, b, w, o, o, o, o,
@@ -80,10 +79,10 @@ class Sensor:
     o, o, o, w, b, b, b, b,
     o, o, o, o, w, b, b, b,
     b, b, b, w, o, o, o, o,
+    b, b, b, b, w, o, o, o
   ]
 
   frame_6 = [
-    b, b, b, w, e, w, o, o,
     o, o, w, e, w, b, b, b,
     o, o, o, w, e, w, b, b,
     b, b, w, e, w, o, o, o,
@@ -91,10 +90,10 @@ class Sensor:
     o, o, w, e, w, b, b, b,
     o, o, o, w, e, w, b, b,
     b, b, w, e, w, o, o, o,
+    b, b, b, w, e, w, o, o
   ]
 
   frame_7 = [
-    b, b, w, e, e, e, w, o,
     o, w, e, e, e, w, b, b,
     o, o, w, e, e, e, w, b,
     b, w, e, e, e, w, o, o,
@@ -102,10 +101,10 @@ class Sensor:
     o, w, e, e, e, w, b, b,
     o, o, w, e, e, e, w, b,
     b, w, e, e, e, w, o, o,
+    b, b, w, e, e, e, w, o
   ]
 
   frame_8 = [
-    b, w, e, e, e, e, e, w,
     w, e, e, e, e, e, w, b,
     o, w, e, e, e, e, e, w,
     w, e, e, e, e, e, w, o,
@@ -113,10 +112,10 @@ class Sensor:
     w, e, e, e, e, e, w, b,
     o, w, e, e, e, e, e, w,
     w, e, e, e, e, e, w, o,
+    b, w, e, e, e, e, e, w
   ]
 
   frame_9 = [
-    w, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, w,
     w, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, w,
@@ -124,6 +123,7 @@ class Sensor:
     e, e, e, e, e, e, e, w,
     w, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, w,
+    w, e, e, e, e, e, e, e
   ]
 
   frame_10 = [
@@ -134,7 +134,7 @@ class Sensor:
     e, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, e,
     e, e, e, e, e, e, e, e,
-    e, e, e, e, e, e, e, e,
+    e, e, e, e, e, e, e, e
   ]
 
   current_frame = 0

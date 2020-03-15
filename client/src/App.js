@@ -26,6 +26,7 @@ function App() {
           setLastUpdated(data.timestamp);
         } else {
           console.log('Error: difficulty getting data');
+          socket.send("well gawd damn");
         }
         
       };
