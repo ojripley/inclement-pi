@@ -14,6 +14,7 @@ NETWORK_READ_INTERVAL = 10
 
 sensor = Sensor()
 network_monitor = NetworkMonitor()
+broadcasting = False
 
 # holds the most up-to-date data from each source
 current_data = dict()
@@ -34,8 +35,9 @@ async def unregister(socket):
 async def broadcast_data(socket):
   print('broadcast is being run, sending to:')
   print(socket)
-  if (users):
-    while True:
+  while True:
+    if (users):
+      broadcasting = True
       climate_data = sensor.read_data()
       time_of_reading = time.ctime(time.time())
       current_data['climateData'] = climate_data
@@ -50,8 +52,9 @@ async def server(socket, path):
   await register(socket)
 
   try:
-    print('preparing to broadcast')
-    await broadcast_data(socket)
+    if (not broadcasting):
+      print('preparing to broadcast')
+      await broadcast_data(socket)
   finally:
     await unregister(socket)
 
