@@ -8,6 +8,6 @@ def get_system_data():
 
   system_data['cpuPercent'] = psutil.cpu_percent()
   system_data['cpuTemperature'] = CPUTemperature()
-  system_data['memoryPercent'] = psutil.virtual_memory().percent()
+  system_data['memoryPercent'] = psutil.virtual_memory()
 
   return system_data
