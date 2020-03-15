@@ -30,6 +30,10 @@ async def get_climate_data():
   time_of_reading = time.ctime(time.time())
   current_data['timestamp'] = time_of_reading
   print('just got data... im tired, going to sleep now') 
+
+  if (users):
+      await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
+
   time.sleep(1)
   print('quick nap is over!')
 
@@ -47,7 +51,7 @@ async def broadcast_data(socket):
 
   while True:
     # await socket.send(json.dumps(current_data))
-    current_data = await get_current_data()
+    # current_data = await get_current_data()
     if (users):
       await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
       print('just sent data: ')
@@ -58,11 +62,11 @@ async def broadcast_data(socket):
 async def server(socket, path):
   await register(socket)
 
-  try:
-    print('preparing to broadcast')
-    await broadcast_data(socket)
-  finally:
-    await unregister(socket)
+  # try:
+    # print('preparing to broadcast')
+    # await broadcast_data(socket)
+  # finally:
+    # await unregister(socket)
 
 start_server = websockets.serve(server, HOST, PORT)
 
