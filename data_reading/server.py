@@ -40,9 +40,6 @@ async def websocket(request, ws):
   print(f'{len(app.ws_clients)} clients')
   while True:
 
-    # data = await ws.recv()
-    # print('Received: ' + data)
-
     data = dict()
     time_of_reading = time.ctime(time.time())
     data['climateData'] = sensor.read_data()

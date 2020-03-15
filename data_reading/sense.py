@@ -1,8 +1,9 @@
 import time
+import asyncio
+
 from gpiozero import CPUTemperature
 from subprocess import PIPE, Popen
 from sense_hat import SenseHat
-import asyncio
 
 sense = SenseHat()
 class Sensor:
