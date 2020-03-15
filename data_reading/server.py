@@ -32,7 +32,9 @@ async def get_climate_data():
   print('just got data... im tired, going to sleep now') 
 
   if (users):
-      await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
+    print('sending to ')
+    print(users)
+    await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
 
   time.sleep(1)
   print('quick nap is over!')
