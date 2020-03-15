@@ -1,6 +1,8 @@
 import psutil
 import time
 
+from subprocess import PIPE, Popen
+
 
 def get_cpu_temperature():
     """get cpu temperature using vcgencmd"""
