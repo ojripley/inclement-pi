@@ -24,6 +24,13 @@ users = set()
 async def get_current_data():
   return current_data
 
+async def get_climate_data():
+  current_data['climate_data'] = sensor.read_data()
+  time_of_reading = time.ctime(time.time())
+  current_data['timestamp'] = time_of_reading
+  time.sleep(1)
+
+
 async def register(socket):
   print('registering' + str(socket))
   users.add(socket)
@@ -36,16 +43,11 @@ async def broadcast_data(socket):
   print(socket)
 
   while True:
-    climate_data = sensor.read_data()
-    time_of_reading = time.ctime(time.time())
-    current_data['climateData'] = climate_data
-    current_data['timestamp'] = time_of_reading
-  
+
     await socket.send(json.dumps(current_data))
     # await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
 
 
-    time.sleep(0.5)
 
 async def server(socket, path):
   await register(socket)
@@ -61,6 +63,7 @@ start_server = websockets.serve(server, HOST, PORT)
 loop = asyncio.get_event_loop()
 try:
   loop.run_until_complete(start_server)
+  asyncio.ensure_future(get_climate_data())
   print('server is listening at ' + str(HOST) + ':' +str(PORT))
   loop.run_forever()
 
