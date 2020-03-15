@@ -66,4 +66,5 @@ try:
 
 # break loop on ctrl+c
 except KeyboardInterrupt:
+  sensor.clear()
   pass
