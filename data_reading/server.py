@@ -10,6 +10,7 @@ from sanic import response
 from sanic.response import file
 from sanic.websocket import ConnectionClosed
 from sense import Sensor
+from system import get_system_data
 
 sensor = Sensor()
 app = Sanic(__name__)
@@ -42,6 +43,7 @@ async def websocket(request, ws):
         data = dict()
         time_of_reading = time.ctime(time.time())
         data['climateData'] = sensor.read_data()
+        data['systemData'] = get_system_data()
         data['timestamp'] = time_of_reading
         await broadcast(json.dumps(data))
         print('just sent data')
