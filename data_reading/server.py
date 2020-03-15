@@ -35,15 +35,17 @@ async def websocket(request, ws):
     await ws.send(json.dumps("hello from server!"))
     print(f'{len(app.ws_clients)} clients')
     while True:
+
         # data = await ws.recv()
+        # print('Received: ' + data)
+
         data = dict()
         time_of_reading = time.ctime(time.time())
         data['climateData'] = sensor.read_data()
         data['timestamp'] = time_of_reading
         await broadcast(json.dumps(data))
-        # print('Received: ' + data)
         print('just sent data')
-        time.sleep(1)
+        time.sleep(0.5)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
