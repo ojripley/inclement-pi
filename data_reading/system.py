@@ -3,14 +3,6 @@ import time
 
 from gpiozero import CPUTemperature
 
-
-def get_cpu_temperature():
-    """get cpu temperature using vcgencmd"""
-    process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
-    output, _error = process.communicate()
-
-    return float(output[output.index('=') + 1:output.rindex("'")])
-
 def get_system_data():
   system_data = dict()
 
