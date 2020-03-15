@@ -1,7 +1,7 @@
 import psutil
 import time
 
-from subprocess import PIPE, Popen
+from gpiozero import CPUTemperature
 
 
 def get_cpu_temperature():
@@ -12,14 +12,10 @@ def get_cpu_temperature():
     return float(output[output.index('=') + 1:output.rindex("'")])
 
 def get_system_data():
-  print('cpu percent: ' + str())
-  print('memory : ' + str(psutil.virtual_memory().percent))
-  print('network :' + str(len(psutil.net_connections())))
-
   system_data = dict()
 
   system_data['cpuPercent'] = psutil.cpu_percent()
-  system_data['cpuTemperature'] = get_cpu_temperature()
+  system_data['cpuTemperature'] = CPUTemperature()
   system_data['memoryPercent'] = psutil.virtual_memory().percent()
 
   return system_data
