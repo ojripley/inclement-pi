@@ -14,19 +14,6 @@ app = Sanic(__name__)
 app.ws_clients = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-
-# @app.route('/')
-# async def index(request):
-#     return await file('ws.html')
-
-
-# @app.route('/post', methods=["POST"])
-# async def message_inbound(request):
-#     payload = request.body.decode("utf-8")
-#     await broadcast(payload)
-#     return response.json({"status": "OK"})
-
-
 async def broadcast(message):
     broadcasts = [ws.send(message) for ws in app.ws_clients]
     for result in asyncio.as_completed(broadcasts):
@@ -38,7 +25,6 @@ async def broadcast(message):
             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
             message = template.format(type(ex).__name__, ex.args)
             print(message)
-
 
 @app.websocket("/")
 async def websocket(request, ws):
