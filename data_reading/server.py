@@ -46,10 +46,10 @@ async def broadcast_data(socket):
   print(socket)
 
   while True:
-
-    await socket.send(json.dumps(current_data))
-    print('just sent data!')
-    # await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
+    # await socket.send(json.dumps(current_data))
+    if (users):
+      await asyncio.wait([user.send(json.dumps(current_data)) for user in users])
+      print('just sent data!')
 
 
 
