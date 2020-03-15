@@ -1,8 +1,9 @@
 import time
+import asyncio
+
 from gpiozero import CPUTemperature
 from subprocess import PIPE, Popen
 from sense_hat import SenseHat
-import asyncio
 
 sense = SenseHat()
 class Sensor:
@@ -139,13 +140,6 @@ class Sensor:
 
   current_frame = 0
   frames = [frame_1, frame_2, frame_3, frame_4, frame_5, frame_6, frame_7, frame_8, frame_9, frame_10]
-
-  def get_cpu_temperature(self):
-    """get cpu temperature using vcgencmd"""
-    process = Popen(['vcgencmd', 'measure_temp'], stdout=PIPE)
-    output, _error = process.communicate()
-
-    return float(output[output.index('=') + 1:output.rindex("'")])
 
   # returns a dict of temperature, humidity and pressure
   def read_data(self, PRINT_OUT_PUT = False):
