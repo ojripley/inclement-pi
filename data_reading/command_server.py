@@ -38,7 +38,7 @@ async def handle_request(request):
     payload['type'] = 'image'
     payload['imageBytes'] = imageBytes
 
-    await broadcast(json.dumps(payload))
+    await broadcast(payload)
 
 async def broadcast(message):
   broadcasts = [ws.send(message) for ws in app.ws_clients]

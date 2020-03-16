@@ -45,14 +45,16 @@ function App() {
   useEffect(() => {
     if (commandSocketOpen) {
       commandSocket.onmessage = msg => {
-        console.log(msg);
-        setImageBytes(msg.data)
-        console.log(msg.data)
-        const reader = new FileReader();
+        const data = JSON.parse(msg.data);
+        if (data.type === 'image') {
+          setImageBytes(data)
+          console.log(data)
+          const reader = new FileReader();
+          reader.readAsDataURL(JSON.parse(data));
+          setImage(reader.result);
+        }
 
-        reader.readAsDataURL(JSON.parse(msg.data));
 
-        setImage(reader.result);
       };
     }
   }, [commandSocket, commandSocketOpen]);
