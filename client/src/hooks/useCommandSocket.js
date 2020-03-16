@@ -18,7 +18,6 @@ export default function useCommandSocket() {
     if (commandSocketOpen) {
       commandSocket.onopen = () => {
         console.log('connection successful');
-        commandSocket.send('test');
       }
     }
   }, [commandSocket, commandSocketOpen])

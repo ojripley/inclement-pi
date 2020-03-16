@@ -9,12 +9,22 @@ from sanic import Sanic
 from sanic import response
 from sanic.response import file
 from sanic.websocket import ConnectionClosed
+from picamera import picamera
+
+camera = PiCamera()
 
 app = Sanic(__name__)
 
 app.ws_clients = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
+def handleRequest(request):
+  print(request)
+  if (request == 'image'):
+    camera.start_preview()
+    time.sleep(3) # allows camera to adjust light sensor
+    camera.capture('~/inclement-pi/inclement-image.jpg')
+    camera.stop_preview()
 
 async def broadcast(message):
   broadcasts = [ws.send(message) for ws in app.ws_clients]
@@ -38,8 +48,11 @@ async def websocket(request, ws):
   print(f'{len(app.ws_clients)} clients')
   while True:
 
-    data = await ws.recv()
-    print('Received: ' + data)
+    dataString = await ws.recv()
+    print('request: ' + dataString)
+    
+    data = json.loads(dataString)
+    handleRequest(data.request)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=9090, workers=1, debug=False)
