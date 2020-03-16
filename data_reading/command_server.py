@@ -33,6 +33,8 @@ def handleRequest(request):
 
     print(imageBytes)
 
+    broadcast(imageBytes)
+
 async def broadcast(message):
   broadcasts = [ws.send(message) for ws in app.ws_clients]
   for result in asyncio.as_completed(broadcasts):

@@ -40,6 +40,14 @@ function App() {
     }
   }, [socket, socketOpen]);
 
+  useEffect(() => {
+    if (commandSocketOpen) {
+      commandSocket.onmessage = msg => {
+        console.log(msg);
+      };
+    }
+  }, [commandSocket, commandSocketOpen]);
+
 
   return (
     <div className="app">
