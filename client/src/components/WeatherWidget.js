@@ -15,11 +15,11 @@ export default function WeatherWidget(props) {
   }, [props.climateData]);
 
   return (
-    <>
+    <div className="widget">
       <header>Weather</header>
       <p>Temperature: {temperature} C</p>
       <p>Humidity: {humidity} %</p>
       <p>Pressure: {pressure} mBar</p>
-    </>
+    </div>
   );
 };

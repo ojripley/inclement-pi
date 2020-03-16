@@ -17,11 +17,11 @@ export default function NetworkWidget(props) {
 
 
   return (
-    <>
+    <div className="widget">
       <header>Network</header>
       <p>Ping: {ping} s</p>
       <p>Download: {download} Mb/s</p>
       <p>Upload: {upload} Mb/s</p>
-    </>
+    </div>
   );
 };

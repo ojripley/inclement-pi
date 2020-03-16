@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
+import './components/styles/App.scss';
 
 import useSocket from './hooks/useSocket';
 
-import NetworkWidget from './components/NetworkWidget';
+import CameraWidget from './components/CameraWidget';
 import WeatherWidget from './components/WeatherWidget';
-import PiholeWidget from './components/PiholeWidget';
+// import PiholeWidget from './components/PiholeWidget';
 import PiSystemWidget from './components/PiSystemWidget';
+import NetworkWidget from './components/NetworkWidget';
 
 
 function App() {
@@ -39,13 +40,19 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="app">
       <header>Inclement-Pi</header>
-      {/* <NetworkWidget networkData={networkData} ></NetworkWidget> */}
-      <PiholeWidget></PiholeWidget>
-      <WeatherWidget climateData={climateData} ></WeatherWidget>
-      <PiSystemWidget systemData={systemData} ></PiSystemWidget>
       <p>Last Updated: {lastUpdated}</p>
+      <div className="widget-container">
+        <div className="widget-subdivide-1">
+          <WeatherWidget climateData={climateData} ></WeatherWidget>
+          <PiSystemWidget systemData={systemData} ></PiSystemWidget>
+          <NetworkWidget></NetworkWidget>
+        </div>
+        <div className="widget-subdivide-2">
+          <CameraWidget></CameraWidget>
+        </div>
+      </div>
     </div>
   );
 }
