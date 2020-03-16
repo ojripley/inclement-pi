@@ -21,10 +21,17 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 def handleRequest(request):
   print(request)
   if (request == 'image'):
+
     camera.start_preview()
     time.sleep(3) # allows camera to adjust light sensor
     camera.capture('/home/pi/inclement-pi/inclementImage.jpg')
     camera.stop_preview()
+
+    image = open('/home/pi/inclement-pi/inclementImage.jpg', 'rb')
+
+    imageBytes = image.read()
+
+    print(imageBytes)
 
 async def broadcast(message):
   broadcasts = [ws.send(message) for ws in app.ws_clients]

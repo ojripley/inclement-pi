@@ -11,7 +11,7 @@ export default function CameraWidget(props) {
   return (
     <div className="widget">
       <header>Camera</header>
-      <button onClick={requestImage}></button>
+      <button onClick={requestImage}>Take Picture</button>
     </div>
   )
 }
