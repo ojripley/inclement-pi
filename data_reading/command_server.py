@@ -52,7 +52,7 @@ async def websocket(request, ws):
     print('request: ' + dataString)
     
     data = json.loads(dataString)
-    handleRequest(data.request)
+    handleRequest(data['request'])
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=9090, workers=1, debug=False)
