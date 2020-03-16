@@ -18,7 +18,7 @@ app = Sanic(__name__)
 app.ws_clients = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-def handleRequest(request):
+async def handle_request(request):
   print(request)
   if (request == 'image'):
 
@@ -33,7 +33,7 @@ def handleRequest(request):
 
     print(imageBytes)
 
-    broadcast(imageBytes)
+    await broadcast(imageBytes)
 
 async def broadcast(message):
   broadcasts = [ws.send(message) for ws in app.ws_clients]
@@ -61,7 +61,7 @@ async def websocket(request, ws):
     print('request: ' + dataString)
     
     data = json.loads(dataString)
-    handleRequest(data['request'])
+    handle_request(data['request'])
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=9090, workers=1, debug=False)
