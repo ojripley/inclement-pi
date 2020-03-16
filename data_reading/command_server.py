@@ -61,7 +61,7 @@ async def websocket(request, ws):
     print('request: ' + dataString)
     
     data = json.loads(dataString)
-    handle_request(data['request'])
+    await handle_request(data['request'])
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=9090, workers=1, debug=False)
