@@ -10,7 +10,7 @@ export default function CameraWidget(props) {
 
   useEffect(() => {
     if (props.image) {
-      console.log(image);
+      console.log(props.image);
     }
   });
 
@@ -18,7 +18,7 @@ export default function CameraWidget(props) {
     <div className="widget">
       <header>Camera</header>
       <button onClick={requestImage}>Take Picture</button>
-      {props.image ? <image source={props.image}></image> : 
+      {props.image ? <img source={props.image}></img> : 
       <></>}
     </div>
   )

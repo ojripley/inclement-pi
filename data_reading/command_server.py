@@ -38,7 +38,7 @@ async def handle_request(request):
     payload['type'] = 'image'
     payload['imageBytes'] = imageBytes
 
-    await broadcast(payload)
+    await broadcast(imageBytes)
 
 async def broadcast(message):
   broadcasts = [ws.send(message) for ws in app.ws_clients]
@@ -58,7 +58,7 @@ async def broadcast(message):
 @app.websocket("/")
 async def websocket(request, ws):
   app.ws_clients.add(ws)
-  await ws.send(json.dumps("hello from server!"))
+  # await ws.send(json.dumps("hello from server!"))
   print(f'{len(app.ws_clients)} clients')
   while True:
 
