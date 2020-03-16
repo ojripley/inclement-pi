@@ -23,7 +23,7 @@ def handleRequest(request):
   if (request == 'image'):
     camera.start_preview()
     time.sleep(3) # allows camera to adjust light sensor
-    camera.capture('/home/pi/image.jpg')
+    camera.capture('/home/pi/inclement-pi/inclement-image.jpg')
     camera.stop_preview()
 
 async def broadcast(message):
