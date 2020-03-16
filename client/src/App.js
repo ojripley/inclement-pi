@@ -18,7 +18,8 @@ function App() {
   const [climateData, setClimateData] = useState(null);
   const [systemData, setSystemData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
-  // const [networkData, setNetworkData] = useState(null);
+  const [networkData, setNetworkData] = useState(null);
+  const [imageBytes, setImageBytes] = useState(null);
 
   useEffect(() => {
     if (socketOpen) {
@@ -44,6 +45,8 @@ function App() {
     if (commandSocketOpen) {
       commandSocket.onmessage = msg => {
         console.log(msg);
+        setImageBytes(msg.data)
+        console.log(msg.data)
       };
     }
   }, [commandSocket, commandSocketOpen]);

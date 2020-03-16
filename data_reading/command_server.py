@@ -31,7 +31,7 @@ async def handle_request(request):
 
     imageBytes = image.read()
 
-    print(imageBytes)
+    # print(imageBytes)
 
     await broadcast(imageBytes)
 
