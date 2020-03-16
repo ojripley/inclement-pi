@@ -6,8 +6,8 @@ export default function useCommandSocket() {
   const [commandSocket, setCommandSocket] = useState(null);
   const [commandSocketOpen, setCommandSocketOpen] = useState(false);
 
-  const serverAddress = "ws://192.168.1.207:9090/";
-  // const serverAddress = "ws://192.168.1.155:9090/";
+  // const serverAddress = "ws://192.168.1.207:9090/";
+  const serverAddress = "ws://192.168.1.155:9090/";
 
   useEffect(() => {
     setCommandSocket(new WebSocket(serverAddress));
