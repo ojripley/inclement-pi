@@ -20,6 +20,7 @@ function App() {
   const [lastUpdated, setLastUpdated] = useState(null);
   const [networkData, setNetworkData] = useState(null);
   const [imageBytes, setImageBytes] = useState(null);
+  const [image, setImage] = useState(null)
 
   useEffect(() => {
     if (socketOpen) {
@@ -47,6 +48,11 @@ function App() {
         console.log(msg);
         setImageBytes(msg.data)
         console.log(msg.data)
+        const reader = new FileReader();
+
+        reader.readAsDataURL(JSON.parse(msg.data));
+
+        setImage(reader.result);
       };
     }
   }, [commandSocket, commandSocketOpen]);
@@ -63,7 +69,7 @@ function App() {
           <NetworkWidget></NetworkWidget>
         </div>
         <div className="widget-subdivide-2">
-          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen}></CameraWidget>
+          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image}></CameraWidget>
         </div>
       </div>
     </div>
