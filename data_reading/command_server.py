@@ -9,7 +9,7 @@ from sanic import Sanic
 from sanic import response
 from sanic.response import file
 from sanic.websocket import ConnectionClosed
-from picamera import picamera
+from picamera import PiCamera
 
 camera = PiCamera()
 
