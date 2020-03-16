@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// const PORT = 8080;
-// const HOST = localhost;
-
 export default function useSocket() {
 
   // const [socket] = useState(new WebSocket("ws://192.168.1.155:8080/"));
@@ -13,8 +10,6 @@ export default function useSocket() {
   const serverAddress = "ws://192.168.1.155:8080/";
 
   useEffect(() => {
-    console.log('socket');
-    console.log(socket);
     setSocket(new WebSocket(serverAddress));
     setSocketOpen(true);
   }, [serverAddress])

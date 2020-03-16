@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './components/styles/App.scss';
 
 import useSocket from './hooks/useSocket';
+import useCommandSocket from './hooks/useCommandSocket';
 
 import CameraWidget from './components/CameraWidget';
 import WeatherWidget from './components/WeatherWidget';
@@ -13,6 +14,7 @@ import NetworkWidget from './components/NetworkWidget';
 function App() {
 
   const {socket, socketOpen} = useSocket();
+  const {commandSocket, commandSocketOpen} = useCommandSocket();
   const [climateData, setClimateData] = useState(null);
   const [systemData, setSystemData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -50,7 +52,7 @@ function App() {
           <NetworkWidget></NetworkWidget>
         </div>
         <div className="widget-subdivide-2">
-          <CameraWidget></CameraWidget>
+          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen}></CameraWidget>
         </div>
       </div>
     </div>
