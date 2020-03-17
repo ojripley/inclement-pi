@@ -18,7 +18,7 @@ export default function CameraWidget(props) {
     <div className="widget">
       <header>Camera</header>
       <button onClick={requestImage}>Take Picture</button>
-      {props.image ? <img source={props.image}></img> : 
+      {props.image ? <img src={'data:image/jpg;base64,' + props.image}></img> : 
       <></>}
     </div>
   )

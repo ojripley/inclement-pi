@@ -19,7 +19,6 @@ function App() {
   const [systemData, setSystemData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [networkData, setNetworkData] = useState(null);
-  const [imageBytes, setImageBytes] = useState(null);
   const [image, setImage] = useState(null)
 
   useEffect(() => {
@@ -45,15 +44,16 @@ function App() {
   useEffect(() => {
     if (commandSocketOpen) {
       commandSocket.onmessage = msg => {
-        const data = msg.data;
-        console.log(data);
-          setImageBytes(data)
-          console.log(data)
-          const reader = new FileReader(data);
-          reader.readAsDataURL();
-          setImage(reader.result);
-
-
+        const blob = msg.data;
+        console.log(blob);
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = function() {
+          const result = reader.result
+          const base64 = result.replace('data:application/octet-stream;base64,', '');
+          console.log(base64);
+          setImage(base64);
+        }
       };
     }
   }, [commandSocket, commandSocketOpen]);
