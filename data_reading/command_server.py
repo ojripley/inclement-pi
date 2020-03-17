@@ -17,6 +17,7 @@ camera = PiCamera()
 app = Sanic(__name__)
 
 app.ws_clients = set()
+clients_to_remove = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def handle_request(request):
@@ -63,12 +64,18 @@ async def broadcast(message):
       await ws.send(message)
     except websockets.ConnectionClosed:
       app.ws_clients.remove(ws)
+      clients_to_remove.add(ws)
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
       message = template.format(type(ex).__name__, ex.args)
       print(message)
     except KeyboardInterrupt:
       pass
+  remove_dead_clients(clients_to_remove)
+
+def remove_dead_clients(clients_to_remove):
+  for client in clients_to_remove:
+    app.ws_clients.remove(client)
 
 @app.websocket("/")
 async def websocket(request, ws):
