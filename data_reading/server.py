@@ -69,7 +69,7 @@ async def broadcast(message):
 async def cull_dead_connections():
   for ws in app.ws_clients:
     try:
-      await ws.send('ping')
+      await ws.send(json.dumps('ping'))
     except ConnectionClosed:
       clients_to_remove.add(ws)
   for client in clients_to_remove:
