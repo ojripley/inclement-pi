@@ -36,14 +36,14 @@ async def broadcast(message):
     except KeyboardInterrupt:
       sensor.clear()
       pass
-  if (len(clients_to_remove) > 0):
-    await remove_dead_clients(clients_to_remove)
+  # if (len(clients_to_remove) > 0):
+    # await remove_dead_clients(clients_to_remove)
 
-async def remove_dead_clients(clients_to_remove):
-  for client in clients_to_remove:
-    app.ws_clients.remove(client)
+# async def remove_dead_clients(clients_to_remove):
+#   for client in clients_to_remove:
+#     app.ws_clients.remove(client)
   
-  clients_to_remove.clear()
+#   clients_to_remove.clear()
 
 @app.websocket("/")
 async def websocket(request, ws):
