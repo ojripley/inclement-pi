@@ -49,15 +49,19 @@ async def websocket(request, ws):
   app.ws_clients.add(ws)
   await ws.send(json.dumps("hello from server!"))
   print(f'{len(app.ws_clients)} clients')
-  while True:
+  try:
+    while True:
 
-    data = dict()
-    time_of_reading = time.ctime(time.time())
-    data['climateData'] = sensor.read_data()
-    data['systemData'] = get_system_data()
-    data['timestamp'] = time_of_reading
-    await broadcast(json.dumps(data))
-    time.sleep(0.5)
+      data = dict()
+      time_of_reading = time.ctime(time.time())
+      data['climateData'] = sensor.read_data()
+      data['systemData'] = get_system_data()
+      data['timestamp'] = time_of_reading
+      await broadcast(json.dumps(data))
+      time.sleep(0.5)
+  except KeyboardInterrupt:
+    sensor.clear()
+    pass
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
