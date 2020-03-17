@@ -63,7 +63,6 @@ async def broadcast(message):
     try:
       await ws.send(message)
     except websockets.ConnectionClosed:
-      app.ws_clients.remove(ws)
       clients_to_remove.add(ws)
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
