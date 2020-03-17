@@ -58,7 +58,6 @@ async def broadcast(message):
       await result
     except ConnectionClosed:
       print("ConnectionClosed")
-      print(result)
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
       message = template.format(type(ex).__name__, ex.args)
@@ -66,16 +65,6 @@ async def broadcast(message):
     except KeyboardInterrupt:
       sensor.clear()
       pass
-
-async def cull_dead_connections():
-  for ws in app.ws_clients:
-    try:
-      await ws.send(json.dumps('ping'))
-    except ConnectionClosed:
-      clients_to_remove.add(ws)
-  for client in clients_to_remove:
-    app.ws_clients.remove(client)
-  clients_to_remove.clear()
 
 @app.websocket("/")
 async def websocket(request, ws):
@@ -91,7 +80,6 @@ async def websocket(request, ws):
       data['systemData'] = get_system_data()
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
-      # await cull_dead_connections()
       time.sleep(1)
     except KeyboardInterrupt:
       sensor.clear()
