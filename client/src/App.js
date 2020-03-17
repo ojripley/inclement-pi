@@ -28,7 +28,9 @@ function App() {
         console.log(msg);
         const data = JSON.parse(msg.data);
         // console.log(data);
-        if (data.timestamp) {
+        if (data === 'ping') {
+          socket.send('pong');
+        } else if (data.timestamp) {
           setClimateData(data.climateData);
           setSystemData(data.systemData);
           setLastUpdated(data.timestamp);
@@ -36,7 +38,6 @@ function App() {
           console.log('Error: difficulty getting data');
           socket.send("well gawd damn");
         }
-        
       };
     }
   }, [socket, socketOpen]);

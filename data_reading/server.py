@@ -90,7 +90,7 @@ async def websocket(request, ws):
       data['systemData'] = get_system_data()
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
-      await cull_dead_connections()
+      # await cull_dead_connections()
       time.sleep(1)
     except KeyboardInterrupt:
       sensor.clear()
