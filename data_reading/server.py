@@ -24,7 +24,8 @@ async def broadcast(message):
   for ws in app.ws_clients:
     try:
       await ws.send(message)
-      print('attempting data send');
+      print('attempting data send')
+      print(ws)
     except websockets.ConnectionClosed:
       print('removing a client')
       clients_to_remove.add(ws)
@@ -49,8 +50,8 @@ async def websocket(request, ws):
   app.ws_clients.add(ws)
   await ws.send(json.dumps("hello from server!"))
   print(f'{len(app.ws_clients)} clients')
-  try:
-    while True:
+  while True:
+    try:
 
       data = dict()
       time_of_reading = time.ctime(time.time())
@@ -59,9 +60,9 @@ async def websocket(request, ws):
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
       time.sleep(5)
-  except KeyboardInterrupt:
-    sensor.clear()
-    pass
+    except KeyboardInterrupt:
+      sensor.clear()
+      pass
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
