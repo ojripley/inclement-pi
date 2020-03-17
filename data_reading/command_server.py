@@ -59,6 +59,8 @@ async def broadcast(message):
 def remove_dead_clients(clients_to_remove):
   for client in clients_to_remove:
     app.ws_clients.remove(client)
+    
+  clients_to_remove = set()
 
 @app.websocket("/")
 async def websocket(request, ws):
