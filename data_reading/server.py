@@ -39,7 +39,7 @@ def remove_dead_clients(clients_to_remove):
   for client in clients_to_remove:
     app.ws_clients.remove(client)
   
-  clients_to_remove = clear()
+  clients_to_remove.clear()
 
 @app.websocket("/")
 async def websocket(request, ws):
