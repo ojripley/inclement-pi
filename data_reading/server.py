@@ -67,7 +67,7 @@ async def broadcast(message):
       pass
 
 def cull_dead_connections():
-  for (ws in app.ws_clients):
+  for ws in app.ws_clients:
     try:
       await ws.send('ping')
     except ConnectionClosed:
