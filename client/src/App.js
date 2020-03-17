@@ -25,7 +25,7 @@ function App() {
     if (socketOpen) {
       console.log('listening');
       socket.onmessage = msg => {
-        // console.log(msg);
+        console.log(msg);
         const data = JSON.parse(msg.data);
         // console.log(data);
         if (data.timestamp) {
