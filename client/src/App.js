@@ -73,7 +73,8 @@ function App() {
           <NetworkWidget></NetworkWidget>
         </div>
         <div className="widget-subdivide-2">
-          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image}></CameraWidget>
+          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image}>
+          </CameraWidget>
         </div>
       </div>
     </div>
