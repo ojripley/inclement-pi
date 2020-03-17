@@ -4,6 +4,7 @@ import asyncio
 import uvloop
 import json
 import time
+import websockets
 
 from sanic import Sanic
 from sanic import response
@@ -16,15 +17,15 @@ sensor = Sensor()
 app = Sanic(__name__)
 
 app.ws_clients = set()
+clients_to_remove = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def broadcast(message):
-  broadcasts = [ws.send(message) for ws in app.ws_clients]
-  for result in asyncio.as_completed(broadcasts):
+  for ws in app.ws_clients:
     try:
-      await result
-    except ConnectionClosed:
-      print("ConnectionClosed")
+      await ws.send(message)
+    except websockets.ConnectionClosed:
+      clients_to_remove.add(ws)
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
       message = template.format(type(ex).__name__, ex.args)
@@ -32,6 +33,11 @@ async def broadcast(message):
     except KeyboardInterrupt:
       sensor.clear()
       pass
+  remove_dead_clients(clients_to_remove)
+
+def remove_dead_clients(clients_to_remove):
+  for client in clients_to_remove:
+    app.ws_clients.remove(client)
 
 @app.websocket("/")
 async def websocket(request, ws):
