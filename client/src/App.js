@@ -4,11 +4,13 @@ import './components/styles/App.scss';
 import useSocket from './hooks/useSocket';
 import useCommandSocket from './hooks/useCommandSocket';
 
+import TitleWidget from './components/TitleWidget';
 import CameraWidget from './components/CameraWidget';
 import WeatherWidget from './components/WeatherWidget';
 // import PiholeWidget from './components/PiholeWidget';
 import PiSystemWidget from './components/PiSystemWidget';
 import NetworkWidget from './components/NetworkWidget';
+import blackMarble from './images/black-marble.jpg';
 
 
 function App() {
@@ -62,8 +64,8 @@ function App() {
 
   return (
     <div className="app">
-      <header>Inclement-Pi</header>
-      <p>Last Updated: {lastUpdated}</p>
+      <TitleWidget lastUpdated={lastUpdated}></TitleWidget>
+      <img src={blackMarble} className="background-img"></img>
       <div className="widget-container">
         <div className="widget-subdivide-1">
           <WeatherWidget climateData={climateData} ></WeatherWidget>
