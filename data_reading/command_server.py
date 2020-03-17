@@ -9,6 +9,7 @@ from sanic import Sanic
 from sanic import response
 from sanic.response import file
 from sanic.websocket import ConnectionClosed
+import websockets
 from picamera import PiCamera
 
 camera = PiCamera()
@@ -40,22 +41,34 @@ async def handle_request(request):
 
     await broadcast(imageBytes)
 
-async def broadcast(message):
-  broadcasts = [ws.send(message) for ws in app.ws_clients]
-  for result in asyncio.as_completed(broadcasts):
-    try:
-      await result
-    except ConnectionClosed:
-      print("ConnectionClosed")
-      print(ConnectionClosed)
+# async def broadcast(message):
+#   broadcasts = [ws.send(message) for ws in app.ws_clients]
+#   for result in asyncio.as_completed(broadcasts):
+#     try:
+#       await result
+#     except ConnectionClosed:
+#       print("ConnectionClosed")
+#       print(ConnectionClosed)
 
+#     except Exception as ex:
+#       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+#       message = template.format(type(ex).__name__, ex.args)
+#       print(message)
+#     except KeyboardInterrupt:
+#       pass
+
+async def broadcast(message):
+  for ws in app.ws_clients:
+    try:
+      await ws.send(message)
+    except websockets.ConnectionClosed:
+      app.ws_clients.remove(ws)
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
       message = template.format(type(ex).__name__, ex.args)
       print(message)
     except KeyboardInterrupt:
       pass
-
 
 @app.websocket("/")
 async def websocket(request, ws):
