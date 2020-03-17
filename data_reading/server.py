@@ -25,6 +25,7 @@ async def broadcast(message):
     try:
       await ws.send(message)
     except websockets.ConnectionClosed:
+      print('removing a client')
       clients_to_remove.add(ws)
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
@@ -54,7 +55,6 @@ async def websocket(request, ws):
     data['systemData'] = get_system_data()
     data['timestamp'] = time_of_reading
     await broadcast(json.dumps(data))
-    print('just sent data')
     time.sleep(0.5)
 
 if __name__ == '__main__':
