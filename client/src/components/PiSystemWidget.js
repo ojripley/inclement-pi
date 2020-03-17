@@ -17,10 +17,11 @@ export default function PiSystemWidget(props) {
 
   return(
     <div className="widget">
-      <header>System</header>
+      <header className={'widget-header'}>| System |</header>
       <p>CPU Temperature: {cpuTemperature} C</p>
       <p>CPU Percent: {cpuPercent} %</p>
       <p>Memory Percent: {memoryPercent} %</p>
+      <p>Last Updated: {props.lastUpdated}</p>
     </div>
   )
 }

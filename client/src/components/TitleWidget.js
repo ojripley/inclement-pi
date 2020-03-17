@@ -4,8 +4,12 @@ export default function TitleWidget(props) {
   
   return (
     <div className={'title'}>
-      <header>Inclement-Pi</header>
-      <p>Last Updated: {props.lastUpdated}</p>
+      <div className={'title-group'}>
+        <header className={'title-text'}>| Inclement-Pi |</header>
+        <p className={'date-text'}>{props.currentDate.toLocaleDateString(undefined, {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      <p className={'quote'}>" {props.quote.quote} "</p>
+      <p className={'author'}>~ {props.quote.author}</p>
     </div>
   );
 };

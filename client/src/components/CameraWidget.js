@@ -16,9 +16,9 @@ export default function CameraWidget(props) {
 
   return (
     <div className="widget">
-      <header>View</header>
-      <button onClick={requestImage}>Update View</button>
-      {props.image ? <img src={'data:image/jpg;base64,' + props.image}></img> : 
+      <header className={'widget-header'}>| Camera View |</header>
+      <button className={'view-button'} onClick={requestImage}>Update View</button>
+      {props.image ? <img className={'camera-image'} src={'data:image/jpg;base64,' + props.image}></img> : 
       <></>}
     </div>
   )

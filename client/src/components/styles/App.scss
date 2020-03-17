@@ -1,37 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Bitter:400i|Quicksand:400&display=swap');
+
+p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+header {
+  margin-bottom: 0;
+}
+
 .app {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
   
   .background-img {
     position: fixed;
-    height: 100vh;
+    margin-left: -10px;
+    margin-top: -10px;
     z-index: -2;
   }
   
   .title {
     z-index: 1;
-    position: fixed;
-    background-color: rgba(10, 10, 10, 0.5);
-    top: 2vh;
-    left: 10vw;
-    width: 50vw;
-    box-shadow: 0px 0px 100px 2px rgb(10, 10, 10) inset;
+    background-color: rgba(10, 10, 10, 0.80);
+    margin-top: 2vh;
+    margin-left: 20vw;
+    width: 60vw;
+    box-shadow: 0px 0px 10px 5px rgb(10, 10, 10) inset;
     border-style: solid;
     border-color: white;
-    border-radius: 5px;
-    padding: 0.5rem;
+    border-radius: 10px;
+    // padding-left: 1rem;
+    // padding-right: 1rem;
     color: white;
+
+    .title-text {
+      font-family: 'Bitter';
+      font-size: 19pt;
+      position: relative;
+      top: -0.9em;
+      left: 1vw;
+      background-color: rgb(10, 10, 10);
+      box-shadow: 0px 0px 200px 10px rgba(10, 10, 10, 0.8);
+      z-index: 4;
+      width: fit-content;
+    }
+  
+    .date-text {
+      font-family: 'Quicksand';
+      font-size: 14pt;
+      margin-top: -1rem;
+      float: right;
+      margin-right: 1rem;
+    }
+
+    .quote {
+      font-family: 'Quicksand';
+      font-size: 15pt;
+    }
+
+    .author {
+      font-family: 'Quicksand';
+      font-size: 13pt;
+    }
   }
 }
 
 .widget-container {
-  position: fixed;
-  width: 80vw;
-  height: 80vh;
-  top: 15vh;
+  margin-top: 2rem;
+  margin-left: 20vw;
+  margin-right: 10vw;
+  width: 60vw;
+  top: 16vh;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -44,33 +86,49 @@
   
   .widget-subdivide-2 {
     display: grid;
+
   }
 }
 
 .widget {
-  background-color: rgba(10, 10, 10, 0.5);
-  box-shadow: 0px 0px 1000px 10px rgb(10, 10, 10) inset;
+  background-color: rgba(10, 10, 10, 0.80);
+  box-shadow: 0px 0px 200px 10px rgb(10, 10, 10) inset;
   border-style: solid;
   border-color: white;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
-  padding: 0.5rem;
+  border-radius: 10px;
+  // margin-left: 0.5rem;
+  // margin-right: 0.5rem;
   color: white;
+  font-family: 'Quicksand';
+  font-size: 14pt;
+
+  .widget-header {
+    font-family: 'Bitter';
+    font-size: 16pt;
+    background-color: rgb(10, 10, 10);
+    box-shadow: 0px 0px 200px 10px rgba(10, 10, 10, 0.8);
+    z-index: 4;
+    width: fit-content;
+    position: relative;
+    top: -0.9em;
+    left: 1vw;
+  }
+}
+
+.camera-image {
+  width: 90%;
+  justify-self: center;
+  margin-left: 5%;
 }
 
 @media screen and (min-width: 800px) {
   
-  .background-img {
-    width: 100vw;
-  }
-  
   .widget-container {
-    width: 80vw;
-    height: 80vh;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 2rem;
+    gap: 3rem;
     
     .widget-subdivide-1 {
       display: grid;

@@ -21,7 +21,9 @@ function App() {
   const [systemData, setSystemData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [networkData, setNetworkData] = useState(null);
+  const [currentDate] = useState(new Date());
   const [image, setImage] = useState(null)
+  const [quote, setQuote] = useState({});
 
   useEffect(() => {
     if (socketOpen) {
@@ -56,20 +58,37 @@ function App() {
           const base64 = result.replace('data:application/octet-stream;base64,', '');
           console.log(base64);
           setImage(base64);
+
+          fetch("http://quotes.rest/qod.json", {
+            "method": "GET",
+          })
+            .then(response => {
+              console.log(response);
+              response.json().then(body => {
+                console.log(body);
+                console.log(body.contents);
+                console.log(body.contents.quotes);
+                console.log(body.contents.author);
+                setQuote(body.contents.quotes[0]);
+              });
+            })
         }
       };
     }
   }, [commandSocket, commandSocketOpen]);
 
+  useEffect(() => {
+    console.log(quote);
+  }, [quote]);
 
   return (
     <div className="app">
-      <TitleWidget lastUpdated={lastUpdated}></TitleWidget>
+      <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
       <img src={blackMarble} className="background-img"></img>
       <div className="widget-container">
         <div className="widget-subdivide-1">
-          <WeatherWidget climateData={climateData} ></WeatherWidget>
-          <PiSystemWidget systemData={systemData} ></PiSystemWidget>
+          <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} ></WeatherWidget>
+          <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} ></PiSystemWidget>
           <NetworkWidget></NetworkWidget>
         </div>
         <div className="widget-subdivide-2">
