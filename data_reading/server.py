@@ -24,6 +24,7 @@ async def broadcast(message):
   for ws in app.ws_clients:
     try:
       await ws.send(message)
+      print('attempting data send');
     except websockets.ConnectionClosed:
       print('removing a client')
       clients_to_remove.add(ws)
@@ -34,7 +35,8 @@ async def broadcast(message):
     except KeyboardInterrupt:
       sensor.clear()
       pass
-  remove_dead_clients(clients_to_remove)
+  if (len(clients_to_remove) > 0):
+    remove_dead_clients(clients_to_remove)
 
 def remove_dead_clients(clients_to_remove):
   for client in clients_to_remove:
