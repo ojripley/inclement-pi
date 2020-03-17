@@ -66,10 +66,10 @@ async def broadcast(message):
       sensor.clear()
       pass
 
-def cull_dead_connections():
+async def cull_dead_connections():
   for ws in app.ws_clients:
     try:
-      ws.send('ping')
+      await ws.send('ping')
     except ConnectionClosed:
       clients_to_remove.add(ws)
   for client in clients_to_remove:
@@ -90,7 +90,7 @@ async def websocket(request, ws):
       data['systemData'] = get_system_data()
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
-      cull_dead_connections()
+      await cull_dead_connections()
       time.sleep(5)
     except KeyboardInterrupt:
       sensor.clear()
