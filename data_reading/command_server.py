@@ -54,9 +54,9 @@ async def broadcast(message):
       print(message)
     except KeyboardInterrupt:
       pass
-  remove_dead_clients(clients_to_remove)
+  await remove_dead_clients(clients_to_remove)
 
-def remove_dead_clients(clients_to_remove):
+async def remove_dead_clients(clients_to_remove):
   for client in clients_to_remove:
     app.ws_clients.remove(client)
 
