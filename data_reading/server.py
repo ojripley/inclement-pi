@@ -24,6 +24,7 @@ async def broadcast(message):
     try:
       await result
     except ConnectionClosed:
+      print(ConnectionClosed)
       print("ConnectionClosed")
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
