@@ -20,6 +20,7 @@ function App() {
   const [climateData, setClimateData] = useState(null);
   const [systemData, setSystemData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [imageLastUpdated, setImageLastUpdated] = useState('');
   const [networkData, setNetworkData] = useState(null);
   const [currentDate] = useState(new Date());
   const [image, setImage] = useState(null)
@@ -58,6 +59,7 @@ function App() {
           const base64 = result.replace('data:application/octet-stream;base64,', '');
           console.log(base64);
           setImage(base64);
+          setImageLastUpdated(new Date().toLocaleString())
 
           fetch("http://quotes.rest/qod.json", {
             "method": "GET",
@@ -92,8 +94,7 @@ function App() {
           <NetworkWidget></NetworkWidget>
         </div>
         <div className="widget-subdivide-2">
-          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image}>
-          </CameraWidget>
+          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image} imageLastUpdated={imageLastUpdated}></CameraWidget>
         </div>
       </div>
     </div>

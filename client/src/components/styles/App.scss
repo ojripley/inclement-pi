@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter:400i|Quicksand:400&display=swap');
 
 p {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
   padding-right: 1rem;
   padding-left: 1rem;
 }
@@ -24,16 +24,14 @@ header {
   
   .title {
     z-index: 1;
-    background-color: rgba(10, 10, 10, 0.80);
-    margin-top: 2vh;
-    margin-left: 20vw;
-    width: 60vw;
+    background-color: rgba(10, 10, 10, 0.9);
+    margin-top: 4vh;
+    margin-left: 15vw;
+    width: 70vw;
     box-shadow: 0px 0px 10px 5px rgb(10, 10, 10) inset;
     border-style: solid;
     border-color: white;
     border-radius: 10px;
-    // padding-left: 1rem;
-    // padding-right: 1rem;
     color: white;
 
     .title-text {
@@ -43,9 +41,14 @@ header {
       top: -0.9em;
       left: 1vw;
       background-color: rgb(10, 10, 10);
-      box-shadow: 0px 0px 200px 10px rgba(10, 10, 10, 0.8);
+      box-shadow: 0px 0px 200px 10px rgba(10, 10, 10, 0.9);
       z-index: 4;
       width: fit-content;
+      color: gold;
+
+      .widget-header-text {
+        color: white;
+      }
     }
   
     .date-text {
@@ -58,7 +61,7 @@ header {
 
     .quote {
       font-family: 'Quicksand';
-      font-size: 15pt;
+      font-size: 14pt;
     }
 
     .author {
@@ -70,9 +73,9 @@ header {
 
 .widget-container {
   margin-top: 2rem;
-  margin-left: 20vw;
+  margin-left: 15vw;
   margin-right: 10vw;
-  width: 60vw;
+  width: 70vw;
   top: 16vh;
   display: grid;
   grid-template-columns: 1fr;
@@ -98,15 +101,13 @@ header {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  // margin-left: 0.5rem;
-  // margin-right: 0.5rem;
   color: white;
   font-family: 'Quicksand';
-  font-size: 14pt;
+  font-size: 16pt;
 
   .widget-header {
     font-family: 'Bitter';
-    font-size: 16pt;
+    font-size: 14pt;
     background-color: rgb(10, 10, 10);
     box-shadow: 0px 0px 200px 10px rgba(10, 10, 10, 0.8);
     z-index: 4;
@@ -114,6 +115,37 @@ header {
     position: relative;
     top: -0.9em;
     left: 1vw;
+    color: gold;
+
+    .widget-header-text {
+      color: white;
+    }
+  }
+}
+
+.camera-control-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .camera-button {
+    margin-right: 1rem;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: gold;
+    color: white;
+    border-radius: 10px;
+    padding: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .camera-button:hover {
+    cursor: pointer;
+  }
+  
+  .camera-button:active {
+    border-color: white;
+    background-color: goldenrod;
   }
 }
 
@@ -140,4 +172,8 @@ header {
       display: grid;
     }
   }
+}
+
+button::-moz-focus-inner {
+  border: 0;
 }
