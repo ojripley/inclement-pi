@@ -18,7 +18,7 @@ export default function NetworkWidget(props) {
 
   return (
     <div className="widget">
-      <header className={'widget-header'}>|| <span className={'widget-header-text'}>Network</span> ||</header>
+      <header className={'widget-header'}>Network</header>
       <p className={'widget-data-text'} >Ping: {ping} s</p>
       <p className={'widget-data-text'} >Download: {download} Mb/s</p>
       <p className={'widget-data-text'} >Upload: {upload} Mb/s</p>

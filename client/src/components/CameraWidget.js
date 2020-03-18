@@ -10,7 +10,7 @@ export default function CameraWidget(props) {
 
   return (
     <div className="widget">
-      <header className={'widget-header'}>|| <span className={'widget-header-text'}>Camera View</span> ||</header>
+      <header className={'widget-header'}>Camera View</header>
       <div className={'camera-control-div'}>
         <p className={'widget-data-text'} >Last Updated: {props.imageLastUpdated}</p>
         <button className={'camera-button'} onClick={requestImage}>Update View</button>

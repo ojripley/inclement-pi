@@ -16,7 +16,7 @@ export default function WeatherWidget(props) {
 
   return (
     <div className="widget">
-      <header className={'widget-header'}>|| <span className={'widget-header-text'}>Weather</span> ||</header>
+      <header className={'widget-header'}>Weather</header>
       <p className={'widget-data-text'} >Temperature: {temperature} C</p>
       <p className={'widget-data-text'} >Humidity: {humidity} %</p>
       <p className={'widget-data-text'} >Pressure: {pressure} mBar</p>
