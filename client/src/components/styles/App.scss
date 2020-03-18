@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter:400i|Quicksand:400&display=swap');
 
-p {
-  margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
-}
+// p {
+//   margin-top: 0.5rem;
+//   margin-bottom: 0.5rem;
+// }
 
 header {
   margin-bottom: 0;
@@ -120,6 +118,16 @@ header {
     .widget-header-text {
       color: white;
     }
+
+  }
+
+  .widget-data-text {
+    background-color: rgba($color: white, $alpha: 0.1);
+    border-radius: 6px;
+    width: fit-content;
+    padding: 0.2em;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
   }
 }
 
