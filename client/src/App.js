@@ -4,11 +4,13 @@ import './components/styles/App.scss';
 import useSocket from './hooks/useSocket';
 import useCommandSocket from './hooks/useCommandSocket';
 
+import TitleWidget from './components/TitleWidget';
 import CameraWidget from './components/CameraWidget';
 import WeatherWidget from './components/WeatherWidget';
 // import PiholeWidget from './components/PiholeWidget';
 import PiSystemWidget from './components/PiSystemWidget';
 import NetworkWidget from './components/NetworkWidget';
+import blackMarble from './images/black-marble.jpg';
 
 
 function App() {
@@ -18,8 +20,11 @@ function App() {
   const [climateData, setClimateData] = useState(null);
   const [systemData, setSystemData] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [imageLastUpdated, setImageLastUpdated] = useState('');
   const [networkData, setNetworkData] = useState(null);
+  const [currentDate] = useState(new Date());
   const [image, setImage] = useState(null)
+  const [quote, setQuote] = useState({});
 
   useEffect(() => {
     if (socketOpen) {
@@ -54,24 +59,42 @@ function App() {
           const base64 = result.replace('data:application/octet-stream;base64,', '');
           console.log(base64);
           setImage(base64);
+          setImageLastUpdated(new Date().toLocaleString())
+
+          fetch("http://quotes.rest/qod.json", {
+            "method": "GET",
+          })
+            .then(response => {
+              console.log(response);
+              response.json().then(body => {
+                console.log(body);
+                console.log(body.contents);
+                console.log(body.contents.quotes);
+                console.log(body.contents.author);
+                setQuote(body.contents.quotes[0]);
+              });
+            })
         }
       };
     }
   }, [commandSocket, commandSocketOpen]);
 
+  useEffect(() => {
+    console.log(quote);
+  }, [quote]);
 
   return (
     <div className="app">
-      <header>Inclement-Pi</header>
-      <p>Last Updated: {lastUpdated}</p>
+      <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
+      <img src={blackMarble} className="background-img"></img>
       <div className="widget-container">
         <div className="widget-subdivide-1">
-          <WeatherWidget climateData={climateData} ></WeatherWidget>
-          <PiSystemWidget systemData={systemData} ></PiSystemWidget>
+          <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} ></WeatherWidget>
+          <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} ></PiSystemWidget>
           <NetworkWidget></NetworkWidget>
         </div>
         <div className="widget-subdivide-2">
-          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image}></CameraWidget>
+          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image} imageLastUpdated={imageLastUpdated}></CameraWidget>
         </div>
       </div>
     </div>

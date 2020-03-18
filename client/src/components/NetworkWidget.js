@@ -18,10 +18,11 @@ export default function NetworkWidget(props) {
 
   return (
     <div className="widget">
-      <header>Network</header>
+      <header className={'widget-header'}>| <span className={'widget-header-text'}>Network</span> |</header>
       <p>Ping: {ping} s</p>
       <p>Download: {download} Mb/s</p>
       <p>Upload: {upload} Mb/s</p>
+      <p>Last Updated: </p>
     </div>
   );
 };

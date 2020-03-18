@@ -8,17 +8,14 @@ export default function CameraWidget(props) {
     }
   }
 
-  useEffect(() => {
-    if (props.image) {
-      console.log(props.image);
-    }
-  });
-
   return (
     <div className="widget">
-      <header>View</header>
-      <button onClick={requestImage}>Update View</button>
-      {props.image ? <img src={'data:image/jpg;base64,' + props.image}></img> : 
+      <header className={'widget-header'}>| <span className={'widget-header-text'}>Camera View</span> |</header>
+      <div className={'camera-control-div'}>
+        <p>Last Updated: {props.imageLastUpdated}</p>
+        <button className={'camera-button'} onClick={requestImage}>Update View</button>
+      </div>
+      {props.image ? <img className={'camera-image'} src={'data:image/jpg;base64,' + props.image}></img> : 
       <></>}
     </div>
   )

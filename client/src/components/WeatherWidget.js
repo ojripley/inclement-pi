@@ -16,10 +16,11 @@ export default function WeatherWidget(props) {
 
   return (
     <div className="widget">
-      <header>Weather</header>
+      <header className={'widget-header'}>| <span className={'widget-header-text'}>Weather</span> |</header>
       <p>Temperature: {temperature} C</p>
       <p>Humidity: {humidity} %</p>
       <p>Pressure: {pressure} mBar</p>
+      <p>Last Updated: {props.lastUpdated}</p>
     </div>
   );
 };
