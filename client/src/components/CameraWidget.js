@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 export default function CameraWidget(props) {
 
@@ -22,7 +23,7 @@ export default function CameraWidget(props) {
         <button className={'camera-button'} onClick={requestImage}>Update View</button>
       </div>
       {props.image ? <img className={'camera-image'} src={'data:image/jpg;base64,' + props.image}></img> : 
-      <></>}
+      <ProgressBar></ProgressBar>}
     </div>
   );
 };
