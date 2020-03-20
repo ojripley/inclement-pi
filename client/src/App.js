@@ -24,7 +24,10 @@ function App() {
   const [networkData, setNetworkData] = useState(null);
   const [currentDate] = useState(new Date());
   const [image, setImage] = useState(null)
-  const [quote, setQuote] = useState({});
+  const [quote, setQuote] = useState({
+    quote: "Looks like you've exceeded the number of requests to the free quotes API, and I'm not paying for that!",
+    author: "Owen Ripley"
+  });
 
   useEffect(() => {
     if (socketOpen) {
