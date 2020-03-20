@@ -53,8 +53,8 @@ function App() {
         reader.onloadend = function() {
           const result = reader.result
           const base64 = result.replace('data:application/octet-stream;base64,', '');
-          console.log('setting image');
           setImage(base64);
+          console.log('setting image');
           setImageLastUpdated(new Date().toLocaleString())
         }
       };
@@ -66,8 +66,13 @@ function App() {
       "method": "GET",
     })
       .then(response => {
+        console.log(response);
         response.json().then(body => {
-          setQuote(body.contents.quotes[0]);
+          if (body.contents) {
+            setQuote(body.contents.quotes[0]);
+          } else {
+            console.log('too many requests');
+          }
         });
       });
   }, []);
@@ -88,6 +93,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;

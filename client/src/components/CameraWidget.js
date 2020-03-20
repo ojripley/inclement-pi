@@ -6,7 +6,13 @@ export default function CameraWidget(props) {
     if (props.commandSocketOpen) {
       props.commandSocket.send(JSON.stringify({request: 'image'}));
     }
-  }
+  };
+
+  useEffect(() => {
+    if (props.commandSocketOpen) {
+      props.commandSocket.send(JSON.stringify({ request: 'image' }));
+    }
+  }, [props.commandSocketOpen, props.commandSocket]);
 
   return (
     <div className="widget">
@@ -18,5 +24,5 @@ export default function CameraWidget(props) {
       {props.image ? <img className={'camera-image'} src={'data:image/jpg;base64,' + props.image}></img> : 
       <></>}
     </div>
-  )
-}
+  );
+};
