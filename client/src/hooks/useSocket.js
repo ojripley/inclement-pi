@@ -11,12 +11,12 @@ export default function useSocket() {
 
   useEffect(() => {
     setSocket(new WebSocket(serverAddress));
-    setSocketOpen(true);
   }, [serverAddress])
-
+  
   useEffect(() => {
-    if (socketOpen) {
+    if (socket) {
       socket.onopen = () => {
+        setSocketOpen(true);
         console.log('connection successful');
       }
     }

@@ -11,13 +11,13 @@ export default function useCommandSocket() {
 
   useEffect(() => {
     setCommandSocket(new WebSocket(serverAddress));
-    setCommandSocketOpen(true);
   }, [serverAddress])
-
+  
   useEffect(() => {
-    if (commandSocketOpen) {
+    if (commandSocket) {
       commandSocket.onopen = () => {
         console.log('connection successful');
+        setCommandSocketOpen(true);
       }
     }
   }, [commandSocket, commandSocketOpen])
