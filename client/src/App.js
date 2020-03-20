@@ -60,28 +60,26 @@ function App() {
           console.log(base64);
           setImage(base64);
           setImageLastUpdated(new Date().toLocaleString())
-
-          fetch("http://quotes.rest/qod.json", {
-            "method": "GET",
-          })
-            .then(response => {
-              console.log(response);
-              response.json().then(body => {
-                console.log(body);
-                console.log(body.contents);
-                console.log(body.contents.quotes);
-                console.log(body.contents.author);
-                setQuote(body.contents.quotes[0]);
-              });
-            })
         }
       };
     }
   }, [commandSocket, commandSocketOpen]);
 
   useEffect(() => {
-    console.log(quote);
-  }, [quote]);
+    fetch("http://quotes.rest/qod.json", {
+      "method": "GET",
+    })
+      .then(response => {
+        console.log(response);
+        response.json().then(body => {
+          console.log(body);
+          console.log(body.contents);
+          console.log(body.contents.quotes);
+          console.log(body.contents.author);
+          setQuote(body.contents.quotes[0]);
+        });
+      });
+  }, []);
 
   return (
     <div className="app">
