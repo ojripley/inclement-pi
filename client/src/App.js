@@ -32,16 +32,12 @@ function App() {
       socket.onmessage = msg => {
         console.log(msg);
         const data = JSON.parse(msg.data);
-        // console.log(data);
-        if (data === 'ping') {
-          socket.send('pong');
-        } else if (data.timestamp) {
+        if (data.timestamp) {
           setClimateData(data.climateData);
           setSystemData(data.systemData);
           setLastUpdated(data.timestamp);
         } else {
           console.log('Error: difficulty getting data');
-          socket.send("well gawd damn");
         }
       };
     }
@@ -57,7 +53,7 @@ function App() {
         reader.onloadend = function() {
           const result = reader.result
           const base64 = result.replace('data:application/octet-stream;base64,', '');
-          console.log(base64);
+          console.log('setting image');
           setImage(base64);
           setImageLastUpdated(new Date().toLocaleString())
         }
@@ -70,12 +66,7 @@ function App() {
       "method": "GET",
     })
       .then(response => {
-        console.log(response);
         response.json().then(body => {
-          console.log(body);
-          console.log(body.contents);
-          console.log(body.contents.quotes);
-          console.log(body.contents.author);
           setQuote(body.contents.quotes[0]);
         });
       });
