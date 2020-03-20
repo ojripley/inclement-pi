@@ -52,6 +52,7 @@ header {
       font-family: 'Quicksand';
       font-size: 14pt;
       margin-top: -2.5rem;
+      margin-bottom: 0;
       float: right;
       margin-right: 1rem;
     }
@@ -60,12 +61,14 @@ header {
       font-family: 'Quicksand';
       font-size: 14pt;
       padding-left: 0.6rem;
+      margin-top: 0;
     }
 
     .author {
       font-family: 'Quicksand';
       font-size: 13pt;
-      padding-left: 0.6rem;
+      padding-left: 2rem;
+      margin-top: 0;
     }
   }
 }
@@ -149,6 +152,10 @@ header {
     padding: 5px;
     padding-top: 0px;
     padding-bottom: 0px;
+  }
+
+  .image-load-bar {
+    z-index: 3;
   }
 
   .camera-button:hover {
