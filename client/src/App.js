@@ -37,7 +37,7 @@ function App() {
       clearInterval(intervalHandle);
       const currentTime = new Date();
       if (climateUpdateTimestamp) {
-        setLastUpdate(Math.round((currentTime - climateUpdateTimestamp) / 1000));
+        setLastUpdated(Math.round((currentTime - climateUpdateTimestamp) / 1000));
       }
 
       if (imageUpdateTimestamp) {
