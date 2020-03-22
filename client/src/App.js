@@ -19,15 +19,38 @@ function App() {
   const {commandSocket, commandSocketOpen} = useCommandSocket();
   const [climateData, setClimateData] = useState(null);
   const [systemData, setSystemData] = useState(null);
+  const [climateUpdateTimestamp, setClimateUpdateTimestamp] = useState(null);
+  const [imageUpdateTimestamp, setImageUpdateTimestamp] = useState(null);
+  const [intervalHandle, setIntervalHandle] = useState(0);
   const [lastUpdated, setLastUpdated] = useState(null);
   const [imageLastUpdated, setImageLastUpdated] = useState('');
   const [networkData, setNetworkData] = useState(null);
   const [currentDate] = useState(new Date());
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState(null);
   const [quote, setQuote] = useState({
     quote: "Looks like you've exceeded the number of requests to the free quotes API, and I'm not paying for that!",
     author: "Owen Ripley"
   });
+
+  useEffect(() => {
+    const tempHandle = setInterval(() => {
+      clearInterval(intervalHandle);
+      const currentTime = new Date();
+      console.log('running interval');
+      if (climateUpdateTimestamp) {
+        console.log(currentTime);
+        console.log(climateUpdateTimestamp);
+        console.log((currentTime - climateUpdateTimestamp));
+      }
+
+      if (imageUpdateTimestamp) {
+        setImageLastUpdated(currentTime - imageUpdateTimestamp);
+        console.log('img timestamp set');
+      }
+    }, 1000);
+
+    setIntervalHandle(tempHandle);
+  }, [imageUpdateTimestamp]);
 
   useEffect(() => {
     if (socketOpen) {
@@ -38,7 +61,9 @@ function App() {
         if (data.timestamp) {
           setClimateData(data.climateData);
           setSystemData(data.systemData);
-          setLastUpdated(data.timestamp);
+          // setLastUpdated(data.timestamp);
+          const tempTimestamp = new Date();
+          setClimateUpdateTimestamp(tempTimestamp);
         } else {
           console.log('Error: difficulty getting data');
         }
@@ -58,7 +83,7 @@ function App() {
           const base64 = result.replace('data:application/octet-stream;base64,', '');
           setImage(base64);
           console.log('setting image');
-          setImageLastUpdated(new Date().toLocaleString())
+          setImageUpdateTimestamp(new Date());
         }
       };
     }
