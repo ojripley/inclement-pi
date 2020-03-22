@@ -37,11 +37,11 @@ function App() {
       clearInterval(intervalHandle);
       const currentTime = new Date();
       if (climateUpdateTimestamp) {
-        setClimateUpdateTimestamp(currentTime - climateUpdateTimestamp);
+        setClimateUpdateTimestamp(Math.round((currentTime - climateUpdateTimestamp) / 1000));
       }
 
       if (imageUpdateTimestamp) {
-        setImageLastUpdated(currentTime - imageUpdateTimestamp);
+        setImageLastUpdated(Math.round((currentTime - imageUpdateTimestamp) / 1000));
       }
     }, 1000);
 
