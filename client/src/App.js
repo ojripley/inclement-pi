@@ -36,16 +36,12 @@ function App() {
     const tempHandle = setInterval(() => {
       clearInterval(intervalHandle);
       const currentTime = new Date();
-      console.log('running interval');
       if (climateUpdateTimestamp) {
-        console.log(currentTime);
-        console.log(climateUpdateTimestamp);
-        console.log((currentTime - climateUpdateTimestamp));
+        setClimateUpdateTimestamp(currentTime - climateUpdateTimestamp);
       }
 
       if (imageUpdateTimestamp) {
         setImageLastUpdated(currentTime - imageUpdateTimestamp);
-        console.log('img timestamp set');
       }
     }, 1000);
 
@@ -61,7 +57,6 @@ function App() {
         if (data.timestamp) {
           setClimateData(data.climateData);
           setSystemData(data.systemData);
-          // setLastUpdated(data.timestamp);
           const tempTimestamp = new Date();
           setClimateUpdateTimestamp(tempTimestamp);
         } else {
