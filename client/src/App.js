@@ -22,8 +22,8 @@ function App() {
   const [climateUpdateTimestamp, setClimateUpdateTimestamp] = useState(null);
   const [imageUpdateTimestamp, setImageUpdateTimestamp] = useState(null);
   const [intervalHandle, setIntervalHandle] = useState(0);
-  const [lastUpdated, setLastUpdated] = useState(null);
-  const [imageLastUpdated, setImageLastUpdated] = useState('');
+  const [lastUpdated, setLastUpdated] = useState(0);
+  const [imageLastUpdated, setImageLastUpdated] = useState(0);
   const [networkData, setNetworkData] = useState(null);
   const [currentDate] = useState(new Date());
   const [image, setImage] = useState(null);
@@ -37,7 +37,7 @@ function App() {
       clearInterval(intervalHandle);
       const currentTime = new Date();
       if (climateUpdateTimestamp) {
-        setClimateUpdateTimestamp(Math.round((currentTime - climateUpdateTimestamp) / 1000));
+        setLastUpdate(Math.round((currentTime - climateUpdateTimestamp) / 1000));
       }
 
       if (imageUpdateTimestamp) {
