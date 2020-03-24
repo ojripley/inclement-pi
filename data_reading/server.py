@@ -26,6 +26,7 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
 async def broadcast(message):
+  print('sending to ' + len(app.ws_clients) + ' clients')
   for ws in app.ws_clients:
     try:
       await ws.send(message)
@@ -45,6 +46,7 @@ async def broadcast(message):
     await remove_dead_clients(clients_to_remove)
 
 async def remove_dead_clients(clients_to_remove):
+  print('removing clients')
   for client in clients_to_remove:
     app.ws_clients.remove(client)
   
@@ -69,7 +71,8 @@ async def remove_dead_clients(clients_to_remove):
 @app.websocket("/")
 async def websocket(request, ws):
   app.ws_clients.add(ws)
-  await ws.send(json.dumps("hello from server!"))
+  await ws.send(json.dumps("hello from climate server!"))
+  time.sleep(2)
   print(f'{len(app.ws_clients)} clients')
   while True:
     try:
@@ -80,7 +83,7 @@ async def websocket(request, ws):
       data['systemData'] = get_system_data()
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
-      time.sleep(1)
+      time.sleep(5)
     except KeyboardInterrupt:
       sensor.clear()
       pass
