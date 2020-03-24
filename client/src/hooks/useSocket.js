@@ -4,7 +4,7 @@ export default function useSocket() {
 
   // const [socket] = useState(new WebSocket("ws://192.168.1.155:8080/"));
   const [socket, setSocket] = useState(null);
-  const [socketOpen, setSocketOpen] = useState(false);
+  const [socketOpen, setSocketOpen] = useState(null);
 
   // const serverAddress = "ws://192.168.1.207:8080/";
   const serverAddress = "ws://192.168.1.155:8080/";
@@ -20,7 +20,7 @@ export default function useSocket() {
         console.log('connection successful');
       }
     }
-  }, [socket, socketOpen])
+  }, [socket, socketOpen]);
   
   return {
     socket,

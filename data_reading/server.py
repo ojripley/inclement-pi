@@ -25,39 +25,15 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
 
-# async def broadcast(message):
-#   for ws in app.ws_clients:
-#     try:
-#       await ws.send(message)
-#       print('attempting data send')
-#       print(ws)
-#     except websockets.ConnectionClosed:
-#       print('removing a client')
-#       clients_to_remove.add(ws)
-#     except Exception as ex:
-#       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-#       message = template.format(type(ex).__name__, ex.args)
-#       print(message)
-#     except KeyboardInterrupt:
-#       sensor.clear()
-#       pass
-  # if (len(clients_to_remove) > 0):
-    # await remove_dead_clients(clients_to_remove)
-
-# async def remove_dead_clients(clients_to_remove):
-#   for client in clients_to_remove:
-#     app.ws_clients.remove(client)
-  
-#   clients_to_remove.clear()
-
-
 async def broadcast(message):
-  broadcasts = [ws.send(message) for ws in app.ws_clients]
-  for result in asyncio.as_completed(broadcasts):
+  for ws in app.ws_clients:
     try:
-      await result
-    except ConnectionClosed:
-      print("ConnectionClosed")
+      await ws.send(message)
+      print('attempting data send')
+      print(ws)
+    except websockets.ConnectionClosed:
+      print('removing a client')
+      clients_to_remove.add(ws)
     except Exception as ex:
       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
       message = template.format(type(ex).__name__, ex.args)
@@ -65,6 +41,30 @@ async def broadcast(message):
     except KeyboardInterrupt:
       sensor.clear()
       pass
+  if (len(clients_to_remove) > 0):
+    await remove_dead_clients(clients_to_remove)
+
+async def remove_dead_clients(clients_to_remove):
+  for client in clients_to_remove:
+    app.ws_clients.remove(client)
+  
+  clients_to_remove.clear()
+
+
+# async def broadcast(message):
+#   broadcasts = [ws.send(message) for ws in app.ws_clients]
+#   for result in asyncio.as_completed(broadcasts):
+#     try:
+#       await result
+#     except ConnectionClosed:
+#       print("ConnectionClosed")
+#     except Exception as ex:
+#       template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+#       message = template.format(type(ex).__name__, ex.args)
+#       print(message)
+#     except KeyboardInterrupt:
+#       sensor.clear()
+#       pass
 
 @app.websocket("/")
 async def websocket(request, ws):
