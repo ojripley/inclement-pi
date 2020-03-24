@@ -72,7 +72,6 @@ async def remove_dead_clients(clients_to_remove):
 async def websocket(request, ws):
   app.ws_clients.add(ws)
   await ws.send(json.dumps("hello from climate server!"))
-  time.sleep(2)
   print(f'{len(app.ws_clients)} clients')
   while True:
     try:
@@ -83,7 +82,7 @@ async def websocket(request, ws):
       data['systemData'] = get_system_data()
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
-      time.sleep(5)
+      asyncio.sleep(10)
     except KeyboardInterrupt:
       sensor.clear()
       pass
