@@ -26,7 +26,7 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 
 async def broadcast(message):
-  print('sending to ' + len(app.ws_clients) + ' clients')
+  print('sending to ' + str(len(app.ws_clients)) + ' clients')
   for ws in app.ws_clients:
     try:
       await ws.send(message)
