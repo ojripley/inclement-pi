@@ -67,7 +67,7 @@ async def remove_dead_clients(clients_to_remove):
 @app.websocket("/")
 async def websocket(request, ws):
   app.ws_clients.add(ws)
-  await ws.send(json.dumps("hello from command server!"))
+  # await ws.send(json.dumps("hello from command server!"))
   print(f'{len(app.ws_clients)} clients')
   while True:
 
