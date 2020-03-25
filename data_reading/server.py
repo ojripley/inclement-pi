@@ -79,7 +79,7 @@ async def websocket(request, ws):
       data['systemData'] = get_system_data()
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
-      asyncio.sleep(10)
+      time.sleep(1)
     except KeyboardInterrupt:
       sensor.clear()
       pass
