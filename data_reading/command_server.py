@@ -26,7 +26,7 @@ async def handle_request(request):
   if (request == 'image'):
 
     camera.start_preview()
-    time.sleep(3) # allows camera to adjust light sensor
+    time.sleep(2) # allows camera to adjust light sensor
     camera.capture('/home/pi/inclement-pi/inclementImage.jpg')
     camera.stop_preview()
 
