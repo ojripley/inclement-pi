@@ -52,7 +52,6 @@ function App() {
     if (socketOpen) {
       console.log('listening');
       socket.onmessage = msg => {
-        console.log(msg);
         const data = JSON.parse(msg.data);
         if (data.timestamp) {
           setClimateData(data.climateData);
@@ -89,12 +88,9 @@ function App() {
       "method": "GET",
     })
       .then(response => {
-        console.log(response);
         response.json().then(body => {
           if (body.contents) {
             setQuote(body.contents.quotes[0]);
-          } else {
-            console.log('too many requests');
           }
         });
       });
