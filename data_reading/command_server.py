@@ -14,7 +14,6 @@ from picamera import PiCamera
 
 camera = PiCamera()
 camera.rotation = 180
-camera.resolution = (320, 240)
 
 app = Sanic(__name__)
 
