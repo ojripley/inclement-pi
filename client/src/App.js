@@ -53,7 +53,8 @@ function App() {
       socket.onmessage = msg => {
         const data = JSON.parse(msg.data);
         if (data.timestamp) {
-          setClimateData(data.climateData);
+          console.log(data.climateData);
+          setClimateData(data.climateData[data.climateData.length - 1]);
           setSystemData(data.systemData);
           const tempTimestamp = new Date();
           setClimateUpdateTimestamp(tempTimestamp);

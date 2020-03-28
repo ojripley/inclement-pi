@@ -20,7 +20,7 @@ app.ws_clients = set()
 clients_to_remove = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-
+climate_data = []
 
 async def broadcast(message):
   for ws in app.ws_clients:
@@ -52,7 +52,9 @@ async def websocket(request, ws):
 
       data = dict()
       time_of_reading = time.ctime(time.time())
-      data['climateData'] = sensor.read_data()
+      climate_data.append(sensor.read_data())
+      # data['climateData'] = sensor.read_data()
+      data['climateData'] = climate_data
       data['systemData'] = get_system_data()
       data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
