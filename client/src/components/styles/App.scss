@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Bitter:400i|Quicksand:400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Cantarell:400i&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cantarell:700i&display=swap');
 
 $blue-1: #002539;
 $blue-2: #0b6278;
 $blue-3: #109abc;
+$azure: #dee9f4;
 
 header {
   margin-bottom: 0;
@@ -56,11 +57,11 @@ body {
 
 .title {
   z-index: 1;
-  background-color: rgba(white, 0.1);
+  background-color: rgba(teal, 0.5);
   width: 100%;
   height: 100%;
   border-style: solid;
-  border-color: white;
+  border-color: $azure;
   border-radius: 10px;
   color: white;
 
@@ -70,14 +71,13 @@ body {
     position: relative;
     top: -1.2em;
     left: 1vw;
-    background-color: $blue-1;
-    box-shadow: 0px 0px 7px 2px inset white;
+    background-color: $azure;
     border-radius: 10px;
     border: solid;
-    border-color: white;
+    border-color: $azure;
     z-index: 4;
     width: fit-content;
-    color: white;
+    color: $blue-1;
     padding-left: 0.4em;
     padding-right: 0.8em;
     padding-bottom: 0.4em;
@@ -96,23 +96,23 @@ body {
   .quote {
     font-family: 'Quicksand';
     font-size: 14pt;
-    // padding-left: 0.6rem;
-    // margin-top: 1em;
+    padding-left: 0.6rem;
+    margin-top: 1em;
   }
 
   .author {
     font-family: 'Quicksand';
     font-size: 13pt;
-    // padding-left: 2rem;
-    // margin-top: 0;
-    // margin-bottom: 0;
+    padding-left: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
 .widget {
-  background-color: rgba(white, 0.1);
+  background-color: rgba(teal, 0.5);
   border-style: solid;
-  border-color: white;
+  border-color: $azure;
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -123,31 +123,30 @@ body {
   .widget-header {
     font-family: 'Cantarell';
     font-size: 13pt;
-    background-color: rgb(10, 10, 10);
-    box-shadow: 0px 0px 6px 1px inset white;
+    background-color: $azure;
     border-radius: 10px;
     border: solid;
-    border-color: white;
+    border-color: $azure;
     z-index: 4;
     width: fit-content;
-    // position: relative;
-    // top: -1.2em;
-    // left: 1vw;
-    color: white;
-    // padding-left: 0.4em;
-    // padding-right: 0.7em;
-    // padding-bottom: 0.35em;
-    // padding-top: 0.2em;
+    position: relative;
+    top: -1.2em;
+    left: 1vw;
+    color: $blue-1;
+    padding-left: 0.4em;
+    padding-right: 0.7em;
+    padding-bottom: 0.35em;
+    padding-top: 0.2em;
   }
 
   .widget-data-text {
-    background-color: rgba($blue-1, 0.5);
+    background-color: rgba($blue-1, 0.7);
     border-radius: 6px;
     width: fit-content;
-    // padding: 0.1em;
-    // margin-top: 0.5rem;
-    // margin-bottom: 0.5rem;
-    // margin-left: 0.8rem;
+    padding: 0.1em;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.8rem;
   }
 }
 
@@ -161,7 +160,7 @@ body {
     background-color: $blue-2;
     border: solid;
     border-color: $blue-3;
-    box-shadow: 0px 0px 2px 2px inset $blue-1;
+    // box-shadow: 0px 0px 2px 2px inset teal;
     color: white;
     border-radius: 10px;
     // padding: 5px;
@@ -179,7 +178,7 @@ body {
   
   .camera-button:active {
     // background-color: $blue-2;
-    box-shadow: 5px 5px 0px 0px inset $blue-1;
+    box-shadow: 5px 5px 2px 0px inset $blue-1;
   }
 }
 
@@ -194,9 +193,6 @@ body {
   .widget-container {
     display: grid;
     grid-template-columns: 30% 70%;
-    // width: 90vw;
-    // margin-left: 5vw;
-    // margin-right: 5vw;
     
     .widget-subdivide-1 {
       display: grid;
