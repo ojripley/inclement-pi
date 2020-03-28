@@ -102,7 +102,6 @@ function App() {
   return (
     <div className="app">
       <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
-      <img src={blackMarble} className="background-img"></img>
       <div className="widget-container">
         <div className="widget-subdivide-1">
           <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} ></WeatherWidget>

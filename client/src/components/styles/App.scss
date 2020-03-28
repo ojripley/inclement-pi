@@ -10,16 +10,18 @@ header {
 .app {
   display: flex;
   flex-direction: column;
-  // background-color: $blue-1;
-  // height: 100vh;
-  // width: 100vw;
+  background-color: $blue-1;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  margin-left: -8px;
+  margin-top: -8px;
   
-  .background-img {
-    position: fixed;
-    margin-left: -10px;
-    margin-top: -10px;
-    z-index: -2;
-  }
+  // .background-img {
+  //   position: fixed;
+  //   z-index: -2;
+  // }
   
   .title {
     z-index: 1;
