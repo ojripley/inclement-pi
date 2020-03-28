@@ -10,7 +10,6 @@ import WeatherWidget from './components/WeatherWidget';
 // import PiholeWidget from './components/PiholeWidget';
 import PiSystemWidget from './components/PiSystemWidget';
 import NetworkWidget from './components/NetworkWidget';
-import blackMarble from './images/black-marble.jpg';
 
 
 function App() {
@@ -100,19 +99,22 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
-      <div className="widget-container">
-        <div className="widget-subdivide-1">
-          <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} ></WeatherWidget>
-          <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} ></PiSystemWidget>
-          <NetworkWidget></NetworkWidget>
-        </div>
-        <div className="widget-subdivide-2">
-          <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image} imageLastUpdated={imageLastUpdated}></CameraWidget>
+    <>
+      <div className='background'></div>
+      <div className='app'>
+        <div className='widget-container'>
+          <div className='widget-subdivide-1'>
+            <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
+            <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} ></PiSystemWidget>
+            <NetworkWidget></NetworkWidget>
+          </div>
+          <div className='widget-subdivide-2'>
+            <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} ></WeatherWidget>
+            <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image} imageLastUpdated={imageLastUpdated}></CameraWidget>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
