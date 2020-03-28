@@ -51,7 +51,6 @@ body {
   .widget-subdivide-2 {
     display: grid;
     gap: 2rem;
-    margin-right: 2rem;
   }
 }
 
@@ -68,9 +67,9 @@ body {
   .title-text {
     font-family: 'Cantarell';
     font-size: 17pt;
-    // position: relative;
-    // top: -1.2em;
-    // left: 1vw;
+    position: relative;
+    top: -1.2em;
+    left: 1vw;
     background-color: $blue-1;
     box-shadow: 0px 0px 7px 2px inset white;
     border-radius: 10px;
@@ -79,19 +78,19 @@ body {
     z-index: 4;
     width: fit-content;
     color: white;
-    // padding-left: 0.4em;
-    // padding-right: 0.8em;
-    // padding-bottom: 0.4em;
-    // padding-top: 0.2em;
+    padding-left: 0.4em;
+    padding-right: 0.8em;
+    padding-bottom: 0.4em;
+    padding-top: 0.2em;
   }
 
   .date-text {
     font-family: 'Quicksand';
     font-size: 14pt;
-    // margin-top: -1.5rem;
+    margin-top: -1.5rem;
     // margin-bottom: 0;
-    // float: right;
-    // margin-right: 1rem;
+    float: right;
+    margin-right: 1rem;
   }
 
   .quote {
@@ -195,7 +194,6 @@ body {
   .widget-container {
     display: grid;
     grid-template-columns: 30% 70%;
-    // gap: 2rem;
     // width: 90vw;
     // margin-left: 5vw;
     // margin-right: 5vw;
@@ -203,13 +201,12 @@ body {
     .widget-subdivide-1 {
       display: grid;
       grid-template-rows: repeat(3, 16rem);
-      // gap: 2rem;
     }
     
     .widget-subdivide-2 {
       display: grid;
-      grid-template-rows: 16rem;
-      // gap: 2rem;
+      grid-template-rows: 16rem;      // gap: 2rem;
+      margin-right: 2rem;
     }
   }
 }
