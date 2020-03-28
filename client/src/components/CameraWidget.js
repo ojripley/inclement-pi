@@ -22,8 +22,8 @@ export default function CameraWidget(props) {
         <p className={'widget-data-text'} >Last Updated: {props.imageLastUpdated > 60 ? Math.round(props.imageLastUpdated / 60) : props.imageLastUpdated}{props.imageLastUpdated > 60 ? 'm' : 's'} ago </p>
         <button className={'camera-button'} onClick={requestImage}>Update View</button>
       </div>
-      {props.image ? <img className={'camera-image'} src={'data:image/jpg;base64,' + props.image} alt={'camera view image'} ></img> : 
-      <></>}
+      {props.image ? <img className={'camera-image'} src={'data:image/jpg;charset=utf-8;base64,' + props.image} alt={'camera view image'} ></img> : 
+        <></>}
     </div>
   );
 };

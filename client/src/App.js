@@ -73,8 +73,11 @@ function App() {
         const reader = new FileReader();
         reader.readAsDataURL(blob);
         reader.onloadend = function() {
-          const result = reader.result
-          const base64 = result.replace('data:application/octet-stream;base64,', '');
+          const result = reader.result;
+          let base64 = result.replace('data:application/octet-stream;base64,', '');
+          while (base64.length % 4 > 0) { // ios does not display base64 images that are not divisible by 4. Use '=' as a filler
+            base64 += '=';
+          }
           setImage(base64);
           console.log('setting image');
           setImageUpdateTimestamp(new Date());
