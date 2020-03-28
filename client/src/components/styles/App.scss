@@ -150,6 +150,15 @@ body {
   }
 }
 
+.weather-data-container {
+  display: flex;
+  // flex-direction: row;
+}
+
+#chart-1 {
+  background-color: red;
+}
+
 .camera-control-div {
   display: flex;
   flex-direction: row;
