@@ -51,14 +51,14 @@ async def websocket(request, ws):
     try:
 
       data = dict()
-      time_of_reading = time.ctime(time.time())
+      # time_of_reading = time.ctime(time.time())
       if (len(climate_data) >= 10):
         del climate_data[0]
       climate_data.append(sensor.read_data())
       # data['climateData'] = sensor.read_data()
       data['climateData'] = climate_data
       data['systemData'] = get_system_data()
-      data['timestamp'] = time_of_reading
+      # data['timestamp'] = time_of_reading
       await broadcast(json.dumps(data))
       await asyncio.sleep(5)
     except KeyboardInterrupt:
