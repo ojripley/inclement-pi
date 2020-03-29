@@ -53,10 +53,12 @@ function App() {
       socket.onmessage = msg => {
         const data = JSON.parse(msg.data);
         if (data.timestamp) {
-          console.log(data.climateData);
-          setClimateData(data.climateData);
-          setSystemData(data.systemData);
           const tempTimestamp = new Date();
+          console.log(data.climateData);
+          const tempCd = data.climateData;
+          tempCd['timestamp'] = tempTimestamp;
+          setClimateData(tempCd);
+          setSystemData(data.systemData);
           setClimateUpdateTimestamp(tempTimestamp);
         } else {
           console.log('Error: difficulty getting data');

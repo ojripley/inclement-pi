@@ -152,11 +152,14 @@ body {
 
 .weather-data-container {
   display: flex;
-  // flex-direction: row;
+  justify-content: space-between;
 }
 
-#chart-1 {
-  background-color: red;
+#weather-chart {
+  background-color: $blue-1;
+  padding: 1rem;
+  width: 80px; 
+  height: 50px;
 }
 
 .camera-control-div {

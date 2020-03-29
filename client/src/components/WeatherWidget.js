@@ -7,6 +7,7 @@ export default function WeatherWidget(props) {
   const [temperature, setTemperature] = useState(null);
   const [humidity, setHumidity] = useState(null);
   const [pressure, setPressure] = useState(null);
+  const [graphMode, setGraphMode] = useState('temp');
 
   useEffect(() => {
     if (props.climateData) {
@@ -15,6 +16,16 @@ export default function WeatherWidget(props) {
       setPressure(props.climateData[props.climateData.length - 1].pressure);
     }
   }, [props.climateData]);
+
+  const chartData = props.climateData.map((data) => {
+    const time =  data.timestamp;
+    if (graphMode === 'temp') {
+      
+      return {
+        time: data.temperature
+      };
+    };
+  });
 
   return (
     <div className='widget'>
@@ -26,7 +37,7 @@ export default function WeatherWidget(props) {
           <p className={'widget-data-text'} >Pressure: {pressure} mBar</p>
           <p className={'widget-data-text'} >Last Updated: {props.lastUpdated}</p>
         </div>
-        <AreaChart className='weather-chart' colors={["#111fff", "#000"]}></AreaChart>
+        <AreaChart id='weather-chart' colors={["#111fff", "#000000"]} width="50%" height='50%' data={chartData}></AreaChart>
       </div>
     </div>
   );
