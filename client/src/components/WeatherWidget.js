@@ -10,10 +10,11 @@ export default function WeatherWidget(props) {
   const [graphMode, setGraphMode] = useState('temp');
 
   useEffect(() => {
-    if (props.climateData && props.climateData.length > 0) {
-      setTemperature(props.climateData[props.climateData.length - 1].temperature)
-      setHumidity(props.climateData[props.climateData.length - 1].humidity);
-      setPressure(props.climateData[props.climateData.length - 1].pressure);
+    if (props.climateData) {
+      console.log(props.climateData);
+      setTemperature(props.climateData.temperature)
+      setHumidity(props.climateData.humidity);
+      setPressure(props.climateData.pressure);
     }
   }, [props.climateData]);
 

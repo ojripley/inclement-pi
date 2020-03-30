@@ -54,9 +54,10 @@ function App() {
         const data = JSON.parse(msg.data);
         if (data.climateData) {
           const tempUpdateTimestamp = new Date();
-          console.log(data.climateData);
-          const tempCd = data.climateData;
-          setClimateData(tempCd);
+          // console.log(data.climateData);
+          // const tempCd = data.climateData;
+          // setClimateData(tempCd);
+          setClimateData(data.climateData);
           setSystemData(data.systemData);
           setClimateUpdateTimestamp(tempUpdateTimestamp);
         } else {
