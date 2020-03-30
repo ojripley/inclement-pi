@@ -41,7 +41,7 @@ export default function WeatherWidget(props) {
         </div>
         <div className={'weather-chart'}>
           <div className={'chart-container'}>
-            <p className={'yaxis-title'}>{graphMode === 'temperature' ? 'Degrees' : graphMode === 'humidity' ? 'Percent' : graphMode === 'pressure' ? 'Millibars' : ''}</p>
+            <p className={'yaxis-title'}>{graphMode === 'temperature' ? 'C' : graphMode === 'humidity' ? '%' : graphMode === 'pressure' ? 'MB' : ''}</p>
             <AreaChart colors={["#ffff00"]} height={'100%'} data={graphData} ></AreaChart>
           </div>
           <div className={'weather-button-container'}>
