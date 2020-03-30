@@ -164,6 +164,37 @@ body {
   border-color: $blue-2;
   border-radius: 10px;
   margin-right: 1rem;
+  margin-top: -1.1rem;
+
+  .weather-button-container {
+    margin-top: 0.3rem;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+
+    button {
+      height: 2rem;
+      margin-right: 0.5rem;
+      margin-left: 0.5rem;
+      background-color: $blue-2;
+      border: solid;
+      border-color: $blue-3;
+      color: white;
+      border-radius: 10px;
+    }
+
+    button:hover {
+      cursor: pointer;
+      box-shadow: 0px 0px 2px 1px inset $blue-1;
+    }
+    
+    button:active {
+      box-shadow: 5px 5px 2px 0px inset $blue-1;
+    }
+
+    .graph-button-selected {
+      border-color: #ffff00;
+    }
+  }
 }
 
 
@@ -187,6 +218,7 @@ body {
 
   .camera-button:hover {
     cursor: pointer;
+    box-shadow: 0px 0px 2px 1px inset $blue-1;
   }
   
   .camera-button:active {
@@ -198,7 +230,7 @@ body {
   height: 80%;
   justify-self: center;
   align-self: center;
-  // margin-left: 10%;
+  margin-left: 10%;
 }
 
 @media screen and (min-width: 1000px) {
