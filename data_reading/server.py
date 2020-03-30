@@ -98,7 +98,6 @@ async def websocket(request, ws):
 
       # record average
       hourly_averages[hr] = int(round(avg))
-      print(hourly_averages[hr])
 
       climate_data['hourly_averages'] = hourly_averages
       data['climateData'] = climate_data
