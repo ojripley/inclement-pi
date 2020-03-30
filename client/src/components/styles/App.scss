@@ -155,12 +155,17 @@ body {
   justify-content: space-between;
 }
 
-#weather-chart {
+.weather-chart {
   background-color: $blue-1;
   padding: 1rem;
-  width: 80px; 
-  height: 50px;
+  width: 60%;
+  height: 100%;
+  border-style: solid;
+  border-color: $blue-2;
+  border-radius: 10px;
+  margin-right: 1rem;
 }
+
 
 .camera-control-div {
   display: flex;
@@ -172,12 +177,8 @@ body {
     background-color: $blue-2;
     border: solid;
     border-color: $blue-3;
-    // box-shadow: 0px 0px 2px 2px inset teal;
     color: white;
     border-radius: 10px;
-    // padding: 5px;
-    // padding-top: 0px;
-    // padding-bottom: 0px;
   }
 
   .image-load-bar {
@@ -189,15 +190,15 @@ body {
   }
   
   .camera-button:active {
-    // background-color: $blue-2;
     box-shadow: 5px 5px 2px 0px inset $blue-1;
   }
 }
 
 .camera-image {
-  width: 90%;
+  height: 80%;
   justify-self: center;
-  margin-left: 5%;
+  align-self: center;
+  // margin-left: 10%;
 }
 
 @media screen and (min-width: 1000px) {
@@ -213,7 +214,7 @@ body {
     
     .widget-subdivide-2 {
       display: grid;
-      grid-template-rows: 16rem;
+      grid-template-rows: 16rem 34rem;
       margin-right: 2rem;
     }
   }
