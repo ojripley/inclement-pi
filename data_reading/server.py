@@ -51,6 +51,10 @@ hourly_averages['21'] = dict()
 hourly_averages['22'] = dict()
 hourly_averages['23'] = dict()
 
+hourly_averages['0']['hi'] = 'test'
+
+print(hourly_averages['0']['hi'])
+
 async def broadcast(message):
   for ws in app.ws_clients:
     try:
