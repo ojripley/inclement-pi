@@ -18,11 +18,13 @@ export default function WeatherWidget(props) {
   }, [props.climateData]);
 
   const graphData = {};
-  for (let data of props.climateData) {
-    if (graphMode === 'temp') {
-      graphData[data.time_of_reading] = data.temperature;
-    }
-  }
+  // if (props.climateData.hourly_averages) {
+  //   for (let data of props.climateData.hourly_averages) {
+  //     if (graphMode === 'temp') {
+  //       graphData[data.time_of_reading] = data.temperature;
+  //     }
+  //   }
+  // }
 
   return (
     <div className='widget'>
@@ -34,7 +36,7 @@ export default function WeatherWidget(props) {
           <p className={'widget-data-text'} >Pressure: {pressure} mBar</p>
           <p className={'widget-data-text'} >Last Updated: {props.lastUpdated}</p>
         </div>
-        <AreaChart id='weather-chart' colors={["#ffff00", "#000000"]} width="50%" height='50%' data={graphData}></AreaChart>
+        <AreaChart id='weather-chart' colors={["#ffff00", "#000000"]} width="50%" height='50%' data={props.climateData.hourly_averages}></AreaChart>
       </div>
     </div>
   );
