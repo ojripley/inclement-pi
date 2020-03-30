@@ -20,7 +20,7 @@ export default function WeatherWidget(props) {
   const graphData = {};
   for (let data of props.climateData) {
     if (graphMode === 'temp') {
-      graphData[data.timestamp] = data.temperature;
+      graphData[data.time_of_reading] = data.temperature;
     }
   }
 
