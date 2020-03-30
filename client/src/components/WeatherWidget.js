@@ -11,21 +11,11 @@ export default function WeatherWidget(props) {
 
   useEffect(() => {
     if (props.climateData) {
-      console.log(props.climateData);
       setTemperature(props.climateData.temperature)
       setHumidity(props.climateData.humidity);
       setPressure(props.climateData.pressure);
     }
   }, [props.climateData]);
-
-  const graphData = {};
-  // if (props.climateData.hourly_averages) {
-  //   for (let data of props.climateData.hourly_averages) {
-  //     if (graphMode === 'temp') {
-  //       graphData[data.time_of_reading] = data.temperature;
-  //     }
-  //   }
-  // }
 
   return (
     <div className='widget'>
