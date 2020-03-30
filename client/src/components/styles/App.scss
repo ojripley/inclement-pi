@@ -166,6 +166,19 @@ body {
   margin-right: 1rem;
   margin-top: -1.1rem;
 
+  .chart-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 90%;
+
+    .yaxis-title {
+      rotate: -80deg;
+      margin-top: 5rem;
+      margin-left: 1.5rem;
+      color: $azure;
+    }
+  }
+
   .weather-button-container {
     margin-top: 0.3rem;
     display: grid;
