@@ -81,7 +81,6 @@ async def websocket(request, ws):
       data = dict()
       now = datetime.datetime.now()
       hr = now.hour
-      print(hr)
       climate_data = sensor.read_data()
 
       if (hour_history['hour'] != hr): # the hour has changed
@@ -98,7 +97,7 @@ async def websocket(request, ws):
       avg = sum / len(hour_history['temps'])
 
       # record average
-      hourly_averages[hr] = avg
+      hourly_averages[hr] = int(round(avg))
       print(hourly_averages[hr])
 
       climate_data['hourly_averages'] = hourly_averages
