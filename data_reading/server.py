@@ -111,6 +111,8 @@ async def websocket(request, ws):
       avg_pressure = pressure_sum / len(hour_history['pressure'])
 
       # record average
+      print(hr)
+      print(hourly_averages[hr])
       hourly_averages[hr]['temperature'] = int(round(avg_temp))
       hourly_averages[hr]['humidity'] = int(round(avg_humidity))
       hourly_averages[hr]['pressure'] = int(round(avg_pressure))
