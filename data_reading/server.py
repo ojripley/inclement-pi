@@ -4,6 +4,7 @@ import asyncio
 import uvloop
 import json
 import time
+import datetime
 import websockets
 
 from sanic import Sanic
@@ -20,7 +21,34 @@ app.ws_clients = set()
 clients_to_remove = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-
+# climate_data = []
+hour_history = dict()
+hour_history['hour'] = datetime.datetime.now().hour
+hour_history['temps'] = []
+hourly_averages = dict()
+hourly_averages['0'] = None
+hourly_averages['1'] = None
+hourly_averages['2'] = None
+hourly_averages['3'] = None
+hourly_averages['4'] = None
+hourly_averages['5'] = None
+hourly_averages['6'] = None
+hourly_averages['7'] = None
+hourly_averages['8'] = None
+hourly_averages['9'] = None
+hourly_averages['10'] = None
+hourly_averages['11'] = None
+hourly_averages['12'] = None
+hourly_averages['13'] = None
+hourly_averages['15'] = None
+hourly_averages['16'] = None
+hourly_averages['17'] = None
+hourly_averages['18'] = None
+hourly_averages['19'] = None
+hourly_averages['20'] = None
+hourly_averages['21'] = None
+hourly_averages['22'] = None
+hourly_averages['23'] = None
 
 async def broadcast(message):
   for ws in app.ws_clients:
@@ -51,12 +79,32 @@ async def websocket(request, ws):
     try:
 
       data = dict()
-      time_of_reading = time.ctime(time.time())
-      data['climateData'] = sensor.read_data()
+      now = datetime.datetime.now()
+      hr = now.hour
+      climate_data = sensor.read_data()
+
+      if (hour_history['hour'] != hr): # the hour has changed
+        hour_history['hour'] = hr
+        hour_history['temps'] = []
+
+
+
+      # append current temp, calculate current hour's average
+      hour_history['temps'].append(climate_data['temperature'])
+      sum = 0
+      for temp in hour_history['temps']:
+        sum += temp
+      avg = sum / len(hour_history['temps'])
+
+      # record average
+      hourly_averages[hr] = int(round(avg))
+
+      climate_data['hourly_averages'] = hourly_averages
+      data['climateData'] = climate_data
       data['systemData'] = get_system_data()
-      data['timestamp'] = time_of_reading
+
       await broadcast(json.dumps(data))
-      await asyncio.sleep(4)
+      await asyncio.sleep(1)
     except KeyboardInterrupt:
       sensor.clear()
       pass

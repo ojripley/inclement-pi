@@ -16,7 +16,7 @@ function App() {
 
   const {socket, socketOpen} = useSocket();
   const {commandSocket, commandSocketOpen} = useCommandSocket();
-  const [climateData, setClimateData] = useState(null);
+  const [climateData, setClimateData] = useState([]);
   const [systemData, setSystemData] = useState(null);
   const [climateUpdateTimestamp, setClimateUpdateTimestamp] = useState(null);
   const [imageUpdateTimestamp, setImageUpdateTimestamp] = useState(null);
@@ -52,11 +52,14 @@ function App() {
       console.log('listening');
       socket.onmessage = msg => {
         const data = JSON.parse(msg.data);
-        if (data.timestamp) {
+        if (data.climateData) {
+          const tempUpdateTimestamp = new Date();
+          // console.log(data.climateData);
+          // const tempCd = data.climateData;
+          // setClimateData(tempCd);
           setClimateData(data.climateData);
           setSystemData(data.systemData);
-          const tempTimestamp = new Date();
-          setClimateUpdateTimestamp(tempTimestamp);
+          setClimateUpdateTimestamp(tempUpdateTimestamp);
         } else {
           console.log('Error: difficulty getting data');
         }

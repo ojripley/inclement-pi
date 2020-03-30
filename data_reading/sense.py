@@ -169,6 +169,7 @@ class Sensor:
     climate_conditions['temperature'] = temperature
     climate_conditions['humidity'] = humidity
     climate_conditions['pressure'] = pressure
+    climate_conditions['time_of_reading'] = time.ctime(time.time())
 
     if (PRINT_OUT_PUT):
       print("\n\n-- Weather Readout --")

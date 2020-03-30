@@ -150,6 +150,18 @@ body {
   }
 }
 
+.weather-data-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#weather-chart {
+  background-color: $blue-1;
+  padding: 1rem;
+  width: 80px; 
+  height: 50px;
+}
+
 .camera-control-div {
   display: flex;
   flex-direction: row;
@@ -188,7 +200,7 @@ body {
   margin-left: 5%;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1000px) {
   
   .widget-container {
     display: grid;
@@ -201,7 +213,7 @@ body {
     
     .widget-subdivide-2 {
       display: grid;
-      grid-template-rows: 16rem;      // gap: 2rem;
+      grid-template-rows: 16rem;
       margin-right: 2rem;
     }
   }
