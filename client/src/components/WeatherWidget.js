@@ -8,6 +8,7 @@ export default function WeatherWidget(props) {
   const [humidity, setHumidity] = useState(null);
   const [pressure, setPressure] = useState(null);
   const [graphMode, setGraphMode] = useState('temperature');
+  const [graphData, setGraphData] = useState({});
 
   useEffect(() => {
     if (props.climateData) {
@@ -16,6 +17,17 @@ export default function WeatherWidget(props) {
       setPressure(props.climateData.pressure);
     }
   }, [props.climateData]);
+
+  useEffect(() => {
+    if (props.climateData.hourly_averages) {
+      const tempGraphData = {};
+      for (let data of props.climateData.hourly_averages) {
+        tempGraphData[graphMode] = data[graphMode];
+      }
+
+      setGraphData(tempGraphData);
+    }
+  }, [graphMode, props.climateData.hourly_averages]);
 
   return (
     <div className='widget'>
@@ -28,7 +40,7 @@ export default function WeatherWidget(props) {
           <p className={'widget-data-text'} >Last Updated: {props.lastUpdated}</p>
         </div>
         <div className={'weather-chart'}>
-          <AreaChart id='graph' colors={["#ffff00"]} height={'100%'} data={props.climateData.hourly_averages}></AreaChart>
+          <AreaChart id='graph' colors={["#ffff00"]} height={'100%'} data={graphData}></AreaChart>
           <div className={'weather-button-container'}>
             <button className={graphMode === 'temperature' ? 'graph-button-selected' : 'graph-button-unselected'} onClick={() => setGraphMode('temperature')} >Temperature</button>
             <button className={graphMode === 'humidity' ? 'graph-button-selected' : 'graph-button-unselected'} onClick={() => setGraphMode('humidity')} >Humidity</button>

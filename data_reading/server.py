@@ -21,34 +21,35 @@ app.ws_clients = set()
 clients_to_remove = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-# climate_data = []
 hour_history = dict()
 hour_history['hour'] = datetime.datetime.now().hour
-hour_history['temps'] = []
+hour_history['temp'] = []
+hour_history['humidity'] = []
+hour_history['pressure'] = []
 hourly_averages = dict()
-hourly_averages['0'] = None
-hourly_averages['1'] = None
-hourly_averages['2'] = None
-hourly_averages['3'] = None
-hourly_averages['4'] = None
-hourly_averages['5'] = None
-hourly_averages['6'] = None
-hourly_averages['7'] = None
-hourly_averages['8'] = None
-hourly_averages['9'] = None
-hourly_averages['10'] = None
-hourly_averages['11'] = None
-hourly_averages['12'] = None
-hourly_averages['13'] = None
-hourly_averages['15'] = None
-hourly_averages['16'] = None
-hourly_averages['17'] = None
-hourly_averages['18'] = None
-hourly_averages['19'] = None
-hourly_averages['20'] = None
-hourly_averages['21'] = None
-hourly_averages['22'] = None
-hourly_averages['23'] = None
+hourly_averages['0'] = dict()
+hourly_averages['1'] = dict()
+hourly_averages['2'] = dict()
+hourly_averages['3'] = dict()
+hourly_averages['4'] = dict()
+hourly_averages['5'] = dict()
+hourly_averages['6'] = dict()
+hourly_averages['7'] = dict()
+hourly_averages['8'] = dict()
+hourly_averages['9'] = dict()
+hourly_averages['10'] = dict()
+hourly_averages['11'] = dict()
+hourly_averages['12'] = dict()
+hourly_averages['13'] = dict()
+hourly_averages['15'] = dict()
+hourly_averages['16'] = dict()
+hourly_averages['17'] = dict()
+hourly_averages['18'] = dict()
+hourly_averages['19'] = dict()
+hourly_averages['20'] = dict()
+hourly_averages['21'] = dict()
+hourly_averages['22'] = dict()
+hourly_averages['23'] = dict()
 
 async def broadcast(message):
   for ws in app.ws_clients:
@@ -85,19 +86,34 @@ async def websocket(request, ws):
 
       if (hour_history['hour'] != hr): # the hour has changed
         hour_history['hour'] = hr
-        hour_history['temps'] = []
+        hour_history['temp'] = []
+        hour_history['humidity'] = []
+        hour_history['pressure'] = []
 
+      # append current data, calculate current hour's average
+      hour_history['temp'].append(climate_data['temperature'])
+      hour_history['humidity'].append(climate_data['humidity'])
+      hour_history['pressure'].append(climate_data['pressure'])
+      
+      temp_sum = 0
+      humidity_sum = 0
+      pressure_sum = 0
+      for temp in hour_history['temp']:
+        temp_sum += temp
+      avg_temp = temp_sum / len(hour_history['temp'])
 
+      for humidity in hour_history['humidity']:
+        humidity_sum += humidity
+      avg_humidity = humidity_sum / len(hour_history['humidity'])
 
-      # append current temp, calculate current hour's average
-      hour_history['temps'].append(climate_data['temperature'])
-      sum = 0
-      for temp in hour_history['temps']:
-        sum += temp
-      avg = sum / len(hour_history['temps'])
+      for pressure in hour_history['pressure']:
+        pressure_sum += pressure
+      avg_pressure = pressure_sum / len(hour_history['pressure'])
 
       # record average
-      hourly_averages[hr] = int(round(avg))
+      hourly_averages[hr]['temperature'] = int(round(avg_temp))
+      hourly_averages[hr]['humidity'] = int(round(avg_humidity))
+      hourly_averages[hr]['pressure'] = int(round(avg_pressure))
 
       climate_data['hourly_averages'] = hourly_averages
       data['climateData'] = climate_data
