@@ -129,7 +129,7 @@ async def socket_server(websocket, path):
     finally:
         await unregister(websocket)
 
-server_handle = websockets.serve(socket_server, 'localhost', 8080)
+server_handle = websockets.serve(socket_server, '0.0.0.0', 8080)
 
 asyncio.get_event_loop().run_until_complete(server_handle)
 asyncio.get_event_loop().run_forever()
