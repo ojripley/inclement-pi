@@ -93,7 +93,7 @@ async def collect_data():
     try:
 
       now = datetime.datetime.now()
-      hr = now.minute
+      hr = now.second
       climate_data = sensor.read_data()
 
       if (hour_history['hour'] != hr):  # the hour has changed
