@@ -15,10 +15,7 @@ from sense import Sensor
 from system import get_system_data
 
 sensor = Sensor()
-app = Sanic(__name__)
 
-app.ws_clients = set()
-clients_to_remove = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 hour_history = dict()
@@ -51,7 +48,9 @@ hourly_averages['21'] = dict(temperature = [], humidity = [], pressure = [])
 hourly_averages['22'] = dict(temperature = [], humidity = [], pressure = [])
 hourly_averages['23'] = dict(temperature = [], humidity = [], pressure = [])
 
-data = dict()
+data = dict(none)
+clients = set()
+
 async def collect_data():
   while True:
     try:
@@ -96,45 +95,41 @@ async def collect_data():
       data['climateData'] = climate_data
       data['systemData'] = get_system_data()
 
-      print(data)
-
       await asyncio.sleep(1)
     except KeyboardInterrupt:
       sensor.clear()
       pass
 
-async def broadcast(message):
-  for ws in app.ws_clients:
+
+async def register(websocket):
+    clients.add(websocket)
+
+
+async def unregister(websocket):
+    clients.remove(websocket)
+
+
+async def socket_server(websocket, path):
+    # register(websocket) sends user_event() to websocket
+    await register(websocket)
     try:
-      await ws.send(message)
-    except websockets.ConnectionClosed:
-      clients_to_remove.add(ws)
-    except Exception as ex:
-      template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-      message = template.format(type(ex).__name__, ex.args)
-    except KeyboardInterrupt:
-      sensor.clear()
-      pass
-  if (len(clients_to_remove) > 0):
-    await remove_dead_clients(clients_to_remove)
+      while True:
+        await websocket.send('test')
+        asyncio.sleep(1)
+        # async for message in websocket:
+        #     msg = json.loads(message)
+        #     if msg["action"] == "minus":
+        #         STATE["value"] -= 1
+        #         await notify_state()
+        #     elif data["action"] == "plus":
+        #         STATE["value"] += 1
+        #         await notify_state()
+            # else:
+            #     logging.error("unsupported event: {}", data)
+    finally:
+        await unregister(websocket)
 
-async def remove_dead_clients(clients_to_remove):
-  for client in clients_to_remove:
-    app.ws_clients.remove(client)
-  
-  clients_to_remove.clear()
+server_handle = websockets.serve(socket_server, 'localhost', 8080)
 
-
-@app.websocket("/")
-async def websocket(request, ws):
-  app.ws_clients.add(ws)
-  await ws.send(json.dumps("hello from climate server!"))
-
-  while True:
-    await broadcast(json.dumps(data))
-
-    await asyncio.sleep(10)
-  
-if __name__ == '__main__':
-  app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
-  asyncio.run(collect_data())
+asyncio.get_event_loop().run_until_complete(server_handle)
+asyncio.get_event_loop().run_forever()
