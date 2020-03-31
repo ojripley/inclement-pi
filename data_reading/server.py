@@ -94,6 +94,7 @@ async def collect_data():
       climate_data['hourly_averages'] = hourly_averages
       data['climateData'] = climate_data
       data['systemData'] = get_system_data()
+      print('data read')
 
       await asyncio.sleep(1)
     except KeyboardInterrupt:
@@ -102,11 +103,13 @@ async def collect_data():
 
 
 async def register(websocket):
-    clients.add(websocket)
+  clients.add(websocket)
+  print(len(clients))
 
 
 async def unregister(websocket):
-    clients.remove(websocket)
+  print('removing client')
+  clients.remove(websocket)
 
 
 async def socket_server(websocket, path):
@@ -132,4 +135,6 @@ async def socket_server(websocket, path):
 server_handle = websockets.serve(socket_server, '0.0.0.0', 8080)
 
 asyncio.get_event_loop().run_until_complete(server_handle)
+asyncio.get_event_loop().run_until_complete(collect_data())
+
 asyncio.get_event_loop().run_forever()
