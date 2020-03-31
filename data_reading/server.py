@@ -115,7 +115,7 @@ async def socket_server(websocket, path):
     try:
       while True:
         await websocket.send('test')
-        asyncio.sleep(1)
+        await asyncio.sleep(1)
         # async for message in websocket:
         #     msg = json.loads(message)
         #     if msg["action"] == "minus":
