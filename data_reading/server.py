@@ -48,7 +48,7 @@ hourly_averages['21'] = dict(temperature = [], humidity = [], pressure = [])
 hourly_averages['22'] = dict(temperature = [], humidity = [], pressure = [])
 hourly_averages['23'] = dict(temperature = [], humidity = [], pressure = [])
 
-data = dict(none)
+data = dict()
 clients = set()
 
 async def collect_data():
