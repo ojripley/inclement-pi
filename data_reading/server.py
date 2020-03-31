@@ -122,7 +122,6 @@ async def remove_dead_clients(clients_to_remove):
   
   clients_to_remove.clear()
 
-await collect_data()
 
 @app.websocket("/")
 async def websocket(request, ws):
@@ -136,4 +135,5 @@ async def websocket(request, ws):
   
 
 if __name__ == '__main__':
+  await collect_data()
   app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
