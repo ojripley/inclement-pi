@@ -81,7 +81,7 @@ async def websocket(request, ws):
 
       data = dict()
       now = datetime.datetime.now()
-      hr = now.hour
+      hr = now.minute
       climate_data = sensor.read_data()
 
       if (hour_history['hour'] != hr): # the hour has changed
