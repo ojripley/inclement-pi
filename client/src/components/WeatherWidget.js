@@ -21,7 +21,7 @@ export default function WeatherWidget(props) {
   useEffect(() => {
     if (props.climateData.hourly_averages) {
       const now = new Date();
-      const currentHour = now.getSeconds();
+      const currentHour = now.getHours();
       const tempGraphDataToday = {
         name: 'Today',
         data: {}
