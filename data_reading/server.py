@@ -114,7 +114,7 @@ async def socket_server(websocket, path):
     await register(websocket)
     try:
       while True:
-        await websocket.send('test')
+        await websocket.send(json.dumps('test'))
         await asyncio.sleep(1)
         # async for message in websocket:
         #     msg = json.loads(message)
