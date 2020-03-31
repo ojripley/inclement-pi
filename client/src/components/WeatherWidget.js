@@ -20,12 +20,25 @@ export default function WeatherWidget(props) {
 
   useEffect(() => {
     if (props.climateData.hourly_averages) {
-      const tempGraphData = {};
+      const now = new Date();
+      const currentHour = now.getHours();
+      const tempGraphDataToday = {
+        name: 'Today',
+        data: {}
+      };
+      const tempGraphDataYesterday = {
+        name: 'Yesterday',
+        data: {}
+      };
       for (let i in props.climateData.hourly_averages) {
-        tempGraphData[i] = props.climateData.hourly_averages[i][graphMode];
+        if (i <= currentHour) {
+          tempGraphDataToday.data[i] = props.climateData.hourly_averages[i][graphMode];
+        } else {
+          tempGraphDataYesterday.data[i] = props.climateData.hourly_averages[i][graphMode];
+        }
       }
 
-      setGraphData(tempGraphData);
+      setGraphData([tempGraphDataToday, tempGraphDataYesterday]);
     }
   }, [graphMode, props.climateData.hourly_averages]);
 
@@ -42,7 +55,7 @@ export default function WeatherWidget(props) {
         <div className={'weather-chart'}>
           <div className={'chart-container'}>
             <p className={'yaxis-title'}>{graphMode === 'temperature' ? 'C' : graphMode === 'humidity' ? '%' : graphMode === 'pressure' ? 'MB' : ''}</p>
-            <AreaChart colors={["#ffff00"]} height={'100%'} data={graphData} ></AreaChart>
+            <AreaChart colors={["#ffff00", '#9F41BE']} height={'100%'} data={graphData} ></AreaChart>
           </div>
           <div className={'weather-button-container'}>
             <button className={graphMode === 'temperature' ? 'graph-button-selected' : 'graph-button-unselected'} onClick={() => setGraphMode('temperature')} >Temperature</button>
