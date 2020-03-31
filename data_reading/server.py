@@ -133,7 +133,6 @@ async def websocket(request, ws):
 
     await asyncio.sleep(10)
   
-
+asyncio.run(collect_data())
 if __name__ == '__main__':
-  await collect_data()
   app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
