@@ -103,13 +103,15 @@ async def collect_data():
 
 
 async def register(websocket):
+  print('adding client')
   clients.add(websocket)
-  print(len(clients))
+  print('clients: ' + str(len(clients)))
 
 
 async def unregister(websocket):
   print('removing client')
   clients.remove(websocket)
+  print('clients: ' + str(len(clients)))
 
 
 async def socket_server(websocket, path):
