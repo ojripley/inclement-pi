@@ -51,40 +51,16 @@ hourly_averages['21'] = dict(temperature = [], humidity = [], pressure = [])
 hourly_averages['22'] = dict(temperature = [], humidity = [], pressure = [])
 hourly_averages['23'] = dict(temperature = [], humidity = [], pressure = [])
 
-async def broadcast(message):
-  for ws in app.ws_clients:
-    try:
-      await ws.send(message)
-    except websockets.ConnectionClosed:
-      clients_to_remove.add(ws)
-    except Exception as ex:
-      template = "An exception of type {0} occurred. Arguments:\n{1!r}"
-      message = template.format(type(ex).__name__, ex.args)
-    except KeyboardInterrupt:
-      sensor.clear()
-      pass
-  if (len(clients_to_remove) > 0):
-    await remove_dead_clients(clients_to_remove)
-
-async def remove_dead_clients(clients_to_remove):
-  for client in clients_to_remove:
-    app.ws_clients.remove(client)
-  
-  clients_to_remove.clear()
-
-@app.websocket("/")
-async def websocket(request, ws):
-  app.ws_clients.add(ws)
-  await ws.send(json.dumps("hello from climate server!"))
+data = dict()
+async def collect_data():
   while True:
     try:
 
-      data = dict()
       now = datetime.datetime.now()
       hr = now.hour
       climate_data = sensor.read_data()
 
-      if (hour_history['hour'] != hr): # the hour has changed
+      if (hour_history['hour'] != hr):  # the hour has changed
         hour_history['hour'] = hr
         hour_history['temp'] = []
         hour_history['humidity'] = []
@@ -94,7 +70,7 @@ async def websocket(request, ws):
       hour_history['temp'].append(climate_data['temperature'])
       hour_history['humidity'].append(climate_data['humidity'])
       hour_history['pressure'].append(climate_data['pressure'])
-      
+
       temp_sum = 0
       humidity_sum = 0
       pressure_sum = 0
@@ -120,11 +96,44 @@ async def websocket(request, ws):
       data['climateData'] = climate_data
       data['systemData'] = get_system_data()
 
-      await broadcast(json.dumps(data))
       await asyncio.sleep(1)
     except KeyboardInterrupt:
       sensor.clear()
       pass
+
+async def broadcast(message):
+  for ws in app.ws_clients:
+    try:
+      await ws.send(message)
+    except websockets.ConnectionClosed:
+      clients_to_remove.add(ws)
+    except Exception as ex:
+      template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+      message = template.format(type(ex).__name__, ex.args)
+    except KeyboardInterrupt:
+      sensor.clear()
+      pass
+  if (len(clients_to_remove) > 0):
+    await remove_dead_clients(clients_to_remove)
+
+async def remove_dead_clients(clients_to_remove):
+  for client in clients_to_remove:
+    app.ws_clients.remove(client)
+  
+  clients_to_remove.clear()
+
+await collect_data()
+
+@app.websocket("/")
+async def websocket(request, ws):
+  app.ws_clients.add(ws)
+  await ws.send(json.dumps("hello from climate server!"))
+
+  while True:
+    await broadcast(json.dumps(data))
+
+    await asyncio.sleep(10)
+  
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8080, workers=1, debug=False)
