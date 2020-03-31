@@ -96,6 +96,8 @@ async def collect_data():
       data['climateData'] = climate_data
       data['systemData'] = get_system_data()
 
+      print(data)
+
       await asyncio.sleep(1)
     except KeyboardInterrupt:
       sensor.clear()
