@@ -42,16 +42,16 @@ async def handle_request(request):
 
 async def broadcast(message):
 
-  data = dict()
-  data['type'] = 'image'
-  data['data'] = message.encode('base64')
+  # data = dict()
+  # data['type'] = 'image'
+  # data['data'] = message.decode()
 
   print('sending')
   # print(data)
 
   for ws in app.ws_clients:
     try:
-      await ws.send(json.dumps(data))
+      await ws.send(data)
     except websockets.ConnectionClosed:
       clients_to_remove.add(ws)
     except Exception as ex:
