@@ -47,7 +47,7 @@ async def broadcast(message):
   data['data'] = message
 
   print('sending')
-  print(data)
+  # print(data)
 
   for ws in app.ws_clients:
     try:
