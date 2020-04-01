@@ -11,6 +11,7 @@ from sanic.response import file
 from sanic.websocket import ConnectionClosed
 import websockets
 from picamera import PiCamera
+from network_monitor import assess_network
 
 camera = PiCamera()
 camera.rotation = 180
@@ -21,24 +22,26 @@ app.ws_clients = set()
 clients_to_remove = set()
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-async def handle_request(request):
-  if (request == 'image'):
-    print('IMAGE REQUESTED')
+def take_image():
     camera.start_preview()
-    time.sleep(2) # allows camera to adjust light sensor
+    time.sleep(2)  # allows camera to adjust light sensor
     camera.capture('/home/pi/inclement-pi/inclementImage.jpg')
     camera.stop_preview()
 
     image = open('/home/pi/inclement-pi/inclementImage.jpg', 'rb')
 
-    imageBytes = image.read()
+    return image.read()
 
-    payload = dict()
+async def handle_request(request):
+  payload = None
+  if (request == 'image'):
+    print('IMAGE REQUESTED')
+    payload = take_image()
+  elif (request == 'network-test'):
+    print('network-test requested')
+    payload = await assess_network()
 
-    payload['type'] = 'image'
-    payload['imageBytes'] = imageBytes
-
-    await broadcast(imageBytes)
+  await broadcast(payload)
 
 async def broadcast(message):
 
