@@ -10,7 +10,7 @@ def assess_network():
   network_stats = dict()
 
   # run a subprocess and call speedtest-cli. Log its output to the shell and read it
-  speedtest_response = subprocess.Popen('/usr/bin/speedtest-cli --simple', shell = True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+  speedtest_response = subprocess.Popen('/home/pi/.local/bin/speedtest-cli --simple', shell = True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 
   # parse response for the desired data
   ping = re.findall(r'Ping:\s(.*?)\s', speedtest_response, re.MULTILINE)
@@ -24,8 +24,6 @@ def assess_network():
   print(network_stats)
 
   return(network_stats)
-
-assess_network()
 
   # def log_results(self):
   #   try:
