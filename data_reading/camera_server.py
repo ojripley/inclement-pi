@@ -44,7 +44,7 @@ async def broadcast(message):
 
   data = dict()
   data['type'] = 'image'
-  data['data'] = message.decode('utf-8')
+  data['data'] = message.endocde('base64')
 
   print('sending')
   # print(data)
