@@ -70,6 +70,9 @@ function App() {
   useEffect(() => {
     if (commandSocketOpen) {
       commandSocket.onmessage = msg => {
+        if (msg.type === 'image') {
+          
+        }
         const blob = msg.data;
         console.log(blob);
         const reader = new FileReader();
