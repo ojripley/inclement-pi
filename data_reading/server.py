@@ -9,7 +9,7 @@ import websockets
 
 from sense import Sensor
 from system import get_system_data
-from network_monitor import assess_network
+import network_monitor
 
 sensor = Sensor()
 
