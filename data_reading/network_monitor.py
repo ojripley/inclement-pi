@@ -3,7 +3,7 @@ import re
 import subprocess
 import time
 
-def assess_network():
+async def assess_network():
 
   print('reading network...')
 
