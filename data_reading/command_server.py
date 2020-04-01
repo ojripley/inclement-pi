@@ -42,9 +42,9 @@ async def handle_request(request):
     network_results = await assess_network()
 
     payload['type'] = 'network-results'
-    payload['data'] = json.dumps(network_results)
+    payload['data'] = network_results
 
-  await broadcast(payload)
+  await broadcast(json.dumps(payload))
 
 async def broadcast(message):
 
