@@ -44,14 +44,14 @@ async def broadcast(message):
 
   data = dict()
   data['type'] = 'image'
-  data['data'] = message
+  data['data'] = message.decode('utf-8')
 
   print('sending')
   # print(data)
 
   for ws in app.ws_clients:
     try:
-      await ws.send(data)
+      await ws.send(json.dumps(data))
     except websockets.ConnectionClosed:
       clients_to_remove.add(ws)
     except Exception as ex:
