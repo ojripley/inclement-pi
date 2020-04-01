@@ -3,7 +3,9 @@ import re
 import subprocess
 import time
 
-async def assess_network():
+def assess_network():
+
+  print('reading network...')
 
   network_stats = dict()
 
@@ -19,7 +21,11 @@ async def assess_network():
   network_stats['download'] = download[0].replace(',', '.')
   network_stats['upload'] = upload[0].replace(',', '.')
 
+  print(network_stats)
+
   return(network_stats)
+
+assess_network()
 
   # def log_results(self):
   #   try:

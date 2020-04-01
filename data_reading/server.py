@@ -125,8 +125,8 @@ async def socket_server(websocket, path):
             print(msg)
             if (msg['request'] == 'network-test'):
                 print('... net test ...')
-                network_results = await assess_network()
-                print(network_results)
+                # network_results = await assess_network()
+                # print(network_results)
             # elif data["action"] == "plus":
             #     STATE["value"] += 1
             #     await notify_state()
