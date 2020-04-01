@@ -184,26 +184,7 @@ body {
     display: grid;
     grid-template-columns: 33% 33% 33%;
 
-    button {
-      height: 2rem;
-      margin-right: 0.5rem;
-      margin-left: 0.5rem;
-      background-color: $blue-2;
-      border: solid;
-      border-color: $blue-3;
-      color: white;
-      border-radius: 10px;
-    }
-
-    button:hover {
-      cursor: pointer;
-      box-shadow: 0px 0px 2px 1px inset $blue-1;
-    }
     
-    button:active {
-      box-shadow: 5px 5px 2px 0px inset $blue-1;
-    }
-
     .graph-button-selected {
       border-color: #ffff00;
     }
@@ -215,27 +196,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  .camera-button {
-    margin-right: 1rem;
-    background-color: $blue-2;
-    border: solid;
-    border-color: $blue-3;
-    color: white;
-    border-radius: 10px;
-  }
-
+  
   .image-load-bar {
     z-index: 3;
-  }
-
-  .camera-button:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 2px 1px inset $blue-1;
-  }
-  
-  .camera-button:active {
-    box-shadow: 5px 5px 2px 0px inset $blue-1;
   }
 }
 
@@ -246,6 +209,29 @@ body {
   margin-left: 10%;
 }
 
+button {
+  height: 2rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  background-color: $blue-2;
+  border: solid;
+  border-color: $blue-3;
+  color: white;
+  border-radius: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 2px 1px inset $blue-1;
+}
+
+button:active {
+  box-shadow: 5px 5px 2px 0px inset $blue-1;
+}
+
+.test-network-button-disabled {
+  border-color: purple;
+}
 @media screen and (min-width: 1000px) {
   
   .widget-container {

@@ -70,8 +70,8 @@ function App() {
   useEffect(() => {
     if (commandSocketOpen) {
       commandSocket.onmessage = msg => {
-        const data = msg.data
-        if (data instanceof Blob) { // is an image
+        console.log(msg);
+        if (msg.data instanceof Blob) { // is an image
           const blob = msg.data;
           console.log(blob);
           const reader = new FileReader();
@@ -86,8 +86,12 @@ function App() {
             console.log('setting image');
             setImageUpdateTimestamp(new Date());
           }
-        } else if (data.type === 'network-results') {
-          setNetworkData(data.data);
+        } else {
+          const data = JSON.parse(msg.data);
+
+          if (data.type === 'network-results') {
+            setNetworkData(data.data);
+          }
         }
       };
     }
@@ -114,7 +118,7 @@ function App() {
           <div className='widget-subdivide-1'>
             <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
             <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></PiSystemWidget>
-            <NetworkWidget commandSocketOpen={commandSocketOpen} commandSocket={commandSocket}></NetworkWidget>
+            <NetworkWidget commandSocketOpen={commandSocketOpen} commandSocket={commandSocket} networkData={networkData} ></NetworkWidget>
           </div>
           <div className='widget-subdivide-2'>
             <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></WeatherWidget>
