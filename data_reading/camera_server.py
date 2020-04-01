@@ -23,7 +23,7 @@ asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 async def handle_request(request):
   if (request == 'image'):
-
+    print('IMAGE REQUESTED')
     camera.start_preview()
     time.sleep(2) # allows camera to adjust light sensor
     camera.capture('/home/pi/inclement-pi/inclementImage.jpg')
@@ -45,6 +45,9 @@ async def broadcast(message):
   data = dict()
   data['type'] = 'image'
   data['data'] = message
+
+  print('sending')
+  print(data)
 
   for ws in app.ws_clients:
     try:

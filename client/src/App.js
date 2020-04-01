@@ -70,8 +70,9 @@ function App() {
   useEffect(() => {
     if (commandSocketOpen) {
       commandSocket.onmessage = msg => {
+        console.log(msg);
         if (msg.type === 'image') {
-          
+          console.log(msg.type);
         }
         const blob = msg.data;
         console.log(blob);
