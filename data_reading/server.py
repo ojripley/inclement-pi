@@ -7,12 +7,9 @@ import time
 import datetime
 import websockets
 
-from sanic import Sanic
-from sanic import response
-from sanic.response import file
-from sanic.websocket import ConnectionClosed
 from sense import Sensor
 from system import get_system_data
+from network_monitor import assess_network
 
 sensor = Sensor()
 
@@ -128,6 +125,8 @@ async def socket_server(websocket, path):
             print(msg)
             if (msg['request'] == 'network-test'):
                 print('... net test ...')
+                network_results = await assess_network()
+                print(network_results)
             # elif data["action"] == "plus":
             #     STATE["value"] += 1
             #     await notify_state()
