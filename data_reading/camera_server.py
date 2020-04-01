@@ -51,7 +51,7 @@ async def broadcast(message):
 
   for ws in app.ws_clients:
     try:
-      await ws.send(json.dumps(data))
+      await ws.send(data)
     except websockets.ConnectionClosed:
       clients_to_remove.add(ws)
     except Exception as ex:
