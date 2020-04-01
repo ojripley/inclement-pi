@@ -113,26 +113,26 @@ async def unregister(websocket):
 
 
 async def socket_server(websocket, path):
-    # register(websocket) sends user_event() to websocket
-    await register(websocket)
-    try:
-      while True:
-        await websocket.send(json.dumps(data))
-        await asyncio.sleep(1)
+  # register(websocket) sends user_event() to websocket
+  await register(websocket)
+  try:
+    while True:
+      await websocket.send(json.dumps(data))
+      await asyncio.sleep(1)
 
-        async for message in websocket:
-            msg = json.loads(message)
-            print(msg)
-            if (msg['request'] == 'network-test'):
-                print('... net test ...')
-                network_results = await assess_network()
-                print(network_results)
-            # elif data["action"] == "plus":
-            #     STATE["value"] += 1
-            #     await notify_state()
+      # async for message in websocket:
+      #   msg = json.loads(message)
+      #   print(msg)
+      #   if (msg['request'] == 'network-test'):
+      #       print('... net test ...')
+      #       network_results = await assess_network()
+      #       print(network_results)
+        # elif data["action"] == "plus":
+        #     STATE["value"] += 1
+        #     await notify_state()
 
-    finally:
-        await unregister(websocket)
+  finally:
+      await unregister(websocket)
 
 server_handle = websockets.serve(socket_server, '0.0.0.0', 8080)
 
