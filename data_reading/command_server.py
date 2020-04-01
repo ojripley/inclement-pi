@@ -33,7 +33,7 @@ def take_image():
     return image.read()
 
 async def handle_request(request):
-  payload = dict()
+  payload = None
   if (request == 'image'):
     print('IMAGE REQUESTED')
     payload = take_image()
@@ -41,10 +41,14 @@ async def handle_request(request):
     print('network-test requested')
     network_results = await assess_network()
 
-    payload['type'] = 'network-results'
-    payload['data'] = network_results
+    temp = dict()
 
-  await broadcast(json.dumps(payload))
+    temp['type'] = 'network-results'
+    temp['data'] = network_results
+
+    payload = json.dumps(temp)
+
+  await broadcast(payload)
 
 async def broadcast(message):
 

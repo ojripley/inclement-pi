@@ -86,8 +86,8 @@ function App() {
             console.log('setting image');
             setImageUpdateTimestamp(new Date());
           }
-        } else {
-          console.log(data);
+        } else if (data.type === 'network-results') {
+          setNetworkData(data.data);
         }
       };
     }
