@@ -50,7 +50,7 @@ export default function WeatherWidget(props) {
           <p className={'widget-data-text'} >Temperature: {temperature} C</p>
           <p className={'widget-data-text'} >Humidity: {humidity} %</p>
           <p className={'widget-data-text'} >Pressure: {pressure} mBar</p>
-          <p className={'widget-data-text'} >Last Updated: {props.lastUpdated}</p>
+          <p className={'widget-data-text'} >Receiving Data: {props.socketOpen === true ? 'yes' : 'no' }</p>
         </div>
         <div className={'weather-chart'}>
           <div className={'chart-container'}>

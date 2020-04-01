@@ -122,16 +122,16 @@ async def socket_server(websocket, path):
       while True:
         await websocket.send(json.dumps(data))
         await asyncio.sleep(1)
-        # async for message in websocket:
-        #     msg = json.loads(message)
-        #     if msg["action"] == "minus":
-        #         STATE["value"] -= 1
-        #         await notify_state()
-        #     elif data["action"] == "plus":
-        #         STATE["value"] += 1
-        #         await notify_state()
-            # else:
-            #     logging.error("unsupported event: {}", data)
+
+        async for message in websocket:
+            msg = json.loads(message)
+            print(msg)
+            if (msg['request'] == 'network-test'):
+                print('... net test ...')
+            # elif data["action"] == "plus":
+            #     STATE["value"] += 1
+            #     await notify_state()
+
     finally:
         await unregister(websocket)
 

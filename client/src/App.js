@@ -108,11 +108,11 @@ function App() {
         <div className='widget-container'>
           <div className='widget-subdivide-1'>
             <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
-            <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} ></PiSystemWidget>
-            <NetworkWidget></NetworkWidget>
+            <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></PiSystemWidget>
+            <NetworkWidget socketOpen={socketOpen} socket={socket}></NetworkWidget>
           </div>
           <div className='widget-subdivide-2'>
-            <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} ></WeatherWidget>
+            <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></WeatherWidget>
             <CameraWidget commandSocket={commandSocket} commandSocketOpen={commandSocketOpen} image={image} imageLastUpdated={imageLastUpdated}></CameraWidget>
           </div>
         </div>

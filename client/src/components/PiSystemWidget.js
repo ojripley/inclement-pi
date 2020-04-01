@@ -21,7 +21,7 @@ export default function PiSystemWidget(props) {
       <p className={'widget-data-text'} >CPU Temperature: {cpuTemperature} C</p>
       <p className={'widget-data-text'} >CPU Usage: {cpuPercent} %</p>
       <p className={'widget-data-text'} >Memory Usage: {memoryPercent} %</p>
-      <p className={'widget-data-text'} >Last Updated: {props.lastUpdated}</p>
+      <p className={'widget-data-text'} >Receiving Data: {props.socketOpen === true ? 'yes' : 'no'}</p>
     </div>
   )
 }

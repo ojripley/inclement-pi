@@ -3,25 +3,23 @@ import re
 import subprocess
 import time
 
-class NetworkMonitor:
+async def assess_network():
 
-  def assess_network(self):
+  network_stats = dict()
 
-    network_stats = dict()
+  # run a subprocess and call speedtest-cli. Log its output to the shell and read it
+  speedtest_response = subprocess.Popen('/usr/bin/speedtest-cli --simple', shell = True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
 
-    # run a subprocess and call speedtest-cli. Log its output to the shell and read it
-    speedtest_response = subprocess.Popen('/usr/bin/speedtest-cli --simple', shell = True, stdout=subprocess.PIPE).stdout.read().decode('utf-8')
+  # parse response for the desired data
+  ping = re.findall(r'Ping:\s(.*?)\s', speedtest_response, re.MULTILINE)
+  download = re.findall(r'Download:\s(.*?)\s', speedtest_response, re.MULTILINE)
+  upload = re.findall(r'Upload:\s(.*?)\s', speedtest_response, re.MULTILINE)
 
-    # parse response for the desired data
-    ping = re.findall(r'Ping:\s(.*?)\s', speedtest_response, re.MULTILINE)
-    download = re.findall(r'Download:\s(.*?)\s', speedtest_response, re.MULTILINE)
-    upload = re.findall(r'Upload:\s(.*?)\s', speedtest_response, re.MULTILINE)
+  network_stats['ping'] = ping[0].replace(',', '.')
+  network_stats['download'] = download[0].replace(',', '.')
+  network_stats['upload'] = upload[0].replace(',', '.')
 
-    network_stats['ping'] = ping[0].replace(',', '.')
-    network_stats['download'] = download[0].replace(',', '.')
-    network_stats['upload'] = upload[0].replace(',', '.')
-
-    return(network_stats)
+  return(network_stats)
 
   # def log_results(self):
   #   try:

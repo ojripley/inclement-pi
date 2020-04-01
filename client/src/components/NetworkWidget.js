@@ -15,6 +15,12 @@ export default function NetworkWidget(props) {
     }
   }, [props.networkData]);
 
+  const requestNetworkTest = function() {
+    if (props.socketOpen) {
+      props.socket.send(JSON.stringify({request: 'network-test'}));
+    }
+  }
+
 
   return (
     <div className="widget">
@@ -22,7 +28,8 @@ export default function NetworkWidget(props) {
       <p className={'widget-data-text'} >Ping: {ping} s</p>
       <p className={'widget-data-text'} >Download: {download} Mb/s</p>
       <p className={'widget-data-text'} >Upload: {upload} Mb/s</p>
-      <p className={'widget-data-text'} >Last Updated: </p>
+      <p className={'widget-data-text'} >Receiving Data: {props.socketOpen === true ? 'yes' : 'no'}</p>
+      <button onClick={requestNetworkTest}></button>
     </div>
   );
 };
