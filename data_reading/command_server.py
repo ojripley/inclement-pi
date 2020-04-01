@@ -39,7 +39,9 @@ async def handle_request(request):
     payload = take_image()
   elif (request == 'network-test'):
     print('network-test requested')
-    payload = await assess_network()
+    network_results = await assess_network()
+
+    payload = json.dumps(network_results)
 
   await broadcast(payload)
 

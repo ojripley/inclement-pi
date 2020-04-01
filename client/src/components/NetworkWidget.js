@@ -16,8 +16,8 @@ export default function NetworkWidget(props) {
   }, [props.networkData]);
 
   const requestNetworkTest = function() {
-    if (props.socketOpen) {
-      props.socket.send(JSON.stringify({request: 'network-test'}));
+    if (props.commandSocketOpen) {
+      props.commandSocket.send(JSON.stringify({request: 'network-test'}));
     }
   }
 

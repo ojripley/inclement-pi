@@ -114,7 +114,7 @@ function App() {
           <div className='widget-subdivide-1'>
             <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
             <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></PiSystemWidget>
-            <NetworkWidget socketOpen={socketOpen} socket={socket}></NetworkWidget>
+            <NetworkWidget commandSocketOpen={commandSocketOpen} commandSocket={commandSocket}></NetworkWidget>
           </div>
           <div className='widget-subdivide-2'>
             <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></WeatherWidget>
