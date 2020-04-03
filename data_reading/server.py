@@ -123,7 +123,7 @@ async def socket_server(websocket, path):
   try:
     while True:
       await websocket.send(json.dumps(data))
-      await asyncio.sleep(1)
+      await asyncio.sleep(3)
 
       # async for message in websocket:
       #   msg = json.loads(message)
