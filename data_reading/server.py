@@ -75,7 +75,7 @@ async def collect_data():
 
       temp_sum = 0
       humidity_sum = 0
-      pressure_sum = 0
+      # pressure_sum = 0
       for temp in hour_history['temp']:
         temp_sum += temp
       avg_temp = temp_sum / len(hour_history['temp'])
