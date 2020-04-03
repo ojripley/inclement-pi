@@ -7,10 +7,11 @@ import time
 import datetime
 import websockets
 
-from sense import Sensor
+# from sense import Sensor
 from system import get_system_data
+from dht22 import read_data
 
-sensor = Sensor()
+# sensor = Sensor()
 
 asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
@@ -54,18 +55,19 @@ async def collect_data():
 
       now = datetime.datetime.now()
       hr = now.hour
-      climate_data = sensor.read_data()
+      # climate_data = sensor.read_data()
+      climate_data = read_data()
 
       if (hour_history['hour'] != hr):  # the hour has changed
         hour_history['hour'] = hr
         hour_history['temp'] = []
         hour_history['humidity'] = []
-        hour_history['pressure'] = []
+        # hour_history['pressure'] = []
 
       # append current data, calculate current hour's average
       hour_history['temp'].append(climate_data['temperature'])
       hour_history['humidity'].append(climate_data['humidity'])
-      hour_history['pressure'].append(climate_data['pressure'])
+      # hour_history['pressure'].append(climate_data['pressure'])
 
       temp_sum = 0
       humidity_sum = 0
@@ -78,15 +80,15 @@ async def collect_data():
         humidity_sum += humidity
       avg_humidity = humidity_sum / len(hour_history['humidity'])
 
-      for pressure in hour_history['pressure']:
-        pressure_sum += pressure
-      avg_pressure = pressure_sum / len(hour_history['pressure'])
+      # for pressure in hour_history['pressure']:
+      #   pressure_sum += pressure
+      # avg_pressure = pressure_sum / len(hour_history['pressure'])
 
       # record average
       hr_key = str(hr)
       hourly_averages[hr_key]['temperature'] = int(round(avg_temp))
       hourly_averages[hr_key]['humidity'] = int(round(avg_humidity))
-      hourly_averages[hr_key]['pressure'] = int(round(avg_pressure))
+      # hourly_averages[hr_key]['pressure'] = int(round(avg_pressure))
 
       climate_data['hourly_averages'] = hourly_averages
       data['climateData'] = climate_data
