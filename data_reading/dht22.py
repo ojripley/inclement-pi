@@ -28,17 +28,16 @@ def read_data(PRINT_OUT_PUT = False):
         temperature, humidity
       )
     )
+    if (PRINT_OUT_PUT):
+      print("\n\n-- Weather Readout --")
+      print("Temperature:  " + str(temperature) + " C")
+      print("Humidity:     " + str(humidity) + " %")
+      print("Taken at:     " + str(time_of_reading))
+
+    return(climate_conditions)
 
   except RuntimeError as error:
     # Errors happen fairly often, DHT's are hard to read, just keep going
     print(error.args[0])
 
-
-
-  if (PRINT_OUT_PUT):
-    print("\n\n-- Weather Readout --")
-    print("Temperature:  " + str(temperature) + " C")
-    print("Humidity:     " + str(humidity) + " %")
-    print("Taken at:     " + str(time_of_reading))
-
-  return(climate_conditions)
+    return(None)

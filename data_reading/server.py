@@ -58,7 +58,7 @@ async def collect_data():
       # climate_data = sensor.read_data()
       temp_climate_data = read_data()
       
-      if (temp_climate_data['time_of_reading']): # avoids setting climate data with checksum error
+      if (temp_climate_data != None): # avoids setting climate data with checksum error
         climate_data = temp_climate_data
       
 
@@ -101,7 +101,6 @@ async def collect_data():
 
       await asyncio.sleep(1)
     except KeyboardInterrupt:
-      sensor.clear()
       pass
 
 
