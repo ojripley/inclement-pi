@@ -20,9 +20,11 @@ function App() {
   const [systemData, setSystemData] = useState(null);
   const [climateUpdateTimestamp, setClimateUpdateTimestamp] = useState(null);
   const [imageUpdateTimestamp, setImageUpdateTimestamp] = useState(null);
+  const [networkUpdateTimestamp, setNetworkUpdateTimestamp] = useState(null);
   const [intervalHandle, setIntervalHandle] = useState(0);
   const [lastUpdated, setLastUpdated] = useState(0);
   const [imageLastUpdated, setImageLastUpdated] = useState(0);
+  const [networkLastUpdated, setNetworkLastUpdated] = useState(0);
   const [networkData, setNetworkData] = useState(null);
   const [currentDate] = useState(new Date());
   const [image, setImage] = useState(null);
@@ -35,17 +37,17 @@ function App() {
     const tempHandle = setInterval(() => {
       clearInterval(intervalHandle);
       const currentTime = new Date();
-      if (climateUpdateTimestamp) {
-        setLastUpdated(Math.round((currentTime - climateUpdateTimestamp) / 1000));
-      }
-
       if (imageUpdateTimestamp) {
         setImageLastUpdated(Math.round((currentTime - imageUpdateTimestamp) / 1000));
+      }
+
+      if (networkUpdateTimestamp) {
+        setNetworkLastUpdated(Math.round((currentTime - networkUpdateTimestamp) / 1000));
       }
     }, 1000);
 
     setIntervalHandle(tempHandle);
-  }, [imageUpdateTimestamp]);
+  }, [imageUpdateTimestamp, networkUpdateTimestamp]);
 
   useEffect(() => {
     if (socketOpen) {
@@ -91,6 +93,7 @@ function App() {
 
           if (data.type === 'network-results') {
             setNetworkData(data.data);
+            setNetworkUpdateTimestamp(new Date());
           }
         }
       };
@@ -118,7 +121,7 @@ function App() {
           <div className='widget-subdivide-1'>
             <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
             <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></PiSystemWidget>
-            <NetworkWidget commandSocketOpen={commandSocketOpen} commandSocket={commandSocket} networkData={networkData} ></NetworkWidget>
+            <NetworkWidget commandSocketOpen={commandSocketOpen} commandSocket={commandSocket} networkData={networkData} networkLastUpdated={networkLastUpdated}></NetworkWidget>
           </div>
           <div className='widget-subdivide-2'>
             <WeatherWidget climateData={climateData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></WeatherWidget>

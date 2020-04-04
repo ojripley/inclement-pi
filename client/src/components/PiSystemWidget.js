@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import DataReadout from './DataReadout';
 
 export default function PiSystemWidget(props) {
 
 
-  const [cpuPercent, setCpuPercent] = useState(null);
-  const [cpuTemperature, setCpuTemperature] = useState(null);
-  const [memoryPercent, setMemoryPercent] = useState(null);
+  const [cpuPercent, setCpuPercent] = useState('');
+  const [cpuTemperature, setCpuTemperature] = useState('');
+  const [memoryPercent, setMemoryPercent] = useState('');
 
   useEffect(() => {
     if (props.systemData) {
@@ -18,10 +19,12 @@ export default function PiSystemWidget(props) {
   return(
     <div className="widget">
       <header className={'widget-header'}>System</header>
-      <p className={'widget-data-text'} >CPU Temperature: {cpuTemperature} C</p>
-      <p className={'widget-data-text'} >CPU Usage: {cpuPercent} %</p>
-      <p className={'widget-data-text'} >Memory Usage: {memoryPercent} %</p>
-      <p className={'widget-data-text'} >Receiving Data: {props.socketOpen === true ? 'yes' : 'no'}</p>
+      <div className={'data-readout-container'}>
+        <DataReadout label={'CPU Temp'} value={cpuTemperature} unit={'C'}></DataReadout>
+        <DataReadout label={'CPU Usage'} value={cpuPercent} unit={'%'}></DataReadout>
+        <DataReadout label={'Memory Usage'} value={memoryPercent} unit={'Mb/s'}></DataReadout>
+        <DataReadout label={'Connected'} value={props.socketOpen === true ? 'yes' : 'no'} unit={''}></DataReadout>
+      </div>
     </div>
   )
 }

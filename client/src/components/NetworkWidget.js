@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import DataReadout from './DataReadout';
 
 export default function NetworkWidget(props) {
 
-  const [ping, setPing] = useState(null);
-  const [download, setDownload] = useState(null);
-  const [upload, setUpload] = useState(null);
+  const [ping, setPing] = useState('');
+  const [download, setDownload] = useState('');
+  const [upload, setUpload] = useState('');
   const [pendingResults, setPendingResults] = useState(false);
   
 
@@ -28,11 +29,13 @@ export default function NetworkWidget(props) {
   return (
     <div className="widget">
       <header className={'widget-header'}>Network</header>
-      <p className={'widget-data-text'} >Ping: {ping} s</p>
-      <p className={'widget-data-text'} >Download: {download} Mb/s</p>
-      <p className={'widget-data-text'} >Upload: {upload} Mb/s</p>
-      <p className={'widget-data-text'} >Receiving Data: {props.socketOpen === true ? 'yes' : 'no'}</p>
-      <button onClick={requestNetworkTest} className={pendingResults === true ? 'test-network-button-disabled' : 'test-network-button-enabled'}>Test Network</button>
+      <div className={'data-readout-container'}>
+        <button onClick={requestNetworkTest} className={pendingResults === true ? 'test-network-button-disabled' : 'test-network-button-enabled'}>Test Network</button>
+        <DataReadout label={'Ping'} value={ping} unit={'s'}></DataReadout>
+        <DataReadout label={'Download'} value={download} unit={'Mb/s'}></DataReadout>
+        <DataReadout label={'Upload'} value={upload} unit={'Mb/s'}></DataReadout>
+        <DataReadout label={'Last Updated'} value={props.networkLastUpdated > 60 ? Math.round(props.networkLastUpdated / 60) : props.networkLastUpdated} unit={props.networkLastUpdated > 60 ? 'm' : 's'}></DataReadout>
+      </div>
     </div>
   );
 };
