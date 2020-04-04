@@ -55,22 +55,20 @@ async def collect_data():
 
       now = datetime.datetime.now()
       hr = now.hour
-      # climate_data = sensor.read_data()
       temp_climate_data = read_data()
       
       if (temp_climate_data != None): # avoids setting climate data with checksum error
         climate_data = temp_climate_data
-      
 
-      if (hour_history['hour'] != hr):  # the hour has changed
-        hour_history['hour'] = hr
-        hour_history['temp'] = []
-        hour_history['humidity'] = []
-        # hour_history['pressure'] = []
+        if (hour_history['hour'] != hr):  # the hour has changed
+          hour_history['hour'] = hr
+          hour_history['temp'] = []
+          hour_history['humidity'] = []
+          # hour_history['pressure'] = []
 
-      # append current data, calculate current hour's average
-      hour_history['temp'].append(climate_data['temperature'])
-      hour_history['humidity'].append(climate_data['humidity'])
+        # append current data, calculate current hour's average
+        hour_history['temp'].append(climate_data['temperature'])
+        hour_history['humidity'].append(climate_data['humidity'])
       # hour_history['pressure'].append(climate_data['pressure'])
 
       temp_sum = 0
