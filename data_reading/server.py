@@ -97,7 +97,7 @@ async def collect_data():
       data['systemData'] = get_system_data()
       print('data read')
 
-      await asyncio.sleep(1)
+      await asyncio.sleep(3)
     except KeyboardInterrupt:
       pass
 
