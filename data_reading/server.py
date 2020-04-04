@@ -76,11 +76,19 @@ async def collect_data():
       # pressure_sum = 0
       for temp in hour_history['temp']:
         temp_sum += temp
-      avg_temp = temp_sum / len(hour_history['temp'])
+        
+      if (len(hour_history['temp']) > 0):
+        avg_temp = temp_sum / len(hour_history['temp'])
+      else:
+        avg_temp = None
 
       for humidity in hour_history['humidity']:
         humidity_sum += humidity
-      avg_humidity = humidity_sum / len(hour_history['humidity'])
+
+      if (len(hour_history['humidity']) > 0):
+        avg_humidity = humidity_sum / len(hour_history['humidity'])
+      else:
+        avg_humidity = None
 
       # for pressure in hour_history['pressure']:
       #   pressure_sum += pressure
