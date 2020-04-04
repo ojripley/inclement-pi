@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, AreaChart } from 'react-chartkick';
 import 'chart.js';
+import DataReadout from './DataReadout';
 
 export default function WeatherWidget(props) {
 
-  const [temperature, setTemperature] = useState(null);
-  const [humidity, setHumidity] = useState(null);
+  const [temperature, setTemperature] = useState('');
+  const [humidity, setHumidity] = useState('');
   const [pressure, setPressure] = useState(null);
   const [graphMode, setGraphMode] = useState('temperature');
   const [graphData, setGraphData] = useState({});
 
   useEffect(() => {
-    if (props.climateData) {
+    if (props.climateData.temperature) {
       setTemperature(props.climateData.temperature)
       setHumidity(props.climateData.humidity);
       setPressure(props.climateData.pressure);
@@ -47,10 +48,9 @@ export default function WeatherWidget(props) {
       <header className={'widget-header'}>Weather</header>
       <div className='weather-data-container'>
         <div className='weather-readouts'>
-          <p className={'widget-data-text'} >Temperature: {temperature} C</p>
-          <p className={'widget-data-text'} >Humidity: {humidity} %</p>
-          <p className={'widget-data-text'} >Pressure: {pressure} mBar</p>
-          <p className={'widget-data-text'} >Receiving Data: {props.socketOpen === true ? 'yes' : 'no' }</p>
+          <DataReadout label={'Temperature'} value={temperature} unit={'C'}></DataReadout>
+          <DataReadout label={'Humidity'} value={humidity} unit={'%'}></DataReadout>
+          <DataReadout label={'Connected'} value={props.socketOpen === true ? 'yes' : 'no' } unit={''}></DataReadout>
         </div>
         <div className={'weather-chart'}>
           <div className={'chart-container'}>
@@ -60,7 +60,6 @@ export default function WeatherWidget(props) {
           <div className={'weather-button-container'}>
             <button className={graphMode === 'temperature' ? 'graph-button-selected' : 'graph-button-unselected'} onClick={() => setGraphMode('temperature')} >Temperature</button>
             <button className={graphMode === 'humidity' ? 'graph-button-selected' : 'graph-button-unselected'} onClick={() => setGraphMode('humidity')} >Humidity</button>
-            <button className={graphMode === 'pressure' ? 'graph-button-selected' : 'graph-button-unselected'} onClick={() => setGraphMode('pressure')} >Pressure</button>
           </div>
         </div>
       </div>
