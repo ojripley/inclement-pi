@@ -24,6 +24,8 @@ export default function useSocket() {
   
   return {
     socket,
-    socketOpen
+    socketOpen,
+    setSocketOpen,
+    setSocket
   };
 }

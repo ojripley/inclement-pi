@@ -14,8 +14,8 @@ import NetworkWidget from './components/NetworkWidget';
 
 function App() {
 
-  const {socket, socketOpen} = useSocket();
-  const {commandSocket, commandSocketOpen} = useCommandSocket();
+  const { socket, socketOpen, setSocket, setSocketOpen} = useSocket();
+  const {commandSocket, commandSocketOpen, setCommandSocket, setCommandSocketOpen} = useCommandSocket();
   const [climateData, setClimateData] = useState([]);
   const [systemData, setSystemData] = useState(null);
   const [climateUpdateTimestamp, setClimateUpdateTimestamp] = useState(null);
@@ -68,6 +68,22 @@ function App() {
       };
     }
   }, [socket, socketOpen]);
+
+  useEffect(() => {
+    if (socketOpen) {
+      socket.onclose = event => {
+        console.log(event);
+        setSocketOpen(false);
+      }
+    }
+
+    if (commandSocketOpen) {
+      commandSocket.onclose = event => {
+        console.log(event);
+        setCommandSocketOpen(false);
+      }
+    }
+  }, [socket, socketOpen, commandSocket, commandSocketOpen]);
 
   useEffect(() => {
     if (commandSocketOpen) {

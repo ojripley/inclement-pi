@@ -24,6 +24,8 @@ export default function useCommandSocket() {
 
   return {
     commandSocket,
-    commandSocketOpen
+    commandSocketOpen,
+    setCommandSocketOpen,
+    setCommandSocket
   };
 }
