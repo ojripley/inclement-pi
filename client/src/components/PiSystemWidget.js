@@ -22,7 +22,7 @@ export default function PiSystemWidget(props) {
       <div className={'data-readout-container'}>
         <DataReadout label={'CPU Temp'} value={cpuTemperature} unit={'C'}></DataReadout>
         <DataReadout label={'CPU Usage'} value={cpuPercent} unit={'%'}></DataReadout>
-        <DataReadout label={'Memory Usage'} value={memoryPercent} unit={'Mb/s'}></DataReadout>
+        <DataReadout label={'Memory Usage'} value={memoryPercent} unit={'%'}></DataReadout>
         <DataReadout label={'Connected'} value={props.socketOpen === true ? 'yes' : 'no'} unit={''}></DataReadout>
       </div>
     </div>
