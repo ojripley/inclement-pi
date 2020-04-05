@@ -50,7 +50,7 @@ export default function WeatherWidget(props) {
         <div className='weather-readouts'>
           <DataReadout label={'Temperature'} value={temperature} unit={'C'}></DataReadout>
           <DataReadout label={'Humidity'} value={humidity} unit={'%'}></DataReadout>
-          <DataReadout label={'Connected'} value={props.socketOpen === true ? 'yes' : 'no' } unit={''}></DataReadout>
+          {/* <DataReadout label={'Connected'} value={props.socketOpen === true ? 'yes' : 'no' } unit={''}></DataReadout> */}
         </div>
         <div className={'weather-chart'}>
           <div className={'chart-container'}>
