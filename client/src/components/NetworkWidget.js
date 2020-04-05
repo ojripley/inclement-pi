@@ -8,6 +8,11 @@ export default function NetworkWidget(props) {
   const [upload, setUpload] = useState('');
   const [pendingResults, setPendingResults] = useState(false);
   
+  useEffect(() => {
+    if (props.commandSocketOpen) {
+      props.commandSocket.send(JSON.stringify({ request: 'network-test' }));
+    }
+  }, [props.commandSocketOpen, props.commandSocket]);
 
   useEffect(() => {
     if (props.networkData) {
