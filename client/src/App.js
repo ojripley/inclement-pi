@@ -136,7 +136,7 @@ function App() {
         <div className='widget-container'>
           <div className='widget-subdivide-1'>
             <TitleWidget quote={quote} currentDate={currentDate} ></TitleWidget>
-            <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} socketOpen={socketOpen} ></PiSystemWidget>
+            <PiSystemWidget systemData={systemData} lastUpdated={lastUpdated} socketOpen={socketOpen} commandSocketOpen={commandSocketOpen} ></PiSystemWidget>
             <NetworkWidget commandSocketOpen={commandSocketOpen} commandSocket={commandSocket} networkData={networkData} networkLastUpdated={networkLastUpdated}></NetworkWidget>
           </div>
           <div className='widget-subdivide-2'>

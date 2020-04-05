@@ -56,6 +56,7 @@ async def collect_data():
       now = datetime.datetime.now()
       hr = now.hour
       temp_climate_data = read_data()
+      climate_data = dict()
       
       if (temp_climate_data != None): # avoids setting climate data with checksum error
         climate_data = temp_climate_data
@@ -69,11 +70,10 @@ async def collect_data():
         # append current data, calculate current hour's average
         hour_history['temp'].append(climate_data['temperature'])
         hour_history['humidity'].append(climate_data['humidity'])
-      # hour_history['pressure'].append(climate_data['pressure'])
 
       temp_sum = 0
       humidity_sum = 0
-      # pressure_sum = 0
+      
       for temp in hour_history['temp']:
         temp_sum += temp
         
@@ -90,16 +90,11 @@ async def collect_data():
       else:
         avg_humidity = None
 
-      # for pressure in hour_history['pressure']:
-      #   pressure_sum += pressure
-      # avg_pressure = pressure_sum / len(hour_history['pressure'])
-
       # record average
       hr_key = str(hr)
       if (avg_temp != None and avg_humidity != None):
         hourly_averages[hr_key]['temperature'] = int(round(avg_temp))
         hourly_averages[hr_key]['humidity'] = int(round(avg_humidity))
-      # hourly_averages[hr_key]['pressure'] = int(round(avg_pressure))
 
       climate_data['hourly_averages'] = hourly_averages
       data['climateData'] = climate_data

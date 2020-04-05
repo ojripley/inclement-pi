@@ -23,7 +23,8 @@ export default function PiSystemWidget(props) {
         <DataReadout label={'CPU Temp'} value={cpuTemperature} unit={'C'}></DataReadout>
         <DataReadout label={'CPU Usage'} value={cpuPercent} unit={'%'}></DataReadout>
         <DataReadout label={'Memory Usage'} value={memoryPercent} unit={'%'}></DataReadout>
-        <DataReadout label={'Connected'} value={props.socketOpen === true ? 'yes' : 'no'} unit={''}></DataReadout>
+        <DataReadout label={'Data Stream'} value={props.socketOpen === true ? 'yes' : 'no'} unit={''}></DataReadout>
+        <DataReadout label={'Accepting Commands'} value={props.commandSocketOpen === true ? 'yes' : 'no'} unit={''}></DataReadout>
       </div>
     </div>
   )
