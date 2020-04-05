@@ -10,7 +10,10 @@ export default function NetworkWidget(props) {
   
   useEffect(() => {
     if (props.commandSocketOpen) {
-      props.commandSocket.send(JSON.stringify({ request: 'network-test' }));
+      setTimeout(() => {
+        props.commandSocket.send(JSON.stringify({ request: 'network-test' }));
+        setPendingResults(true)
+      }, 3500);
     }
   }, [props.commandSocketOpen, props.commandSocket]);
 
