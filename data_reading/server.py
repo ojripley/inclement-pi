@@ -96,7 +96,7 @@ async def collect_data():
 
       # record average
       hr_key = str(hr)
-      if (hourly_averages[hr_key]['temperature'] != None and hourly_averages[hr_key]['humidity'] != None):
+      if (avg_temp != None and avg_humidity != None):
         hourly_averages[hr_key]['temperature'] = int(round(avg_temp))
         hourly_averages[hr_key]['humidity'] = int(round(avg_humidity))
       # hourly_averages[hr_key]['pressure'] = int(round(avg_pressure))
