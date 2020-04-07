@@ -34,6 +34,19 @@ function App() {
   });
 
   useEffect(() => {
+    while (true) {
+      if (!socketOpen) {
+        console.log('attempt reconnect of socket');
+        setSocket(new WebSocket("ws://192.168.1.155:8080/"));
+      }
+      if (!commandSocketOpen) {
+        console.log('attempt reconnect of command socket');
+        setCommandSocket(new WebSocket("ws://192.168.1.155:9090/"));
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const tempHandle = setInterval(() => {
       clearInterval(intervalHandle);
       const currentTime = new Date();
@@ -75,10 +88,10 @@ function App() {
         console.log(event);
         setSocketOpen(false);
 
-        setTimeout(() => { // attempt reconnect after 1 minute
-          console.log('attempting reconnect');
-          setSocket(new WebSocket("ws://192.168.1.155:8080/"));
-        }, 120000);
+        // setTimeout(() => { // attempt reconnect after 1 minute
+        //   console.log('attempting reconnect');
+        //   setSocket(new WebSocket("ws://192.168.1.155:8080/"));
+        // }, 120000);
       }
     }
 
@@ -87,9 +100,9 @@ function App() {
         console.log(event);
         setCommandSocketOpen(false);
 
-        setTimeout(() => { // attempt reconnect after 1 minute
-          setCommandSocket(new WebSocket("ws://192.168.1.155:9090/"));
-        }, 1000);
+        // setTimeout(() => { // attempt reconnect after 1 minute
+        //   setCommandSocket(new WebSocket("ws://192.168.1.155:9090/"));
+        // }, 1000);
       }
     }
   }, [socket, socketOpen, commandSocket, commandSocketOpen]);
