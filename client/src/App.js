@@ -74,6 +74,10 @@ function App() {
       socket.onclose = event => {
         console.log(event);
         setSocketOpen(false);
+
+        setTimeout(() => { // attempt reconnect after 1 minute
+          setSocket(new WebSocket("ws://192.168.1.155:8080/"));
+        }, 1000);
       }
     }
 
@@ -81,6 +85,10 @@ function App() {
       commandSocket.onclose = event => {
         console.log(event);
         setCommandSocketOpen(false);
+
+        setTimeout(() => { // attempt reconnect after 1 minute
+          setCommandSocket(new WebSocket("ws://192.168.1.155:9090/"));
+        }, 1000);
       }
     }
   }, [socket, socketOpen, commandSocket, commandSocketOpen]);
