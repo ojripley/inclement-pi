@@ -33,24 +33,24 @@ function App() {
     author: "Owen Ripley"
   });
 
-  const reconnect = function(socketType) {
-    if (socketType === 'socket') {
-      console.log('attempt reconnect of socket');
-      setSocket(setSocket(new WebSocket("ws://192.168.1.155:8080/")));
-    }
-  }
+  // const reconnect = function(socketType) {
+  //   if (socketType === 'socket') {
+  //     console.log('attempt reconnect of socket');
+  //     setSocket(setSocket(new WebSocket("ws://192.168.1.155:8080/")));
+  //   }
+  // }
 
-  useEffect(() => {
-    setInterval(() => {
-      if (!socketOpen) {
-        reconnect('socket');
-      }
-      // if (!commandSocketOpen) {
-      //   console.log('attempt reconnect of command socket');
-      //   setCommandSocket(new WebSocket("ws://192.168.1.155:9090/"));
-      // }
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setInterval(() => {
+  //     if (!socketOpen) {
+  //       reconnect('socket');
+  //     }
+  //     // if (!commandSocketOpen) {
+  //     //   console.log('attempt reconnect of command socket');
+  //     //   setCommandSocket(new WebSocket("ws://192.168.1.155:9090/"));
+  //     // }
+  //   }, 1000);
+  // }, []);
 
   useEffect(() => {
     const tempHandle = setInterval(() => {
