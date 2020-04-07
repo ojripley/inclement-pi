@@ -76,8 +76,9 @@ function App() {
         setSocketOpen(false);
 
         setTimeout(() => { // attempt reconnect after 1 minute
+          console.log('attempting reconnect');
           setSocket(new WebSocket("ws://192.168.1.155:8080/"));
-        }, 1000);
+        }, 120000);
       }
     }
 
