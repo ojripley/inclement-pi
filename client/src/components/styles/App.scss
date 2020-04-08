@@ -35,7 +35,7 @@ body {
 
 .widget-container {
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
   margin-left: -6px;
   width: 97%;
   top: 16vh;
@@ -304,6 +304,7 @@ button:active {
   
   .widget-container {
     width: 90%;
+    margin-bottom: 0;
     display: grid;
     grid-template-columns: 30% 70%;
     
