@@ -33,7 +33,6 @@ export default function NetworkWidget(props) {
     }
   }
 
-
   return (
     <div className="widget">
       <header className={'widget-header'}>Network</header>

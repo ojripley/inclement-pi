@@ -56,6 +56,7 @@ async def collect_data():
       now = datetime.datetime.now()
       hr = now.hour
       temp_climate_data = read_data()
+      print(temp_climate_data);
       climate_data = dict()
       
       if (temp_climate_data != None): # avoids setting climate data with checksum error
