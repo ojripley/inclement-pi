@@ -66,7 +66,6 @@ async def collect_data():
           hour_history['hour'] = hr
           hour_history['temp'] = []
           hour_history['humidity'] = []
-          # hour_history['pressure'] = []
 
         # append current data, calculate current hour's average
         hour_history['temp'].append(climate_data['temperature'])
