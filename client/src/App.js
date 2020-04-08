@@ -33,25 +33,6 @@ function App() {
     author: "Owen Ripley"
   });
 
-  const reconnect = function(socketType) {
-    if (socketType === 'socket') {
-      console.log('attempt reconnect of socket');
-      setSocket(setSocket(new WebSocket("ws://192.168.1.155:8080/")));
-    }
-  }
-
-  useEffect(() => {
-    setInterval(() => {
-      if (!socketOpen) {
-        reconnect('socket');
-      }
-      // if (!commandSocketOpen) {
-      //   console.log('attempt reconnect of command socket');
-      //   setCommandSocket(new WebSocket("ws://192.168.1.155:9090/"));
-      // }
-    }, 1000);
-  }, []);
-
   useEffect(() => {
     const tempHandle = setInterval(() => {
       clearInterval(intervalHandle);
@@ -75,9 +56,6 @@ function App() {
         const data = JSON.parse(msg.data);
         if (data.climateData) {
           const tempUpdateTimestamp = new Date();
-          // console.log(data.climateData);
-          // const tempCd = data.climateData;
-          // setClimateData(tempCd);
           setClimateData(data.climateData);
           setSystemData(data.systemData);
           setClimateUpdateTimestamp(tempUpdateTimestamp);
