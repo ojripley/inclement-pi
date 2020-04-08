@@ -8,14 +8,14 @@ export default function NetworkWidget(props) {
   const [upload, setUpload] = useState('');
   const [pendingResults, setPendingResults] = useState(false);
   
-  // useEffect(() => {
-  //   if (props.commandSocketOpen) {
-  //     setTimeout(() => {
-  //       props.commandSocket.send(JSON.stringify({ request: 'network-test' }));
-  //       setPendingResults(true)
-  //     }, 3500);
-  //   }
-  // }, [props.commandSocketOpen, props.commandSocket]);
+  useEffect(() => {
+    if (props.commandSocketOpen) {
+      setTimeout(() => {
+        props.commandSocket.send(JSON.stringify({ request: 'network-test' }));
+        setPendingResults(true)
+      }, 5000);
+    }
+  }, [props.commandSocketOpen, props.commandSocket]);
 
   useEffect(() => {
     if (props.networkData) {
