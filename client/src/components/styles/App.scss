@@ -303,6 +303,7 @@ button:active {
 @media screen and (min-width: 1200px) {
   
   .widget-container {
+    width: 90%;
     display: grid;
     grid-template-columns: 30% 70%;
     
